@@ -7,8 +7,9 @@
 
 import SwiftUI
 import Combine
+import CoreData
 
-struct ContentView: View {
+struct StockListView: View {
 
     @StateObject private var viewModel = StockListViewModel()
     @State private var showingAddStockView = false
@@ -59,6 +60,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        StockListView()
     }
 }

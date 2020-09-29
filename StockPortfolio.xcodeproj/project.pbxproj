@@ -21,6 +21,12 @@
 		42CA5CCC2523016B00198C29 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CA5CCB2523016B00198C29 /* Endpoint.swift */; };
 		42CA5CD625231D8600198C29 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CA5CD525231D8600198C29 /* ImageLoader.swift */; };
 		42CA5CDB25231DD200198C29 /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CA5CDA25231DD200198C29 /* AsyncImage.swift */; };
+		42F7D2ED25236FA700537E30 /* StockPortfolio.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 42F7D2EB25236FA700537E30 /* StockPortfolio.xcdatamodeld */; };
+		42F7D2F12523748B00537E30 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F7D2F02523748B00537E30 /* PersistenceManager.swift */; };
+		42F7D30325237AD900537E30 /* StockCoreData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F7D30125237AD900537E30 /* StockCoreData+CoreDataClass.swift */; };
+		42F7D30425237AD900537E30 /* StockCoreData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F7D30225237AD900537E30 /* StockCoreData+CoreDataProperties.swift */; };
+		42F7D30925238FEA00537E30 /* CoreDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F7D30825238FEA00537E30 /* CoreDataStorage.swift */; };
+		42F7D30C2523924900537E30 /* DataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F7D30B2523924900537E30 /* DataStorage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +46,12 @@
 		42CA5CCB2523016B00198C29 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		42CA5CD525231D8600198C29 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		42CA5CDA25231DD200198C29 /* AsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImage.swift; sourceTree = "<group>"; };
+		42F7D2EC25236FA700537E30 /* StockPortfolio.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = StockPortfolio.xcdatamodel; sourceTree = "<group>"; };
+		42F7D2F02523748B00537E30 /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
+		42F7D30125237AD900537E30 /* StockCoreData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "StockCoreData+CoreDataClass.swift"; path = "StockPortfolio/Model/StockCoreData+CoreDataClass.swift"; sourceTree = "<group>"; };
+		42F7D30225237AD900537E30 /* StockCoreData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "StockCoreData+CoreDataProperties.swift"; path = "StockPortfolio/Model/StockCoreData+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		42F7D30825238FEA00537E30 /* CoreDataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStorage.swift; sourceTree = "<group>"; };
+		42F7D30B2523924900537E30 /* DataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStorage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +68,8 @@
 		42CA5C942522144300198C29 = {
 			isa = PBXGroup;
 			children = (
+				42F7D30125237AD900537E30 /* StockCoreData+CoreDataClass.swift */,
+				42F7D30225237AD900537E30 /* StockCoreData+CoreDataProperties.swift */,
 				42CA5C9F2522144300198C29 /* StockPortfolio */,
 				42CA5C9E2522144300198C29 /* Products */,
 			);
@@ -72,11 +86,13 @@
 		42CA5C9F2522144300198C29 /* StockPortfolio */ = {
 			isa = PBXGroup;
 			children = (
+				42CA5CA02522144300198C29 /* StockPortfolioApp.swift */,
+				42F7D30725238FDB00537E30 /* DataStorage */,
 				42CA5CC02522195800198C29 /* View */,
 				42CA5CBB252216C200198C29 /* Model */,
 				42CA5CB6252214C800198C29 /* Environment */,
 				42CA5CB12522147E00198C29 /* API */,
-				42CA5CA02522144300198C29 /* StockPortfolioApp.swift */,
+				42F7D2EB25236FA700537E30 /* StockPortfolio.xcdatamodeld */,
 				42CA5CB02522146200198C29 /* Helpers */,
 				42CA5CA42522144500198C29 /* Assets.xcassets */,
 				42CA5CA92522144500198C29 /* Info.plist */,
@@ -145,6 +161,16 @@
 				42CA5CDA25231DD200198C29 /* AsyncImage.swift */,
 			);
 			path = ImageLoader;
+			sourceTree = "<group>";
+		};
+		42F7D30725238FDB00537E30 /* DataStorage */ = {
+			isa = PBXGroup;
+			children = (
+				42F7D2F02523748B00537E30 /* PersistenceManager.swift */,
+				42F7D30825238FEA00537E30 /* CoreDataStorage.swift */,
+				42F7D30B2523924900537E30 /* DataStorage.swift */,
+			);
+			path = DataStorage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -216,7 +242,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42F7D30325237AD900537E30 /* StockCoreData+CoreDataClass.swift in Sources */,
 				42CA5CB32522148C00198C29 /* DataLoader.swift in Sources */,
+				42F7D2F12523748B00537E30 /* PersistenceManager.swift in Sources */,
+				42F7D30925238FEA00537E30 /* CoreDataStorage.swift in Sources */,
+				42F7D30425237AD900537E30 /* StockCoreData+CoreDataProperties.swift in Sources */,
 				42CA5CCC2523016B00198C29 /* Endpoint.swift in Sources */,
 				42CA5CD625231D8600198C29 /* ImageLoader.swift in Sources */,
 				42CA5CC9252270C800198C29 /* IEXStock.swift in Sources */,
@@ -224,6 +254,8 @@
 				4217C19F25232A4A002F66DA /* AddStockView.swift in Sources */,
 				42CA5CDB25231DD200198C29 /* AsyncImage.swift in Sources */,
 				42CA5CA32522144300198C29 /* StockListView.swift in Sources */,
+				42F7D30C2523924900537E30 /* DataStorage.swift in Sources */,
+				42F7D2ED25236FA700537E30 /* StockPortfolio.xcdatamodeld in Sources */,
 				42CA5CBD252216C800198C29 /* Stock.swift in Sources */,
 				42CA5CA12522144300198C29 /* StockPortfolioApp.swift in Sources */,
 				42CA5CC6252257E600198C29 /* API.swift in Sources */,
@@ -416,6 +448,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		42F7D2EB25236FA700537E30 /* StockPortfolio.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				42F7D2EC25236FA700537E30 /* StockPortfolio.xcdatamodel */,
+			);
+			currentVersion = 42F7D2EC25236FA700537E30 /* StockPortfolio.xcdatamodel */;
+			path = StockPortfolio.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 42CA5C952522144300198C29 /* Project object */;
 }

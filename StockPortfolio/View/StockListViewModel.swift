@@ -8,35 +8,41 @@
 import Foundation
 import SwiftUI
 import Combine
+import CoreData
 
 class StockListViewModel: ObservableObject {
 
     @Published var stocks = [Stock]()
 
-    private var symbols = [String]() {
-        didSet {
-            loadStocks()
-        }
-    }
-
-    private let api: API
     private var cancellables = Set<AnyCancellable>()
 
-    init(api: API = API()) {
+    private let api: API
+    private let dataStorage: DataStorage
+
+    init(api: API = API(),
+         dataStorage: DataStorage = CoreDataStorage()) {
         self.api = api
+        self.dataStorage = dataStorage
     }
 
     func loadStocks() {
-        api.stocks(from: symbols).sink { result in
-            switch result {
-                case .success(let stocks):
-                    self.stocks = stocks
-                case .failure(let error): print(error.localizedDescription)
-            }
-        }.store(in: &cancellables)
+        dataStorage
+            .get()
+            .flatMap(self.api.stocks(from:))
+            .sink { completion in }
+                receiveValue: { result in
+                    switch result {
+                    case .success(let stocks): self.stocks = stocks
+                    case.failure(let error): print(error.localizedDescription)
+                    }
+            }.store(in: &cancellables)
     }
 
     func addStock(symbol: String) {
-        symbols.append(symbol)
+        dataStorage.save(symbol: symbol)
+            .sink { completion in
+                self.loadStocks()
+            } receiveValue: { _ in }
+            .store(in: &cancellables)
     }
 }

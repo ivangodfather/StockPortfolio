@@ -6,12 +6,13 @@
 //
 
 import SwiftUI
+import CoreData
 
 @main
 struct StockPortfolioApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            StockListView().environment(\.managedObjectContext, PersistenceManager.shared.context)
         }
     }
 }

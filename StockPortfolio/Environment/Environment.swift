@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Environment {
+struct EnvironmentValue {
     static var iexToken: String {
         #if DEBUG
             return "Tsk_273876ee338444daa21d9f1465b2dc11"
