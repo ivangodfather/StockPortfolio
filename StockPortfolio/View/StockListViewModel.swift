@@ -45,4 +45,14 @@ class StockListViewModel: ObservableObject {
             } receiveValue: { _ in }
             .store(in: &cancellables)
     }
+
+    func deleteStock(at offsets: IndexSet) {
+        let symbols = offsets.map { stocks[$0].symbol }
+        symbols.publisher.flatMap(dataStorage.remove(symbol:)).sink { completion in
+            switch completion {
+            case.finished: self.stocks.removeAll { symbols.contains($0.symbol) }
+            case.failure(let error): print(error.localizedDescription)
+            }
+        } receiveValue: { _ in }.store(in: &cancellables)
+    }
 }

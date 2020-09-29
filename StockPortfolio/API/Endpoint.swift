@@ -18,7 +18,7 @@ extension Endpoint {
         Endpoint<[String: IEXStock]>(path: "/stable/stock/market/batch",
         queryItems: [
             URLQueryItem(name: "symbols", value: symbols.joined(separator: ",")),
-            URLQueryItem(name: "types", value: "quote,news,chart,logo"),
+            URLQueryItem(name: "types", value: "quote,news,logo"),
             URLQueryItem(name: "range", value: "1m"),
             URLQueryItem(name: "last", value: "10"),
             URLQueryItem(name: "token", value: EnvironmentValue.iexToken)

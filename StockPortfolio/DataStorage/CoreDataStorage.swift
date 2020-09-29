@@ -40,4 +40,19 @@ struct CoreDataStorage: DataStorage {
         }
     }
 
+    func remove(symbol: String) -> AnyPublisher<(), DataStorageError> {
+        let request: NSFetchRequest<StockCoreData> = StockCoreData.fetchRequest()
+        request.predicate = NSPredicate(format: "%K = %@", argumentArray: [#keyPath(StockCoreData.symbol), symbol])
+        do {
+            let results = try manager.context.fetch(request)
+            results.forEach {
+                manager.context.delete($0)
+            }
+            try manager.context.save()
+            return Just(()).setFailureType(to: DataStorageError.self).eraseToAnyPublisher()
+        } catch {
+            return Fail(outputType: Void.self, failure: DataStorageError.unkown(reason: error.localizedDescription)).eraseToAnyPublisher()
+        }
+    }
+
 }

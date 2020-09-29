@@ -13,4 +13,8 @@ struct Stock: Decodable {
     let latestPrice: Double
     let previousClose: Double
     let logo: URL
+
+    var percentage: Double {
+        (latestPrice - previousClose) * 100 / previousClose
+    }
 }

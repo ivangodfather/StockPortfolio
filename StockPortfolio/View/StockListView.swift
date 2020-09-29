@@ -16,45 +16,28 @@ struct StockListView: View {
 
     var body: some View {
         NavigationView {
-            List(viewModel.stocks, id: \.symbol) { stock in
-                HStack {
-                    ZStack {
-                        Circle()
-                            .fill(Color.red)
-                        Image(systemName: "power")
-                        AsyncImage(url: stock.logo) {
-                            Text("Loading")
-                        }.frame(width: 48, height: 48)
-                    }.frame(width: 48, height: 48, alignment: .center)
-                    VStack {
-                        Text(stock.companyName)
-                        Text(stock.symbol)
-                    }
-                    Spacer()
-                    VStack {
-                        HStack(spacing: 0) {
-                            Text(stock.latestPrice.description)
-                            Text("$")
-                        }
-                        Text("13%").foregroundColor(.red)
-                    }
+            List {
+                ForEach(viewModel.stocks, id: \.symbol) { stock in
+                    StockRowView(stock: stock)
                 }
-            }
-            .padding()
+                .onDelete(perform: viewModel.deleteStock(at:))
+            }.listStyle(PlainListStyle())
             .sheet(isPresented: $showingAddStockView, content: {
                 AddStockView(show: self.$showingAddStockView) { symbol, shares in
                     self.viewModel.addStock(symbol: symbol)
                 }
             })
             .navigationTitle("Stock Portfolio")
-            .navigationBarItems(trailing: Button(action: {
+            .navigationBarItems(leading: EditButton(), trailing: Button(action: {
                 self.showingAddStockView = true
             }) { Image(systemName: "plus").imageScale(.large) })
         }
-
         .onAppear {
             viewModel.loadStocks()
         }
+    }
+
+    func delete(at offsets: IndexSet) {
     }
 }
 
