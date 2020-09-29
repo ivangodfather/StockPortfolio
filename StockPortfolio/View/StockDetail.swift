@@ -14,16 +14,20 @@ struct StockDetail: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 8) {
+                Text("News").font(.title)
                 ForEach(stock.news) { news in
-                    Text(news.headline).font(.headline)
-                    HStack {
-                        Text("Source: " + news.source).bold()
-                        Link("Go to website", destination: news.url)
-                    }.font(.callout)
-                    Text(news.summary)
-                    Divider()
-                        .padding(.vertical, 16)
+                    DisclosureGroup(news.headline) {
+                        VStack {
+                            HStack {
+                                Text("Source: " + news.source).bold()
+                                Link("Go to website", destination: news.url)
+                            }.padding(.vertical)
+                            .font(.callout)
+                            Text(news.summary)
+                        }.padding(.vertical)
+                     }
                 }
+                Divider()
             }
             .padding()
             .navigationTitle(stock.companyName)
