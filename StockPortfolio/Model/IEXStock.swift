@@ -29,6 +29,6 @@ extension Stock {
         companyName = iexStock.quote.companyName
         latestPrice = iexStock.quote.latestPrice
         previousClose = iexStock.quote.previousClose
-        logo = URL(string: "https://www.apple.com/ac/structured-data/images/knowledge_graph_logo.png")! //iexStock.logo.url
+        logo = iexStock.logo.url
     }
 }

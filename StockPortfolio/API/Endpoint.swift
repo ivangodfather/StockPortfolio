@@ -21,7 +21,7 @@ extension Endpoint {
             URLQueryItem(name: "types", value: "quote,news,chart,logo"),
             URLQueryItem(name: "range", value: "1m"),
             URLQueryItem(name: "last", value: "10"),
-            URLQueryItem(name: "token", value: Environment.sandboxKey)
+            URLQueryItem(name: "token", value: Environment.iexToken)
         ])
     }
 }
@@ -30,7 +30,7 @@ extension Endpoint {
     var url: URL {
         var components = URLComponents()
         components.scheme = "https"
-        components.host = Environment.sandboxURL
+        components.host = Environment.iexHost
         components.path = path
         components.queryItems = queryItems
 
