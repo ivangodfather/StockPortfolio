@@ -18,7 +18,10 @@ struct StockListView: View {
         NavigationView {
             List {
                 ForEach(viewModel.stocks, id: \.symbol) { stock in
-                    StockRowView(stock: stock)
+                    NavigationLink(
+                        destination: StockDetail(stock: stock)) {
+                            StockRowView(stock: stock)
+                        }
                 }
                 .onDelete(perform: viewModel.deleteStock(at:))
             }.listStyle(PlainListStyle())
