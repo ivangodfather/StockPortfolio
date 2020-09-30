@@ -39,7 +39,7 @@ struct StockRowView: View {
 
 struct StockRowView_Previews: PreviewProvider {
     static var previews: some View {
-        StockRowView(stock: Stock.randomStock)
+        StockRowView(stock: Stock.random)
     }
 }
 

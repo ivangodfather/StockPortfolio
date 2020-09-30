@@ -16,14 +16,17 @@ struct StockListView: View {
 
     var body: some View {
         NavigationView {
-            List {
-                ForEach(viewModel.stocks, id: \.symbol) { stock in
-                    NavigationLink(
-                        destination: StockDetail(stock: stock)) {
+            VStack {
+                PortfolioValueView(portfolioValue: viewModel.portfolioValue)
+                List {
+                    ForEach(viewModel.stocks, id: \.symbol) { stock in
+                        NavigationLink(
+                            destination: StockDetail(stock: stock)) {
                             StockRowView(stock: stock)
                         }
+                    }
+                    .onDelete(perform: viewModel.deleteStock(at:))
                 }
-                .onDelete(perform: viewModel.deleteStock(at:))
             }.listStyle(PlainListStyle())
             .sheet(isPresented: $showingAddStockView, content: {
                 AddStockView(show: self.$showingAddStockView) { symbol, shares in

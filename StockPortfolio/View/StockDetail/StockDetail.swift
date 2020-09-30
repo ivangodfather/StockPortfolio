@@ -44,6 +44,6 @@ struct StockDetail: View {
 
 struct StockDetail_Previews: PreviewProvider {
     static var previews: some View {
-        StockDetail(stock: Stock.randomStock)
+        StockDetail(stock: Stock.random)
     }
 }

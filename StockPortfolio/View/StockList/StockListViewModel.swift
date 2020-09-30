@@ -13,6 +13,7 @@ import CoreData
 class StockListViewModel: ObservableObject {
 
     @Published var stocks = [Stock]()
+    @Published var portfolioValue: PortfolioValue?
 
     private var cancellables = Set<AnyCancellable>()
 
@@ -38,7 +39,9 @@ class StockListViewModel: ObservableObject {
             .sink { completion in }
                 receiveValue: { result in
                     switch result {
-                    case .success(let stocks): self.stocks = stocks
+                    case .success(let stocks):
+                        self.stocks = stocks
+                        self.setPotfolioValue()
                     case.failure(let error): print(error.localizedDescription)
                     }
             }.store(in: &cancellables)
@@ -60,5 +63,13 @@ class StockListViewModel: ObservableObject {
             case.failure(let error): print(error.localizedDescription)
             }
         } receiveValue: { _ in }.store(in: &cancellables)
+    }
+
+    private func setPotfolioValue() {
+        // This is random
+        portfolioValue = PortfolioValue(portfolioTotalValue: Int.random(in: 1500...15000),
+                                        portfolioFractionalValue: Int.random(in: 21...80),
+                                        portfolioTodayGain: Int.random(in: 800...900),
+                                        portfolioPercentage: Double.random(in: 0...2))
     }
 }

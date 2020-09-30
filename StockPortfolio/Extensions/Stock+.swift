@@ -8,7 +8,7 @@
 import Foundation
 
 extension Stock {
-    static let randomStock = Stock(symbol: "AAPL",
+    static let random = Stock(symbol: "AAPL",
                                    companyName: "Apple Inc.",
                                    latestPrice: 100,
                                    previousClose: 90,
