@@ -18,8 +18,10 @@ struct AddStockView: View {
         NavigationView {
             Form {
                 Section {
-                    TextField("Ticker symbol", text: $symbol).autocapitalization(.allCharacters)
-                    TextField("Number of shares", text: $numShares).keyboardType(.numberPad)
+                    TextField("Ticker symbol, i.e., AAPL, GOOGL, TWTR", text: $symbol)
+                        .autocapitalization(.allCharacters)
+                    TextField("Number of shares", text: $numShares)
+                        .keyboardType(.numberPad)
                 }
                 Section {
                     Button(action: {
@@ -43,5 +45,11 @@ struct AddStockView: View {
             }))
         }
 
+    }
+}
+
+struct AddStockView_Previews: PreviewProvider {
+    static var previews: some View {
+        AddStockView(show: .constant(true), completion: { _,_ in })
     }
 }
