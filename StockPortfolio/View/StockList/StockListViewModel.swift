@@ -28,6 +28,12 @@ class StockListViewModel: ObservableObject {
     func loadStocks() {
         dataStorage
             .get()
+            .flatMap { symbols -> AnyPublisher<[String], Never> in
+                if symbols.isEmpty {
+                    return CoreDataStorage().insertSampleData()
+                }
+                return Just(symbols).eraseToAnyPublisher()
+            }
             .flatMap(self.api.stocks(from:))
             .sink { completion in }
                 receiveValue: { result in

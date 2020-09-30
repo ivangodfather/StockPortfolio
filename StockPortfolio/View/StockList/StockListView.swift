@@ -39,9 +39,6 @@ struct StockListView: View {
             viewModel.loadStocks()
         }
     }
-
-    func delete(at offsets: IndexSet) {
-    }
 }
 
 struct ContentView_Previews: PreviewProvider {
