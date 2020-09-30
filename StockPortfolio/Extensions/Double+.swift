@@ -11,4 +11,8 @@ extension Double {
     func round2() -> String {
         String(format: "%.2f", self)
     }
+
+    func percentage(from initialValue: Double) -> Double {
+        ((self - initialValue) * 100 / initialValue)
+    }
 }

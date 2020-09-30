@@ -20,7 +20,13 @@ extension Endpoint {
             URLQueryItem(name: "symbols", value: symbols.joined(separator: ",")),
             URLQueryItem(name: "types", value: "quote,news,logo"),
             URLQueryItem(name: "range", value: "1m"),
-            URLQueryItem(name: "last", value: "3"),
+            URLQueryItem(name: "last", value: "4"),
+            URLQueryItem(name: "token", value: EnvironmentValue.iexToken)
+        ])
+    }
+
+    static func chart(from symbol: String, period: String) -> Endpoint<[IEXChart]> {
+        Endpoint<[IEXChart]>(path: "/stable/stock/\(symbol)/chart/\(period)", queryItems: [
             URLQueryItem(name: "token", value: EnvironmentValue.iexToken)
         ])
     }

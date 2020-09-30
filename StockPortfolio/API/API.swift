@@ -10,6 +10,22 @@ import Combine
 
 protocol APIProtocol {
     func stocks(from symbols: [String]) -> AnyPublisher<Result<[Stock], APIError>, Never>
+    func chart(from symbol: String, period: String) -> AnyPublisher<Result<[Chart], APIError>, Never>
+}
+
+enum APIError: Error, LocalizedError {
+    case invalidJSON(reason: String)
+    case networkError(reason: String)
+    case unknown
+
+    var errorDescription: String? {
+        switch self {
+        case .unknown:
+            return "Unknown error"
+        case .invalidJSON(let reason), .networkError(let reason):
+            return reason
+        }
+    }
 }
 
 struct API: APIProtocol {
@@ -30,21 +46,16 @@ struct API: APIProtocol {
             }
         }.eraseToAnyPublisher()
     }
-}
 
-
-
-enum APIError: Error, LocalizedError {
-    case invalidJSON(reason: String)
-    case networkError(reason: String)
-    case unknown
-
-    var errorDescription: String? {
-        switch self {
-        case .unknown:
-            return "Unknown error"
-        case .invalidJSON(let reason), .networkError(let reason):
-            return reason
-        }
+    func chart(from symbol: String, period: String) -> AnyPublisher<Result<[Chart], APIError>, Never> {
+        dataLoader.request(Endpoint<[IEXChart]>.chart(from: symbol, period: period)).map { result -> Result<[Chart], APIError> in
+            switch result {
+            case .success(let charts):
+                return .success(charts.map(Chart.init(chart:)))
+            case .failure(let error):
+                return .failure(error)
+            }
+        }.eraseToAnyPublisher()
     }
+
 }

@@ -16,7 +16,7 @@ struct Stock {
     let news: [News]
 
     var percentage: Double {
-        (latestPrice - previousClose) * 100 / previousClose
+        latestPrice.percentage(from: previousClose)
     }
 
     struct News: Identifiable {

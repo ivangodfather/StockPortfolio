@@ -3,11 +3,16 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		4217C19F25232A4A002F66DA /* AddStockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4217C19E25232A4A002F66DA /* AddStockView.swift */; };
+		427755882524725F008E0EF0 /* StockDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427755872524725F008E0EF0 /* StockDetailViewModel.swift */; };
+		4277559225247756008E0EF0 /* ChartPeriod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4277559125247756008E0EF0 /* ChartPeriod.swift */; };
+		42C8C0AB252468A300BA2BB4 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 42C8C0AA252468A300BA2BB4 /* SwiftUICharts */; };
+		42C8C0AE25246C2100BA2BB4 /* IEXChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C8C0AD25246C2100BA2BB4 /* IEXChart.swift */; };
+		42C8C0B125246D4900BA2BB4 /* Chart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C8C0B025246D4900BA2BB4 /* Chart.swift */; };
 		42CA5CA12522144300198C29 /* StockPortfolioApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CA5CA02522144300198C29 /* StockPortfolioApp.swift */; };
 		42CA5CA32522144300198C29 /* StockListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CA5CA22522144300198C29 /* StockListView.swift */; };
 		42CA5CA52522144500198C29 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42CA5CA42522144500198C29 /* Assets.xcassets */; };
@@ -28,12 +33,16 @@
 		42F7D30925238FEA00537E30 /* CoreDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F7D30825238FEA00537E30 /* CoreDataStorage.swift */; };
 		42F7D30C2523924900537E30 /* DataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F7D30B2523924900537E30 /* DataStorage.swift */; };
 		42F7D3142523B14200537E30 /* Double+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F7D3132523B14200537E30 /* Double+.swift */; };
-		42F7D3172523B30400537E30 /* StockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F7D3162523B30400537E30 /* StockView.swift */; };
+		42F7D3172523B30400537E30 /* StockRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F7D3162523B30400537E30 /* StockRowView.swift */; };
 		42F7D31A2523C75700537E30 /* StockDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F7D3192523C75700537E30 /* StockDetail.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4217C19E25232A4A002F66DA /* AddStockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStockView.swift; sourceTree = "<group>"; };
+		427755872524725F008E0EF0 /* StockDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetailViewModel.swift; sourceTree = "<group>"; };
+		4277559125247756008E0EF0 /* ChartPeriod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartPeriod.swift; sourceTree = "<group>"; };
+		42C8C0AD25246C2100BA2BB4 /* IEXChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IEXChart.swift; sourceTree = "<group>"; };
+		42C8C0B025246D4900BA2BB4 /* Chart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chart.swift; sourceTree = "<group>"; };
 		42CA5C9D2522144300198C29 /* StockPortfolio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StockPortfolio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		42CA5CA02522144300198C29 /* StockPortfolioApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockPortfolioApp.swift; sourceTree = "<group>"; };
 		42CA5CA22522144300198C29 /* StockListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockListView.swift; sourceTree = "<group>"; };
@@ -56,7 +65,7 @@
 		42F7D30825238FEA00537E30 /* CoreDataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStorage.swift; sourceTree = "<group>"; };
 		42F7D30B2523924900537E30 /* DataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStorage.swift; sourceTree = "<group>"; };
 		42F7D3132523B14200537E30 /* Double+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+.swift"; sourceTree = "<group>"; };
-		42F7D3162523B30400537E30 /* StockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockView.swift; sourceTree = "<group>"; };
+		42F7D3162523B30400537E30 /* StockRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockRowView.swift; sourceTree = "<group>"; };
 		42F7D3192523C75700537E30 /* StockDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetail.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -65,12 +74,68 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42C8C0AB252468A300BA2BB4 /* SwiftUICharts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4277558A25247264008E0EF0 /* StockDetail */ = {
+			isa = PBXGroup;
+			children = (
+				42F7D3192523C75700537E30 /* StockDetail.swift */,
+				427755872524725F008E0EF0 /* StockDetailViewModel.swift */,
+				4277559125247756008E0EF0 /* ChartPeriod.swift */,
+			);
+			path = StockDetail;
+			sourceTree = "<group>";
+		};
+		4277558C2524727E008E0EF0 /* StockList */ = {
+			isa = PBXGroup;
+			children = (
+				42CA5CA22522144300198C29 /* StockListView.swift */,
+				42CA5CC2252257A700198C29 /* StockListViewModel.swift */,
+				42F7D3162523B30400537E30 /* StockRowView.swift */,
+			);
+			path = StockList;
+			sourceTree = "<group>";
+		};
+		4277558F25247294008E0EF0 /* AddStockView */ = {
+			isa = PBXGroup;
+			children = (
+				4217C19E25232A4A002F66DA /* AddStockView.swift */,
+			);
+			path = AddStockView;
+			sourceTree = "<group>";
+		};
+		42C8C0B325246D6900BA2BB4 /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				42F7D30125237AD900537E30 /* StockCoreData+CoreDataClass.swift */,
+				42F7D30225237AD900537E30 /* StockCoreData+CoreDataProperties.swift */,
+			);
+			path = "Core Data";
+			sourceTree = "<group>";
+		};
+		42C8C0B425246D7C00BA2BB4 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				42CA5CBC252216C800198C29 /* Stock.swift */,
+				42C8C0B025246D4900BA2BB4 /* Chart.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		42C8C0B525246D8300BA2BB4 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				42CA5CC8252270C800198C29 /* IEXStock.swift */,
+				42C8C0AD25246C2100BA2BB4 /* IEXChart.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
 		42CA5C942522144300198C29 = {
 			isa = PBXGroup;
 			children = (
@@ -143,10 +208,9 @@
 		42CA5CBB252216C200198C29 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				42F7D30125237AD900537E30 /* StockCoreData+CoreDataClass.swift */,
-				42F7D30225237AD900537E30 /* StockCoreData+CoreDataProperties.swift */,
-				42CA5CBC252216C800198C29 /* Stock.swift */,
-				42CA5CC8252270C800198C29 /* IEXStock.swift */,
+				42C8C0B525246D8300BA2BB4 /* API */,
+				42C8C0B425246D7C00BA2BB4 /* Domain */,
+				42C8C0B325246D6900BA2BB4 /* Core Data */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -154,11 +218,9 @@
 		42CA5CC02522195800198C29 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				42CA5CA22522144300198C29 /* StockListView.swift */,
-				42CA5CC2252257A700198C29 /* StockListViewModel.swift */,
-				4217C19E25232A4A002F66DA /* AddStockView.swift */,
-				42F7D3162523B30400537E30 /* StockView.swift */,
-				42F7D3192523C75700537E30 /* StockDetail.swift */,
+				4277558C2524727E008E0EF0 /* StockList */,
+				4277558F25247294008E0EF0 /* AddStockView */,
+				4277558A25247264008E0EF0 /* StockDetail */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -206,6 +268,9 @@
 			dependencies = (
 			);
 			name = StockPortfolio;
+			packageProductDependencies = (
+				42C8C0AA252468A300BA2BB4 /* SwiftUICharts */,
+			);
 			productName = StockPortfolio;
 			productReference = 42CA5C9D2522144300198C29 /* StockPortfolio.app */;
 			productType = "com.apple.product-type.application";
@@ -233,6 +298,9 @@
 				Base,
 			);
 			mainGroup = 42CA5C942522144300198C29;
+			packageReferences = (
+				42C8C0A9252468A300BA2BB4 /* XCRemoteSwiftPackageReference "ChartView" */,
+			);
 			productRefGroup = 42CA5C9E2522144300198C29 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -259,20 +327,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				427755882524725F008E0EF0 /* StockDetailViewModel.swift in Sources */,
 				42F7D30325237AD900537E30 /* StockCoreData+CoreDataClass.swift in Sources */,
 				42CA5CB32522148C00198C29 /* DataLoader.swift in Sources */,
 				42F7D2F12523748B00537E30 /* PersistenceManager.swift in Sources */,
 				42F7D31A2523C75700537E30 /* StockDetail.swift in Sources */,
 				42F7D30925238FEA00537E30 /* CoreDataStorage.swift in Sources */,
 				42F7D30425237AD900537E30 /* StockCoreData+CoreDataProperties.swift in Sources */,
-				42F7D3172523B30400537E30 /* StockView.swift in Sources */,
+				42F7D3172523B30400537E30 /* StockRowView.swift in Sources */,
 				42CA5CCC2523016B00198C29 /* Endpoint.swift in Sources */,
 				42CA5CD625231D8600198C29 /* ImageLoader.swift in Sources */,
+				42C8C0AE25246C2100BA2BB4 /* IEXChart.swift in Sources */,
 				42CA5CC9252270C800198C29 /* IEXStock.swift in Sources */,
 				42CA5CB8252214DC00198C29 /* Environment.swift in Sources */,
+				42C8C0B125246D4900BA2BB4 /* Chart.swift in Sources */,
 				4217C19F25232A4A002F66DA /* AddStockView.swift in Sources */,
 				42CA5CDB25231DD200198C29 /* AsyncImage.swift in Sources */,
 				42CA5CA32522144300198C29 /* StockListView.swift in Sources */,
+				4277559225247756008E0EF0 /* ChartPeriod.swift in Sources */,
 				42F7D30C2523924900537E30 /* DataStorage.swift in Sources */,
 				42F7D2ED25236FA700537E30 /* StockPortfolio.xcdatamodeld in Sources */,
 				42CA5CBD252216C800198C29 /* Stock.swift in Sources */,
@@ -468,6 +540,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		42C8C0A9252468A300BA2BB4 /* XCRemoteSwiftPackageReference "ChartView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AppPear/ChartView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		42C8C0AA252468A300BA2BB4 /* SwiftUICharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 42C8C0A9252468A300BA2BB4 /* XCRemoteSwiftPackageReference "ChartView" */;
+			productName = SwiftUICharts;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		42F7D2EB25236FA700537E30 /* StockPortfolio.xcdatamodeld */ = {
