@@ -29,7 +29,7 @@ struct StockRowView: View {
                     Text("$")
                     Text(stock.latestPrice.description)
                 }.font(.headline).modifier(ColorifyModifier())
-                Text("\(stock.percentage.round2())%").foregroundColor(stock.percentage > 0 ? .green : .red)
+                Text("\(stock.percentage.round2())%").foregroundColor(stock.percentage > 0 ? Color.init(red: 50/255, green: 200/255, blue:  150/255) : Color.init(red: 200/255, green: 50/255, blue:  100/255))
                     .font(.body)
             }.padding(.horizontal)
         }
