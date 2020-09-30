@@ -20,6 +20,7 @@ struct AddStockView: View {
                 Section {
                     TextField("Ticker symbol, i.e., AAPL, GOOGL, TWTR", text: $symbol)
                         .autocapitalization(.allCharacters)
+                        .disableAutocorrection(true)
                     TextField("Number of shares", text: $numShares)
                         .keyboardType(.numberPad)
                 }
