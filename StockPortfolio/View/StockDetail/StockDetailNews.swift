@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct StockDetailNews: View {
-    var stock: Stock
+    var stock: StockDetail
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             Text("News").font(.title)

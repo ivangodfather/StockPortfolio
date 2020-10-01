@@ -18,27 +18,27 @@ class CoreDataStorage: DataStorage {
         self.manager = manager
     }
 
-    func save(symbol: String, shares: Int) -> AnyPublisher<(symbol: String, shares: Int), DataStorageError> {
+    func save(stock: Stock) -> AnyPublisher<Stock, DataStorageError> {
         let entity = NSEntityDescription.insertNewObject(forEntityName: String(describing: StockCoreData.self), into: manager.context) as! StockCoreData
-        entity.symbol = symbol
-        entity.shares = Int64(shares)
+        entity.symbol = stock.symbol
+        entity.shares = Int64(stock.shares)
         do {
             try manager.context.save()
-            return Just((symbol, shares)).setFailureType(to: DataStorageError.self).eraseToAnyPublisher()
+            return Just(stock).setFailureType(to: DataStorageError.self).eraseToAnyPublisher()
         } catch {
-            return Fail(outputType: (symbol: String, shares: Int).self,
+            return Fail(outputType: Stock.self,
                         failure: DataStorageError.unkown(reason: error.localizedDescription)).eraseToAnyPublisher()
         }
     }
 
-    func get() -> AnyPublisher<[(symbol: String, shares: Int)], DataStorageError> {
+    func get() -> AnyPublisher<[Stock], DataStorageError> {
         let request: NSFetchRequest<StockCoreData> = StockCoreData.fetchRequest()
         do {
             let stocks = try PersistenceManager.shared.context.fetch(request)
-            let elements = stocks.map { ($0.symbol ?? "", Int($0.shares)) }.filter { $0.0 != "" }
+            let elements = stocks.map { ($0.symbol ?? "", Int($0.shares)) }.map(Stock.init(symbol:shares:))
             return Just(elements).setFailureType(to: DataStorageError.self).eraseToAnyPublisher()
         } catch {
-            return Fail(outputType: [(symbol: String, shares: Int)].self, failure: DataStorageError.unkown(reason: error.localizedDescription)).eraseToAnyPublisher()
+            return Fail(outputType: [Stock].self, failure: DataStorageError.unkown(reason: error.localizedDescription)).eraseToAnyPublisher()
         }
     }
 

@@ -31,7 +31,7 @@ struct IEXStock: Decodable {
     }
 }
 
-extension Stock {
+extension StockDetail {
     init(iexStock: IEXStock, shares: Int) {
         symbol = iexStock.quote.symbol
         self.shares = shares
@@ -39,11 +39,11 @@ extension Stock {
         latestPrice = iexStock.quote.latestPrice
         previousClose = iexStock.quote.previousClose
         logo = iexStock.logo.url
-        news = iexStock.news.map(Stock.News.init(news:))
+        news = iexStock.news.map(StockDetail.News.init(news:))
     }
 }
 
-extension Stock.News {
+extension StockDetail.News {
     init(news: IEXStock.News) {
         headline = news.headline
         source = news.source

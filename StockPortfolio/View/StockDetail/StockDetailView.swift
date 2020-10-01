@@ -9,8 +9,8 @@ import SwiftUI
 import SwiftUICharts
 import Combine
 
-struct StockDetail: View {
-    var stock: Stock
+struct StockDetailView: View {
+    var stock: StockDetail
 
     @StateObject private var viewModel = StockDetailViewModel()
     @State private var selectedPeriod = 0
@@ -44,6 +44,6 @@ struct StockDetail: View {
 
 struct StockDetail_Previews: PreviewProvider {
     static var previews: some View {
-        StockDetail(stock: Stock.random)
+        StockDetailView(stock: StockDetail.random)
     }
 }

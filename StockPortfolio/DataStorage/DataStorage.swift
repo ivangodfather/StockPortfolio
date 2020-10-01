@@ -9,8 +9,8 @@ import Foundation
 import Combine
 
 protocol DataStorage {
-    func save(symbol: String, shares: Int) -> AnyPublisher<(symbol: String, shares: Int), DataStorageError>
-    func get() -> AnyPublisher<[(symbol: String, shares: Int)], DataStorageError>
+    func save(stock: Stock) -> AnyPublisher<Stock, DataStorageError>
+    func get() -> AnyPublisher<[Stock], DataStorageError>
     func remove(symbol: String) -> AnyPublisher<(), DataStorageError>
 }
 

@@ -9,7 +9,7 @@ import SwiftUI
 import Foundation
 
 struct StockRowView: View {
-    var stock: Stock
+    var stock: StockDetail
 
     var body: some View {
         HStack {
@@ -39,6 +39,6 @@ struct StockRowView: View {
 
 struct StockRowView_Previews: PreviewProvider {
     static var previews: some View {
-        StockRowView(stock: Stock.random)
+        StockRowView(stock: StockDetail.random)
     }
 }
