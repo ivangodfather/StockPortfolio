@@ -9,10 +9,10 @@ import Foundation
 import Combine
 
 extension CoreDataStorage {
-    func insertSampleData() -> AnyPublisher<[String], Never> {
-        ["TSLA", "KO", "PEP", "AMD"]
+    func insertSampleData() -> AnyPublisher<[(symbol: String, shares: Int)], Never> {
+        [("TSLA", 5), ("KO", 25), ("PEP", 43), ("AMD", 15)]
             .publisher
-            .flatMap(save(symbol:))
+            .flatMap(save(symbol:shares:))
             .collect()
             .replaceError(with: [])
             .eraseToAnyPublisher()

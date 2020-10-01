@@ -32,8 +32,9 @@ struct IEXStock: Decodable {
 }
 
 extension Stock {
-    init(iexStock: IEXStock) {
+    init(iexStock: IEXStock, shares: Int) {
         symbol = iexStock.quote.symbol
+        self.shares = shares
         companyName = iexStock.quote.companyName
         latestPrice = iexStock.quote.latestPrice
         previousClose = iexStock.quote.previousClose

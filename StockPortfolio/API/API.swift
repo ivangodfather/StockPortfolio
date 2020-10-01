@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 protocol APIProtocol {
-    func stocks(from symbols: [String]) -> AnyPublisher<Result<[Stock], APIError>, Never>
+    func stocks(from elements: [(symbol: String, shares: Int)]) -> AnyPublisher<Result<[Stock], APIError>, Never>
     func chart(from symbol: String, period: String) -> AnyPublisher<Result<[Chart], APIError>, Never>
 }
 
@@ -36,15 +36,22 @@ struct API: APIProtocol {
         self.dataLoader = dataLoader
     }
 
-    func stocks(from symbols: [String]) -> AnyPublisher<Result<[Stock], APIError>, Never> {
-        dataLoader.request(Endpoint<[String: IEXStock]>.get(symbols: symbols)).map { result -> Result<[Stock], APIError> in
-            switch result {
-            case .success(let value):
-                return .success(value.values.map(Stock.init(iexStock:)))
-            case .failure(let error):
-                return .failure(error)
-            }
-        }.eraseToAnyPublisher()
+    func stocks(from elements: [(symbol: String, shares: Int)]) -> AnyPublisher<Result<[Stock], APIError>, Never> {
+        dataLoader.request(Endpoint<[String: IEXStock]>.get(symbols: elements.map { $0.symbol }))
+            .map { result -> Result<[Stock], APIError> in
+                switch result {
+                case .success(let value):
+                    return .success(value.values.map { iexStock -> Stock in
+                        guard let shares = elements.first(where: { $0.symbol == iexStock.quote.symbol })?.shares else {
+                            preconditionFailure()
+                        }
+
+                        return Stock(iexStock: iexStock, shares: shares)
+                    })
+                    case .failure(let error):
+                        return .failure(error)
+                }
+            }.eraseToAnyPublisher()
     }
 
     func chart(from symbol: String, period: String) -> AnyPublisher<Result<[Chart], APIError>, Never> {

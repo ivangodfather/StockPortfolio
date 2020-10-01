@@ -29,11 +29,11 @@ class StockListViewModel: ObservableObject {
     func loadStocks() {
         dataStorage
             .get()
-            .flatMap { symbols -> AnyPublisher<[String], Never> in
-                if symbols.isEmpty {
+            .flatMap { symbolsWithShares -> AnyPublisher<[(symbol: String, shares: Int)], Never> in
+                if symbolsWithShares.isEmpty {
                     return CoreDataStorage().insertSampleData()
                 }
-                return Just(symbols).eraseToAnyPublisher()
+                return Just(symbolsWithShares).eraseToAnyPublisher()
             }
             .flatMap(self.api.stocks(from:))
             .sink { completion in }
@@ -47,8 +47,9 @@ class StockListViewModel: ObservableObject {
             }.store(in: &cancellables)
     }
 
-    func addStock(symbol: String) {
-        dataStorage.save(symbol: symbol)
+    func addStock(symbol: String, shares: String) {
+        guard let intShares = Int(shares) else { return }
+        dataStorage.save(symbol: symbol, shares: intShares)
             .sink { completion in
                 self.loadStocks()
             } receiveValue: { _ in }

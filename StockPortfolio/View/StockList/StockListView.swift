@@ -30,7 +30,7 @@ struct StockListView: View {
             }.listStyle(PlainListStyle())
             .sheet(isPresented: $showingAddStockView, content: {
                 AddStockView(show: self.$showingAddStockView) { symbol, shares in
-                    self.viewModel.addStock(symbol: symbol)
+                    self.viewModel.addStock(symbol: symbol, shares: shares)
                 }
             })
             .navigationTitle("Stock Portfolio")

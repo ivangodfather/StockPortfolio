@@ -18,26 +18,27 @@ class CoreDataStorage: DataStorage {
         self.manager = manager
     }
 
-    func save(symbol: String) -> AnyPublisher<String, DataStorageError> {
+    func save(symbol: String, shares: Int) -> AnyPublisher<(symbol: String, shares: Int), DataStorageError> {
         let entity = NSEntityDescription.insertNewObject(forEntityName: String(describing: StockCoreData.self), into: manager.context) as! StockCoreData
         entity.symbol = symbol
+        entity.shares = Int64(shares)
         do {
             try manager.context.save()
-            return Just(symbol).setFailureType(to: DataStorageError.self).eraseToAnyPublisher()
+            return Just((symbol, shares)).setFailureType(to: DataStorageError.self).eraseToAnyPublisher()
         } catch {
-            return Fail(outputType: String.self,
+            return Fail(outputType: (symbol: String, shares: Int).self,
                         failure: DataStorageError.unkown(reason: error.localizedDescription)).eraseToAnyPublisher()
         }
     }
 
-    func get() -> AnyPublisher<[String], DataStorageError> {
+    func get() -> AnyPublisher<[(symbol: String, shares: Int)], DataStorageError> {
         let request: NSFetchRequest<StockCoreData> = StockCoreData.fetchRequest()
         do {
             let stocks = try PersistenceManager.shared.context.fetch(request)
-            let symbols = stocks.map { $0.symbol ?? "" }.filter { $0 != "" }
-            return Just(symbols).setFailureType(to: DataStorageError.self).eraseToAnyPublisher()
+            let elements = stocks.map { ($0.symbol ?? "", Int($0.shares)) }.filter { $0.0 != "" }
+            return Just(elements).setFailureType(to: DataStorageError.self).eraseToAnyPublisher()
         } catch {
-            return Fail(outputType: [String].self, failure: DataStorageError.unkown(reason: error.localizedDescription)).eraseToAnyPublisher()
+            return Fail(outputType: [(symbol: String, shares: Int)].self, failure: DataStorageError.unkown(reason: error.localizedDescription)).eraseToAnyPublisher()
         }
     }
 

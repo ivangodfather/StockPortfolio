@@ -2,7 +2,7 @@
 //  StockCoreData+CoreDataProperties.swift
 //  StockPortfolio
 //
-//  Created by Ivan Ruiz Monjo on 29/09/2020.
+//  Created by Ivan Ruiz Monjo on 01/10/2020.
 //
 //
 
@@ -17,6 +17,7 @@ extension StockCoreData {
     }
 
     @NSManaged public var symbol: String?
+    @NSManaged public var shares: Int64
 
 }
 

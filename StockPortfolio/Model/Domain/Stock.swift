@@ -9,6 +9,7 @@ import Foundation
 
 struct Stock {
     let symbol: String
+    let shares: Int
     let companyName: String
     let latestPrice: Double
     let previousClose: Double
