@@ -10,6 +10,15 @@ import CoreData
 
 @main
 struct StockPortfolioApp: App {
+
+    init() {
+        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor(Color.Stock.gray)]
+        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor(Color.Stock.gray)]
+        UISegmentedControl.appearance().selectedSegmentTintColor = UIColor(Color.Stock.gray)
+        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
+        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor(Color.Stock.gray)], for: .normal)
+    }
+    
     var body: some Scene {
         WindowGroup {
             StockListView().environment(\.managedObjectContext, PersistenceManager.shared.context)

@@ -13,7 +13,7 @@ struct StockListView: View {
 
     @StateObject private var viewModel = StockListViewModel()
     @State private var showingAddStockView = false
-
+    
     var body: some View {
         NavigationView {
             VStack {

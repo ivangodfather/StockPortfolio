@@ -18,9 +18,10 @@ struct PortfolioValueView: View {
                     Text("$")
                         .font(Font.system(size: 32, weight: .light, design: .monospaced))
                     Text(portfolioValue.portfolioTotalValue.withDotSeparator)
-                        .font(Font.system(size: 56, weight: .light, design: .monospaced))
-                    Text("." + portfolioValue.portfolioFractionalValue.description)
+                        .font(Font.system(size: 56, weight: .medium, design: .monospaced))
+                    Text("," + portfolioValue.portfolioFractionalValue.description)
                         .font(Font.system(size: 32, weight: .light, design: .monospaced))
+
                 }
                 HStack(spacing: 8) {
                     Text("+$\(portfolioValue.portfolioTodayGain)").foregroundColor(Color.Stock.green)
@@ -28,7 +29,9 @@ struct PortfolioValueView: View {
                     Text("TODAY")
                 }
                 .font(Font.system(size: 16, weight: .light, design: .monospaced))
-            }.padding()
+            }
+            .foregroundColor(Color.Stock.gray)
+            .padding()
         } else {
             ProgressView()
         }

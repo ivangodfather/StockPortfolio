@@ -24,6 +24,7 @@ struct AddStockView: View {
                     TextField("Number of shares", text: $numShares)
                         .keyboardType(.numberPad)
                 }
+                .foregroundColor(Color.Stock.gray)
                 Section {
                     Button(action: {
                         symbol = ""

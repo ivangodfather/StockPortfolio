@@ -10,7 +10,7 @@ import SwiftUICharts
 import Combine
 
 struct StockDetailView: View {
-    var stock: StockDetail
+    let stock: StockDetail
 
     @StateObject private var viewModel = StockDetailViewModel()
     @State private var selectedPeriod = 0
@@ -21,6 +21,7 @@ struct StockDetailView: View {
                 Picker(selection: $selectedPeriod, label: Text("Select")) {
                     ForEach(0..<ChartPeriod.allCases.count) {
                         Text(ChartPeriod.allCases[$0].rawValue)
+                            .foregroundColor(Color.Stock.gray)
                     }
                 }.pickerStyle(SegmentedPickerStyle())
                 .onChange(of: selectedPeriod) {
@@ -39,6 +40,7 @@ struct StockDetailView: View {
             Divider().padding(.vertical, 16)
             StockDetailNews(stock: stock)
         }
+        .foregroundColor(Color.Stock.gray)
     }
 }
 
