@@ -12,7 +12,9 @@ import CoreData
 
 class StockListViewModel: ObservableObject {
 
-    @Published var stocks = [StockDetail]()
+    @Published var stocks = [StockDetail]() {
+        didSet { portfolioValue = PortfolioValueUseCase.value(from: self.stocks) }
+    }
     @Published var portfolioValue: PortfolioValue?
 
     private var cancellables = Set<AnyCancellable>()
@@ -41,7 +43,6 @@ class StockListViewModel: ObservableObject {
                     switch result {
                     case .success(let stocks):
                         self.stocks = stocks
-                        self.setPotfolioValue()
                     case.failure(let error): print(error.localizedDescription)
                     }
             }.store(in: &cancellables)
@@ -62,17 +63,16 @@ class StockListViewModel: ObservableObject {
             switch completion {
             case.finished:
                 self.stocks.removeAll { symbols.contains($0.symbol) }
-                self.setPotfolioValue()
             case.failure(let error): print(error.localizedDescription)
             }
         } receiveValue: { _ in }.store(in: &cancellables)
     }
+}
 
-    private func setPotfolioValue() {
-        // This is random
-        portfolioValue = PortfolioValue(portfolioTotalValue: Int.random(in: 1500...15000),
-                                        portfolioFractionalValue: Int.random(in: 21...80),
-                                        portfolioTodayGain: Int.random(in: 800...900),
-                                        portfolioPercentage: Double.random(in: 0...2))
+struct PortfolioValueUseCase {
+    static func value(from stocks: [StockDetail]) -> PortfolioValue {
+        let total = stocks.map { $0.latestPrice * Double($0.shares) }.reduce(0,+)
+        let fractional = String(modf(total).1.description.prefix(4).suffix(2))
+        return PortfolioValue(portfolioTotalValue: Int(total), portfolioFractionalValue: fractional, portfolioTodayGain: 3, portfolioPercentage: 3.55)
     }
 }

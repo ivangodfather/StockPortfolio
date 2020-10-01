@@ -8,5 +8,5 @@
 import Foundation
 
 extension PortfolioValue {
-    static let random = PortfolioValue(portfolioTotalValue: 64320, portfolioFractionalValue: 21, portfolioTodayGain: 430, portfolioPercentage: 1.31)
+    static let random = PortfolioValue(portfolioTotalValue: 64320, portfolioFractionalValue: "21", portfolioTodayGain: 430, portfolioPercentage: 1.31)
 }

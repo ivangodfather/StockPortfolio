@@ -40,7 +40,7 @@ struct PortfolioValueView: View {
 
 struct PortfolioValue {
     let portfolioTotalValue: Int
-    let portfolioFractionalValue: Int
+    let portfolioFractionalValue: String
     let portfolioTodayGain: Int
     let portfolioPercentage: Double
 }
