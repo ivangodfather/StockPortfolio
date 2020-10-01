@@ -23,8 +23,8 @@ struct PortfolioValueView: View {
                         .font(Font.system(size: 32, weight: .light, design: .monospaced))
                 }
                 HStack(spacing: 8) {
-                    Text("+$\(portfolioValue.portfolioTodayGain)").modifier(GreenModifier())
-                    Text("(\(portfolioValue.portfolioPercentage.round2())%)").modifier(GreenModifier())
+                    Text("+$\(portfolioValue.portfolioTodayGain)").foregroundColor(Color.Stock.green)
+                    Text("(\(portfolioValue.portfolioPercentage.round2())%)").foregroundColor(Color.Stock.green)
                     Text("TODAY")
                 }
                 .font(Font.system(size: 16, weight: .light, design: .monospaced))
@@ -40,13 +40,6 @@ struct PortfolioValue {
     let portfolioFractionalValue: Int
     let portfolioTodayGain: Int
     let portfolioPercentage: Double
-}
-
-struct GreenModifier: ViewModifier {
-    func body(content: Content) -> some View {
-        content
-            .foregroundColor(Color.init(red: 50/255, green: 200/255, blue:  150/255))
-    }
 }
 
 struct StockValueView_Previews: PreviewProvider {

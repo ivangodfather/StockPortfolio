@@ -17,11 +17,11 @@ struct StockDetailNews: View {
                 DisclosureGroup(news.headline) {
                     VStack {
                         HStack {
-                            Text("Source: " + news.source).bold()
-                            Link("Go to website", destination: news.url)
+                            Text("Source: " + news.source).bold().foregroundColor(Color.Stock.gray)
+                            Link("Go to website", destination: news.url).foregroundColor(Color.Stock.gray)
                         }.padding(.vertical)
                         .font(.callout)
-                        Text(news.summary)
+                        Text(news.summary).foregroundColor(Color.Stock.gray)
                     }.padding(.vertical)
                 }
             }
