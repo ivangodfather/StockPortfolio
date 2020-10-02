@@ -10,7 +10,7 @@ import Foundation
 struct IEXStock: Decodable {
     let quote: Quote
     let logo: Logo
-    let news: [News]
+    let company: Company
 
     struct Quote: Decodable {
         let symbol: String
@@ -23,11 +23,18 @@ struct IEXStock: Decodable {
         let url: URL
     }
 
-    struct News: Decodable {
-        let headline: String
-        let source: String
-        let url: URL
-        let summary: String
+    struct Company: Decodable {
+        let exchange: String
+        let industry: String
+        let website: URL
+        let CEO: String
+        let description: String
+        let securityName: String
+        let issueType: StockDetail.IssueType
+        let sector: String
+        let employees: Int
+        let tags: [String]
+        let country: String
     }
 }
 
@@ -39,15 +46,22 @@ extension StockDetail {
         latestPrice = iexStock.quote.latestPrice
         previousClose = iexStock.quote.previousClose
         logo = iexStock.logo.url
-        news = iexStock.news.map(StockDetail.News.init(news:))
+        company = StockDetail.Company(company: iexStock.company)
     }
 }
 
-extension StockDetail.News {
-    init(news: IEXStock.News) {
-        headline = news.headline
-        source = news.source
-        url = news.url
-        summary = news.summary
+extension StockDetail.Company {
+    init(company: IEXStock.Company) {
+        exchange = company.exchange
+        industry = company.industry
+        website = company.website
+        description = company.description
+        securityName = company.securityName
+        issueType = company.issueType
+        sector = company.sector
+        employees = company.employees
+        tags = company.tags
+        country = company.country
+        ceo = company.CEO
     }
 }

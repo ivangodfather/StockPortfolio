@@ -11,3 +11,10 @@ struct Chart {
     let date: String
     let closePrize: Double
 }
+
+extension Chart {
+    init(chart: IEXChart) {
+        self.date = chart.date
+        self.closePrize = chart.close
+    }
+}

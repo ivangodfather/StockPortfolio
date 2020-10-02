@@ -11,6 +11,7 @@ import Combine
 protocol APIProtocol {
     func stocks(from stocks: [Stock]) -> AnyPublisher<Result<[StockDetail], APIError>, Never>
     func chart(from symbol: String, period: String) -> AnyPublisher<Result<[Chart], APIError>, Never>
+    func news(from symbol: String, items: Int) -> AnyPublisher<Result<[News], APIError>, Never>
 }
 
 enum APIError: Error, LocalizedError {
@@ -59,6 +60,17 @@ struct API: APIProtocol {
             switch result {
             case .success(let charts):
                 return .success(charts.map(Chart.init(chart:)))
+            case .failure(let error):
+                return .failure(error)
+            }
+        }.eraseToAnyPublisher()
+    }
+
+    func news(from symbol: String, items: Int) -> AnyPublisher<Result<[News], APIError>, Never> {
+        dataLoader.request(Endpoint<[News]>.news(from: symbol, items: items)).map { result -> Result<[News], APIError> in
+            switch result {
+            case .success(let news):
+                return .success(news)
             case .failure(let error):
                 return .failure(error)
             }

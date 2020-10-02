@@ -18,17 +18,24 @@ extension Endpoint {
         Endpoint<[String: IEXStock]>(path: "/stable/stock/market/batch",
         queryItems: [
             URLQueryItem(name: "symbols", value: symbols.joined(separator: ",")),
-            URLQueryItem(name: "types", value: "quote,news,logo"),
+            URLQueryItem(name: "types", value: "quote,logo,company"),
             URLQueryItem(name: "range", value: "1m"),
-            URLQueryItem(name: "last", value: "4"),
             URLQueryItem(name: "token", value: EnvironmentValue.iexToken)
         ])
     }
 
     static func chart(from symbol: String, period: String) -> Endpoint<[IEXChart]> {
         Endpoint<[IEXChart]>(path: "/stable/stock/\(symbol)/chart/\(period)", queryItems: [
+            URLQueryItem(name: "chartCloseOnly", value: "true"),
             URLQueryItem(name: "token", value: EnvironmentValue.iexToken)
         ])
+    }
+
+    static func news(from symbol: String, items: Int) -> Endpoint<[News]> {
+        Endpoint<[News]>(path: "/stable/stock/\(symbol)/news/last/\(items)", queryItems: [
+            URLQueryItem(name: "token", value: EnvironmentValue.iexToken)
+        ])
+
     }
 }
 

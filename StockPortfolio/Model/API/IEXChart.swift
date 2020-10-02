@@ -11,10 +11,3 @@ struct IEXChart: Decodable {
     let date: String
     let close: Double
 }
-
-extension Chart {
-    init(chart: IEXChart) {
-        self.date = chart.date
-        self.closePrize = chart.close
-    }
-}

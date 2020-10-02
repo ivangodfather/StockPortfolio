@@ -21,7 +21,7 @@ struct StockPortfolioApp: App {
     
     var body: some Scene {
         WindowGroup {
-            StockListView().environment(\.managedObjectContext, PersistenceManager.shared.context)
+            MainView().environment(\.managedObjectContext, PersistenceManager.shared.context)
         }
     }
 }
