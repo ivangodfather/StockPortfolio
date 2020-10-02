@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-class StockDetailViewModel: ObservableObject {
+class ChartViewModel: ObservableObject {
 
     private var cancellables = Set<AnyCancellable>()
     @Published var chartData = [Double]() {
@@ -26,7 +26,6 @@ class StockDetailViewModel: ObservableObject {
     }
 
     func chart(from symbol: String, selectedPeriod: Int) {
-        return
         api.chart(from: symbol, period: ChartPeriod.allCases[selectedPeriod].rawValue).sink { result in
             switch result {
             case .success(let chart): self.chartData = chart.map { $0.closePrize }
