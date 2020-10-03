@@ -23,4 +23,8 @@ struct EnvironmentValue {
             return "cloud.iexapis.com"
         #endif
     }
+
+    static var rapidAPIHost: String {
+        return "apidojo-yahoo-finance-v1.p.rapidapi.com"
+    }
 }

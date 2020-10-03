@@ -15,6 +15,13 @@
 		4287BE4B252771E200D0D238 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4287BE4A252771E200D0D238 /* News.swift */; };
 		4287BE50252776FD00D0D238 /* NewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4287BE4F252776FD00D0D238 /* NewsViewModel.swift */; };
 		4287BE5525278B4900D0D238 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4287BE5425278B4900D0D238 /* ChartView.swift */; };
+		4287BE5A252879FF00D0D238 /* NewsBodyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4287BE59252879FF00D0D238 /* NewsBodyView.swift */; };
+		4287BE5E25287B6000D0D238 /* News+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4287BE5D25287B6000D0D238 /* News+.swift */; };
+		4287BE612528837600D0D238 /* RapidAPIQuote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4287BE602528837600D0D238 /* RapidAPIQuote.swift */; };
+		4287BE652528857200D0D238 /* AutocompleteResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4287BE642528857200D0D238 /* AutocompleteResult.swift */; };
+		4287BE692528AA7C00D0D238 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4287BE682528AA7C00D0D238 /* SearchView.swift */; };
+		4287BE6C2528AA9A00D0D238 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4287BE6B2528AA9A00D0D238 /* SearchViewModel.swift */; };
+		4287BE6F2528BE3E00D0D238 /* AddStockViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4287BE6E2528BE3E00D0D238 /* AddStockViewModel.swift */; };
 		42C8C0AB252468A300BA2BB4 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 42C8C0AA252468A300BA2BB4 /* SwiftUICharts */; };
 		42C8C0AE25246C2100BA2BB4 /* IEXChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C8C0AD25246C2100BA2BB4 /* IEXChart.swift */; };
 		42C8C0B125246D4900BA2BB4 /* Chart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C8C0B025246D4900BA2BB4 /* Chart.swift */; };
@@ -60,6 +67,13 @@
 		4287BE4A252771E200D0D238 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		4287BE4F252776FD00D0D238 /* NewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewModel.swift; sourceTree = "<group>"; };
 		4287BE5425278B4900D0D238 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
+		4287BE59252879FF00D0D238 /* NewsBodyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsBodyView.swift; sourceTree = "<group>"; };
+		4287BE5D25287B6000D0D238 /* News+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "News+.swift"; sourceTree = "<group>"; };
+		4287BE602528837600D0D238 /* RapidAPIQuote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RapidAPIQuote.swift; sourceTree = "<group>"; };
+		4287BE642528857200D0D238 /* AutocompleteResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutocompleteResult.swift; sourceTree = "<group>"; };
+		4287BE682528AA7C00D0D238 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		4287BE6B2528AA9A00D0D238 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		4287BE6E2528BE3E00D0D238 /* AddStockViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStockViewModel.swift; sourceTree = "<group>"; };
 		42C8C0AD25246C2100BA2BB4 /* IEXChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IEXChart.swift; sourceTree = "<group>"; };
 		42C8C0B025246D4900BA2BB4 /* Chart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chart.swift; sourceTree = "<group>"; };
 		42CA5C9D2522144300198C29 /* StockPortfolio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StockPortfolio.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -132,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				4217C19E25232A4A002F66DA /* AddStockView.swift */,
+				4287BE6E2528BE3E00D0D238 /* AddStockViewModel.swift */,
 			);
 			path = AddStockView;
 			sourceTree = "<group>";
@@ -149,6 +164,7 @@
 			children = (
 				42E4380B25249CEF00F8385C /* NewsView.swift */,
 				4287BE4F252776FD00D0D238 /* NewsViewModel.swift */,
+				4287BE59252879FF00D0D238 /* NewsBodyView.swift */,
 			);
 			path = News;
 			sourceTree = "<group>";
@@ -161,6 +177,15 @@
 				427755872524725F008E0EF0 /* ChartViewModel.swift */,
 			);
 			path = ChartView;
+			sourceTree = "<group>";
+		};
+		4287BE672528AA6500D0D238 /* SearchView */ = {
+			isa = PBXGroup;
+			children = (
+				4287BE682528AA7C00D0D238 /* SearchView.swift */,
+				4287BE6B2528AA9A00D0D238 /* SearchViewModel.swift */,
+			);
+			path = SearchView;
 			sourceTree = "<group>";
 		};
 		42C8C0B325246D6900BA2BB4 /* Core Data */ = {
@@ -179,6 +204,7 @@
 				42C8C0B025246D4900BA2BB4 /* Chart.swift */,
 				42DEDC0E2525C60F007A351C /* Stock.swift */,
 				4287BE4A252771E200D0D238 /* News.swift */,
+				4287BE642528857200D0D238 /* AutocompleteResult.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -189,6 +215,7 @@
 				42CA5CC8252270C800198C29 /* IEXStock.swift */,
 				42C8C0AD25246C2100BA2BB4 /* IEXChart.swift */,
 				4287BE47252771C300D0D238 /* IEXNews.swift */,
+				4287BE602528837600D0D238 /* RapidAPIQuote.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -275,6 +302,7 @@
 		42CA5CC02522195800198C29 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4287BE672528AA6500D0D238 /* SearchView */,
 				4287BE4225276DE600D0D238 /* MainView */,
 				4277558C2524727E008E0EF0 /* StockList */,
 				4277558F25247294008E0EF0 /* AddStockView */,
@@ -309,6 +337,7 @@
 			children = (
 				42F7D3132523B14200537E30 /* Double+.swift */,
 				42E4380E25249D2100F8385C /* Stock+.swift */,
+				4287BE5D25287B6000D0D238 /* News+.swift */,
 				42E438172524A9F800F8385C /* StockValue+.swift */,
 				42E438112524A3B000F8385C /* CoreDataStorage+.swift */,
 				42E4381A2524AAF500F8385C /* Int+.swift */,
@@ -399,6 +428,7 @@
 				4287BE48252771C300D0D238 /* IEXNews.swift in Sources */,
 				42F7D2F12523748B00537E30 /* PersistenceManager.swift in Sources */,
 				42E4380C25249CEF00F8385C /* NewsView.swift in Sources */,
+				4287BE6C2528AA9A00D0D238 /* SearchViewModel.swift in Sources */,
 				42F7D31A2523C75700537E30 /* StockDetailView.swift in Sources */,
 				42F7D30925238FEA00537E30 /* CoreDataStorage.swift in Sources */,
 				42F7D30425237AD900537E30 /* StockCoreData+CoreDataProperties.swift in Sources */,
@@ -419,15 +449,21 @@
 				42DEDC0F2525C60F007A351C /* Stock.swift in Sources */,
 				42E438152524A76600F8385C /* PortfolioValueView.swift in Sources */,
 				42DEDC0C2525BFDB007A351C /* Color+.swift in Sources */,
+				4287BE5E25287B6000D0D238 /* News+.swift in Sources */,
 				4217C19F25232A4A002F66DA /* AddStockView.swift in Sources */,
 				42CA5CDB25231DD200198C29 /* AsyncImage.swift in Sources */,
 				42CA5CA32522144300198C29 /* StockListView.swift in Sources */,
+				4287BE6F2528BE3E00D0D238 /* AddStockViewModel.swift in Sources */,
 				4277559225247756008E0EF0 /* ChartPeriod.swift in Sources */,
+				4287BE612528837600D0D238 /* RapidAPIQuote.swift in Sources */,
+				4287BE692528AA7C00D0D238 /* SearchView.swift in Sources */,
 				42F7D30C2523924900537E30 /* DataStorage.swift in Sources */,
 				42F7D2ED25236FA700537E30 /* StockPortfolio.xcdatamodeld in Sources */,
+				4287BE652528857200D0D238 /* AutocompleteResult.swift in Sources */,
 				42CA5CBD252216C800198C29 /* StockDetail.swift in Sources */,
 				42E4380F25249D2100F8385C /* Stock+.swift in Sources */,
 				42E4381B2524AAF500F8385C /* Int+.swift in Sources */,
+				4287BE5A252879FF00D0D238 /* NewsBodyView.swift in Sources */,
 				42F7D3142523B14200537E30 /* Double+.swift in Sources */,
 				42CA5CA12522144300198C29 /* StockPortfolioApp.swift in Sources */,
 				42CA5CC6252257E600198C29 /* API.swift in Sources */,

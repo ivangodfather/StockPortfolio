@@ -20,15 +20,15 @@ struct StockRowView: View {
                 }.frame(width: 48, height: 48)
             }.frame(width: 48, height: 48, alignment: .center)
             VStack(alignment: .leading, spacing: 4) {
-                Text(stock.companyName).bold().foregroundColor(Color.Stock.gray)
-                Text(stock.symbol + " - " + "\(stock.shares) shares").font(.caption).foregroundColor(Color.Stock.gray)
+                Text(stock.companyName).bold()
+                Text(stock.symbol + " - " + "\(stock.shares) shares").font(.caption)
             }.padding(0)
             Spacer()
             VStack(alignment: .trailing) {
                 HStack(spacing: 0) {
                     Text("$")
                     Text(stock.latestPrice.description)
-                }.font(.headline).foregroundColor(Color.Stock.gray)
+                }.font(.headline)
                 Text("\(stock.percentage.round2())%").foregroundColor(stock.percentage > 0 ? Color.Stock.green : Color.Stock.red)
                     .font(.body)
             }.padding(.horizontal)

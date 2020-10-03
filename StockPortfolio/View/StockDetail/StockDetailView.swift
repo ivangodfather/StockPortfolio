@@ -24,9 +24,9 @@ struct StockDetailView: View {
 
     var body: some View {
         List {
-            AsyncImage(url: stock.logo) {
+            AsyncImage(url: URL(string: "https://www.experimenta.es/wp-content/uploads/2018/10/tesla-logo.jpg")!) {
                 ProgressView()
-            }
+            }.padding()
             Section(header: Text("About")) {
                 Text(stock.company.description)
                     .padding(.bottom)
@@ -42,7 +42,6 @@ struct StockDetailView: View {
             }
 
         }
-        .foregroundColor(Color.Stock.gray)
         .navigationTitle(stock.companyName)
         .navigationBarItems(trailing: NavigationLink("Chart", destination: ChartView(stock: stock)))
     }

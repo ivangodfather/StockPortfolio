@@ -30,7 +30,6 @@ struct PortfolioValueView: View {
                 }
                 .font(Font.system(size: 16, weight: .light, design: .monospaced))
             }
-            .foregroundColor(Color.Stock.gray)
             .padding()
         } else {
             ProgressView()

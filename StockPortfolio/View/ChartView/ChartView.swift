@@ -16,18 +16,23 @@ struct ChartView: View {
 
     var body: some View {
         ScrollView {
-
             Picker(selection: $selectedPeriod, label: Text("Select")) {
                 ForEach(0..<ChartPeriod.allCases.count) {
                     Text(ChartPeriod.allCases[$0].rawValue)
-                        .foregroundColor(Color.Stock.gray)
                 }
             }.pickerStyle(SegmentedPickerStyle())
             .onChange(of: selectedPeriod) {
                 viewModel.chart(from: stock.symbol, selectedPeriod: $0)
             }
-            LineChartView(data: viewModel.chartData, title: "", form: ChartForm.large,rateValue: viewModel.percentageIncrease)
-        }.onAppear {
+            .padding(.bottom)
+            LineChartView(data: viewModel.chartData,
+                          title: "",
+                          form: CGSize(width:UIScreen.main.bounds.width - 48, height: 120),
+                          rateValue: viewModel.percentageIncrease,
+                          dropShadow: false)
+        }
+        .padding()
+        .onAppear {
             viewModel.chart(from: stock.symbol, selectedPeriod: selectedPeriod)
         }.navigationTitle("Chart")
     }

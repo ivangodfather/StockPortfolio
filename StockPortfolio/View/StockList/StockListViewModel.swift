@@ -48,15 +48,6 @@ class StockListViewModel: ObservableObject {
             }.store(in: &cancellables)
     }
 
-    func addStock(symbol: String, shares: String) {
-        guard let intShares = Int(shares) else { return }
-        dataStorage.save(stock: Stock(symbol: symbol, shares: intShares))
-            .sink { completion in
-                self.loadStocks()
-            } receiveValue: { _ in }
-            .store(in: &cancellables)
-    }
-
     func deleteStock(at offsets: IndexSet) {
         let symbols = offsets.map { stocks[$0].symbol }
         symbols.publisher.flatMap(dataStorage.remove(symbol:)).sink { completion in

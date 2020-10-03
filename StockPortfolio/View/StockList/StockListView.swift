@@ -29,8 +29,8 @@ struct StockListView: View {
                 }
             }.listStyle(PlainListStyle())
             .sheet(isPresented: $showingAddStockView, content: {
-                AddStockView(show: self.$showingAddStockView) { symbol, shares in
-                    self.viewModel.addStock(symbol: symbol, shares: shares)
+                AddStockView { stock in
+                    self.viewModel.loadStocks() // TODO load this stock only
                 }
             })
             .navigationTitle("Stock Portfolio")

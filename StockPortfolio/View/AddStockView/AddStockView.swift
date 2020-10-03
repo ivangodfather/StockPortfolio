@@ -9,10 +9,19 @@ import SwiftUI
 import Combine
 
 struct AddStockView: View {
-    @Binding var show: Bool
-    let completion: (String, String) ->()
-    @State private var symbol = ""
+    let completion: (Stock) ->()
+
+    @State private var symbol: String
     @State private var numShares = ""
+    @Environment(\.presentationMode) var presentationMode
+
+
+    private let viewModel = AddStockViewModel()
+
+    init(completion: @escaping (Stock) -> (), symbol: String = "") {
+        self.completion = completion
+        self._symbol = State(initialValue: symbol)
+    }
 
     var body: some View {
         NavigationView {
@@ -24,7 +33,6 @@ struct AddStockView: View {
                     TextField("Number of shares", text: $numShares)
                         .keyboardType(.numberPad)
                 }
-                .foregroundColor(Color.Stock.gray)
                 Section {
                     Button(action: {
                         symbol = ""
@@ -35,16 +43,18 @@ struct AddStockView: View {
                 }
             }
             .navigationBarTitle(Text("Add stock"), displayMode: .inline)
-            .navigationBarItems(leading: Button(action: {
-                self.show = false
-            }) {
-                Text("Dismiss")
-            }, trailing: Button(action: {
-                completion(symbol, numShares)
-                self.show = false
+            .navigationBarItems(trailing: Button(action: {
+                self.viewModel.addStock(symbol: symbol, shares: numShares)
             }, label: {
                 Text("Add").bold()
             }))
+            .onReceive(viewModel.didFinishPublisher) { stock in
+                completion(stock)
+                presentationMode.wrappedValue.dismiss()
+            }
+            .onAppear {
+                self.symbol = symbol
+            }
         }
 
     }
@@ -52,6 +62,6 @@ struct AddStockView: View {
 
 struct AddStockView_Previews: PreviewProvider {
     static var previews: some View {
-        AddStockView(show: .constant(true), completion: { _,_ in })
+        AddStockView(completion: { _ in })
     }
 }

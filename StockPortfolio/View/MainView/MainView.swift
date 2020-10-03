@@ -17,12 +17,17 @@ struct MainView: View {
                     Image(systemName: "list.star")
                     Text("Your Stocks")
                 }
+            SearchView()
+                .tabItem {
+                    Image(systemName: "magnifyingglass")
+                    Text("Search")
+                }
             NewsView()
                 .tabItem {
                     Image(systemName: "newspaper")
                     Text("News")
                 }
-        }
+        }.foregroundColor(Color.Stock.gray)
     }
 }
 

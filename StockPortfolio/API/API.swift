@@ -12,6 +12,7 @@ protocol APIProtocol {
     func stocks(from stocks: [Stock]) -> AnyPublisher<Result<[StockDetail], APIError>, Never>
     func chart(from symbol: String, period: String) -> AnyPublisher<Result<[Chart], APIError>, Never>
     func news(from symbol: String, items: Int) -> AnyPublisher<Result<[News], APIError>, Never>
+    func autcocomplete(from text: String) -> AnyPublisher<Result<[AutocompleteResult], APIError>, Never>
 }
 
 enum APIError: Error, LocalizedError {
@@ -67,10 +68,21 @@ struct API: APIProtocol {
     }
 
     func news(from symbol: String, items: Int) -> AnyPublisher<Result<[News], APIError>, Never> {
-        dataLoader.request(Endpoint<[News]>.news(from: symbol, items: items)).map { result -> Result<[News], APIError> in
+        dataLoader.request(Endpoint<[IEXNews]>.news(from: symbol, items: items)).map { result -> Result<[News], APIError> in
             switch result {
             case .success(let news):
                 return .success(news)
+            case .failure(let error):
+                return .failure(error)
+            }
+        }.eraseToAnyPublisher()
+    }
+
+    func autcocomplete(from text: String) -> AnyPublisher<Result<[AutocompleteResult], APIError>, Never> {
+        dataLoader.request(Endpoint<RapidAPIAutocompleteResponse>.autocomplete(from: text)).map { result -> Result<[AutocompleteResult], APIError> in
+            switch result {
+            case .success(let response):
+                return .success(response.quotes.compactMap(AutocompleteResult.init))
             case .failure(let error):
                 return .failure(error)
             }
