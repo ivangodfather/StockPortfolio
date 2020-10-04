@@ -15,17 +15,38 @@ struct NewsView: View {
     var stocks: FetchedResults<StockCoreData>
 
     @StateObject private var viewModel = NewsViewModel()
+    @State private var selectedNews = 0
 
     var body: some View {
         NavigationView {
-            if stocks.isEmpty {
-                ProgressView()
-            } else {
-                NewsBodyView(news: viewModel.news).onAppear {
-                    self.viewModel.viewDidAppear(symbols: stocks.map { $0.symbol ?? "" })
+            ScrollView {
+                VStack {
+                    Picker(selection: $selectedNews, label: Text("Choose")) {
+                        ForEach(NewsType.allCases, id: \.rawValue) { newsType in
+                            Text(newsType.description).tag(newsType.rawValue)
+                        }
+
+                    }
+                    .pickerStyle(SegmentedPickerStyle())
+                    .padding()
+                    if stocks.isEmpty {
+                        ProgressView()
+                    } else {
+                        NewsBodyView(news: viewModel.news).onAppear {
+                            self.viewModel.request(symbols: stocks.map { $0.symbol ?? "" })
+                        }
+                        .navigationBarTitle(Text("News"))
+                    }
                 }
                 .padding()
-                .navigationBarTitle(Text("📰 News"))
+
+            }
+        }.onChange(of: selectedNews) { selectedNews in
+            switch selectedNews {
+            case NewsType.yourStocks.rawValue:
+                self.viewModel.request(symbols: stocks.map { $0.symbol ?? "" })
+            default :
+                self.viewModel.request(symbols: [])
             }
         }
     }

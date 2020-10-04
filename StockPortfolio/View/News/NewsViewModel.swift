@@ -27,14 +27,14 @@ class NewsViewModel: ObservableObject {
         self.dataStorage = dataStorage
     }
 
-    func viewDidAppear(symbols: [String]) {
-       symbols
+    func request(symbols: [String]) {
+        (symbols.isEmpty ? ["vti", "vtsax", "vym", "sphd", "pey"] : symbols)
             .publisher
             .map { ($0, numberOfNewsXItem) }
             .flatMap(api.news(from:items:))
             .collect()
-        .sink { result in
-            self.news = result.compactMap { try? $0.get() }.flatMap { $0 }
-        }.store(in: &cancellables)
+            .sink { result in
+                self.news = result.compactMap { try? $0.get() }.flatMap { $0 }
+            }.store(in: &cancellables)
     }
 }

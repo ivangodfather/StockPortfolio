@@ -10,7 +10,7 @@ import Combine
 
 struct SearchView: View {
     @StateObject private var viewModel = SearchViewModel()
-    @State private var searchText = "Tesla, Apple, "
+    @State private var searchText = ""
     @State private var selectedItem: AutocompleteResult?
 
     var body: some View {
