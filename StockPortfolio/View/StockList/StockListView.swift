@@ -21,7 +21,7 @@ struct StockListView: View {
                 List {
                     ForEach(viewModel.stocks, id: \.symbol) { stock in
                         NavigationLink(
-                            destination: StockDetailView(stock: stock)) {
+                            destination: StockDetailView(symbol: stock.symbol)) {
                             StockRowView(stock: stock)
                         }
                     }

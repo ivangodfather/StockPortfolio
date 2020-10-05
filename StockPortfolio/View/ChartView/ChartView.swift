@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftUICharts
 
 struct ChartView: View {
-    let stock: StockDetail
+    let symbol: String
     @StateObject private var viewModel = ChartViewModel()
     @State private var selectedPeriod = 0
     @State private var showChart = false
@@ -22,7 +22,7 @@ struct ChartView: View {
                 }
             }.pickerStyle(SegmentedPickerStyle())
             .onChange(of: selectedPeriod) {
-                viewModel.chart(from: stock.symbol, selectedPeriod: $0)
+                viewModel.chart(from: symbol, selectedPeriod: $0)
             }
             .padding(.bottom)
             LineChartView(data: viewModel.chartData,
@@ -33,13 +33,13 @@ struct ChartView: View {
         }
         .padding()
         .onAppear {
-            viewModel.chart(from: stock.symbol, selectedPeriod: selectedPeriod)
+            viewModel.chart(from: symbol, selectedPeriod: selectedPeriod)
         }.navigationTitle("Chart")
     }
 }
 
 struct ChartView_Previews: PreviewProvider {
     static var previews: some View {
-        ChartView(stock: StockDetail.random)
+        ChartView(symbol: "AAPL")
     }
 }

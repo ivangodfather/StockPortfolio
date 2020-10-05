@@ -41,7 +41,7 @@ struct API: APIProtocol {
 
     func stocks(from stocks: [Stock]) -> AnyPublisher<Result<[StockDetail], APIError>, Never> {
         dataLoader.request(Endpoint<[String: IEXStock]>.get(symbols: stocks.map { $0.symbol }))
-            .map { result -> Result<[StockDetail], APIError> in
+            .map { result in
                 switch result {
                 case .success(let value):
                     return .success(value.values.map { iexStock -> StockDetail in
@@ -58,7 +58,7 @@ struct API: APIProtocol {
     }
 
     func chart(from symbol: String, period: String) -> AnyPublisher<Result<[Chart], APIError>, Never> {
-        dataLoader.request(Endpoint<[IEXChart]>.chart(from: symbol, period: period)).map { result -> Result<[Chart], APIError> in
+        dataLoader.request(Endpoint<[IEXChart]>.chart(from: symbol, period: period)).map { result in
             switch result {
             case .success(let charts):
                 return .success(charts.map(Chart.init(chart:)))
@@ -69,7 +69,7 @@ struct API: APIProtocol {
     }
 
     func news(from symbol: String, items: Int) -> AnyPublisher<Result<[News], APIError>, Never> {
-        dataLoader.request(Endpoint<[IEXNews]>.news(from: symbol, items: items)).map { result -> Result<[News], APIError> in
+        dataLoader.request(Endpoint<[IEXNews]>.news(from: symbol, items: items)).map { result in
             switch result {
             case .success(let news):
                 return .success(news.map(News.init(news:)))
@@ -80,7 +80,7 @@ struct API: APIProtocol {
     }
 
     func autcocomplete(from text: String) -> AnyPublisher<Result<[AutocompleteResult], APIError>, Never> {
-        dataLoader.request(Endpoint<RapidAPIAutocompleteResponse>.autocomplete(from: text)).map { result -> Result<[AutocompleteResult], APIError> in
+        dataLoader.request(Endpoint<RapidAPIAutocompleteResponse>.autocomplete(from: text)).map { result in
             switch result {
             case .success(let response):
                 return .success(response.quotes.compactMap(AutocompleteResult.init))
@@ -90,8 +90,19 @@ struct API: APIProtocol {
         }.eraseToAnyPublisher()
     }
 
+    func company(from symbol: String) -> AnyPublisher<Result<Company, APIError>, Never> {
+        dataLoader.request(Endpoint<IEXCompany>.company(from: symbol)).map { result in
+            switch result {
+            case .success(let iexCompany):
+                return .success(Company.init(iexCompany: iexCompany))
+            case .failure(let error):
+                return .failure(error)
+            }
+        }.eraseToAnyPublisher()
+    }
+
     func collections(type: String) -> AnyPublisher<Result<[Collection], APIError>, Never> {
-        dataLoader.request(Endpoint<[IEXCollection]>.collections(type: type)).map { result -> Result<[Collection], APIError> in
+        dataLoader.request(Endpoint<[IEXCollection]>.collections(type: type)).map { result in
             switch result {
             case .success(let collections):
                 return .success(collections.map(Collection.init(collection:)))
@@ -102,10 +113,21 @@ struct API: APIProtocol {
     }
 
     func collection(type: String, value: String) -> AnyPublisher<Result<[IEXStock.Quote], APIError>, Never> {
-        dataLoader.request(Endpoint<[IEXStock.Quote]>.collection(type: type, value: value)).map { result -> Result<[IEXStock.Quote], APIError> in
+        dataLoader.request(Endpoint<[IEXStock.Quote]>.collection(type: type, value: value)).map { result in
             switch result {
             case .success(let stocks):
                 return .success(stocks)
+            case .failure(let error):
+                return .failure(error)
+            }
+        }.eraseToAnyPublisher()
+    }
+
+    func logo(from symbol: String) -> AnyPublisher<Result<URL, APIError>, Never> {
+        dataLoader.request(Endpoint<IEXCompany>.logo(from: symbol)).map { result in
+            switch result {
+            case .success(let iexLogo):
+                return .success(iexLogo.url)
             case .failure(let error):
                 return .failure(error)
             }

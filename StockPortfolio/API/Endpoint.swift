@@ -61,6 +61,12 @@ extension Endpoint {
         ])
     }
 
+    static func company(from symbol: String) -> Endpoint<IEXCompany> {
+        Endpoint<IEXCompany>(provider: EndpointProvider.iexCloud, path: "/stable/stock/\(symbol)/company", queryItems: [
+            URLQueryItem(name: "token", value: EnvironmentValue.iexToken)
+        ])
+    }
+
     static func collections(type: String) -> Endpoint<[IEXCollection]> {
         Endpoint<[IEXCollection]>(provider: EndpointProvider.iexCloud, path: "/stable/ref-data/\(type)", queryItems: [
             URLQueryItem(name: "token", value: EnvironmentValue.iexToken)
@@ -70,6 +76,12 @@ extension Endpoint {
     static func collection(type: String, value: String) -> Endpoint<[IEXStock.Quote]> {
         Endpoint<[IEXStock.Quote]>(provider: EndpointProvider.iexCloud, path: "/stable/stock/market/collection/\(type)", queryItems: [
             URLQueryItem(name: "collectionName", value: value),
+            URLQueryItem(name: "token", value: EnvironmentValue.iexToken)
+        ])
+    }
+
+    static func logo(from symbol: String) -> Endpoint<IEXLogo> {
+        Endpoint<IEXLogo>(provider: EndpointProvider.iexCloud, path: "/stable/stock/\(symbol)/logo", queryItems: [
             URLQueryItem(name: "token", value: EnvironmentValue.iexToken)
         ])
     }
