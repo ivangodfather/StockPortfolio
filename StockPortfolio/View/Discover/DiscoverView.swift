@@ -25,7 +25,9 @@ struct DiscoverView: View {
                 .padding()
                 List {
                     ForEach(viewModel.collections, id: \.name) { collection in
-                        Text(collection.name)
+                        NavigationLink(destination: DiscoverSectorView(sector: collection.name)) {
+                            Text(collection.name)
+                        }
                     }
                 }
                 .listStyle(PlainListStyle())

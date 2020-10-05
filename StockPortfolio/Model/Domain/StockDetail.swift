@@ -44,7 +44,9 @@ struct StockDetail {
         case ad = "ad" // American Depository Receipt (ADR’s)
         case sc = "sc"
     }
-
 }
 
+extension StockDetail: Identifiable {
+    var id: String { symbol }
+}
 

@@ -17,7 +17,8 @@ struct DataLoader {
     }
 
     func request<T: Decodable>(_ endpoint: Endpoint<T>) -> AnyPublisher<Result<T, APIError>, Never> {
-        session
+        print(endpoint.urlRequest)
+        return session
             .dataTaskPublisher(for: endpoint.urlRequest)
             .tryMap { data, response in
                 guard let httpResponse = response as? HTTPURLResponse else {

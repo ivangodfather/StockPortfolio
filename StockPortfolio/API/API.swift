@@ -101,13 +101,11 @@ struct API: APIProtocol {
         }.eraseToAnyPublisher()
     }
 
-    func collection(type: String) -> AnyPublisher<Result<[StockDetail], APIError>, Never> {
-        dataLoader.request(Endpoint<[IEXStock]>.collection(type: type)).map { result -> Result<[StockDetail], APIError> in
+    func collection(type: String, value: String) -> AnyPublisher<Result<[IEXStock.Quote], APIError>, Never> {
+        dataLoader.request(Endpoint<[IEXStock.Quote]>.collection(type: type, value: value)).map { result -> Result<[IEXStock.Quote], APIError> in
             switch result {
             case .success(let stocks):
-                return .success(stocks.map({ iexStock -> StockDetail in
-                    StockDetail(iexStock: iexStock, shares: 0)
-                }))
+                return .success(stocks)
             case .failure(let error):
                 return .failure(error)
             }

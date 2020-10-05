@@ -44,6 +44,8 @@
 		42CA5CD625231D8600198C29 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CA5CD525231D8600198C29 /* ImageLoader.swift */; };
 		42CA5CDB25231DD200198C29 /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CA5CDA25231DD200198C29 /* AsyncImage.swift */; };
 		42DE2E81252B5CDC0066CC71 /* EndpointProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DE2E80252B5CDC0066CC71 /* EndpointProvider.swift */; };
+		42DE2E88252B5E650066CC71 /* DiscoverSectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DE2E87252B5E650066CC71 /* DiscoverSectorView.swift */; };
+		42DE2E8D252B60110066CC71 /* DiscoverSectorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DE2E8C252B60110066CC71 /* DiscoverSectorViewModel.swift */; };
 		42DEDC092525BEF3007A351C /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DEDC082525BEF3007A351C /* View+.swift */; };
 		42DEDC0C2525BFDB007A351C /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DEDC0B2525BFDB007A351C /* Color+.swift */; };
 		42DEDC0F2525C60F007A351C /* Stock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DEDC0E2525C60F007A351C /* Stock.swift */; };
@@ -103,6 +105,8 @@
 		42CA5CD525231D8600198C29 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		42CA5CDA25231DD200198C29 /* AsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImage.swift; sourceTree = "<group>"; };
 		42DE2E80252B5CDC0066CC71 /* EndpointProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointProvider.swift; sourceTree = "<group>"; };
+		42DE2E87252B5E650066CC71 /* DiscoverSectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverSectorView.swift; sourceTree = "<group>"; };
+		42DE2E8C252B60110066CC71 /* DiscoverSectorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverSectorViewModel.swift; sourceTree = "<group>"; };
 		42DEDC082525BEF3007A351C /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
 		42DEDC0B2525BFDB007A351C /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		42DEDC0E2525C60F007A351C /* Stock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stock.swift; sourceTree = "<group>"; };
@@ -206,6 +210,8 @@
 				4287BE802529C2D800D0D238 /* DiscoverView.swift */,
 				4287BE872529C68100D0D238 /* CollectionType.swift */,
 				4287BE832529C2F100D0D238 /* DiscoverViewModel.swift */,
+				42DE2E87252B5E650066CC71 /* DiscoverSectorView.swift */,
+				42DE2E8C252B60110066CC71 /* DiscoverSectorViewModel.swift */,
 			);
 			path = Discover;
 			sourceTree = "<group>";
@@ -454,6 +460,7 @@
 				4287BE48252771C300D0D238 /* IEXNews.swift in Sources */,
 				42F7D2F12523748B00537E30 /* PersistenceManager.swift in Sources */,
 				42E4380C25249CEF00F8385C /* NewsView.swift in Sources */,
+				42DE2E88252B5E650066CC71 /* DiscoverSectorView.swift in Sources */,
 				4287BE6C2528AA9A00D0D238 /* SearchViewModel.swift in Sources */,
 				4287BE812529C2D800D0D238 /* DiscoverView.swift in Sources */,
 				42F7D31A2523C75700537E30 /* StockDetailView.swift in Sources */,
@@ -478,6 +485,7 @@
 				42E438152524A76600F8385C /* PortfolioValueView.swift in Sources */,
 				42DEDC0C2525BFDB007A351C /* Color+.swift in Sources */,
 				42DE2E81252B5CDC0066CC71 /* EndpointProvider.swift in Sources */,
+				42DE2E8D252B60110066CC71 /* DiscoverSectorViewModel.swift in Sources */,
 				4287BE5E25287B6000D0D238 /* News+.swift in Sources */,
 				4217C19F25232A4A002F66DA /* AddStockView.swift in Sources */,
 				42CA5CDB25231DD200198C29 /* AsyncImage.swift in Sources */,

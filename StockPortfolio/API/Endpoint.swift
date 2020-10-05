@@ -67,8 +67,9 @@ extension Endpoint {
         ])
     }
 
-    static func collection(type: String) -> Endpoint<[IEXStock]> {
-        Endpoint<[IEXStock]>(provider: EndpointProvider.iexCloud, path: "/stable/collection/\(type)", queryItems: [
+    static func collection(type: String, value: String) -> Endpoint<[IEXStock.Quote]> {
+        Endpoint<[IEXStock.Quote]>(provider: EndpointProvider.iexCloud, path: "/stable/stock/market/collection/\(type)", queryItems: [
+            URLQueryItem(name: "collectionName", value: value),
             URLQueryItem(name: "token", value: EnvironmentValue.iexToken)
         ])
     }

@@ -15,8 +15,8 @@ struct IEXStock: Decodable {
     struct Quote: Decodable {
         let symbol: String
         let companyName: String
-        let latestPrice: Double
-        let previousClose: Double
+        let latestPrice: Double?
+        let previousClose: Double?
     }
 
     struct Logo: Decodable {
@@ -43,8 +43,8 @@ extension StockDetail {
         symbol = iexStock.quote.symbol
         self.shares = shares
         companyName = iexStock.quote.companyName
-        latestPrice = iexStock.quote.latestPrice
-        previousClose = iexStock.quote.previousClose
+        latestPrice = iexStock.quote.latestPrice ?? 0
+        previousClose = iexStock.quote.previousClose ?? 0
         logo = iexStock.logo.url
         company = StockDetail.Company(company: iexStock.company)
     }
