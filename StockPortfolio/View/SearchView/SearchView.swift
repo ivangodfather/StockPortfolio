@@ -17,16 +17,32 @@ struct SearchView: View {
         NavigationView {
             VStack {
                 TextField("Search stock", text: $searchText).textFieldStyle(RoundedBorderTextFieldStyle())
-                List {
-                    ForEach(viewModel.autocompleteResults) { result in
-                        HStack {
-                            Text(result.name)
-                            Text("(\(result.symbol))")
-                        }.onTapGesture {
-                            selectedItem = result
-                        }
+                Spacer()
+                switch viewModel.state {
+                case .initial:
+                    VStack {
+                        Image(systemName: "magnifyingglass").resizable().frame(width: 128, height: 128)
+                        Text("Start searching now!")
                     }
-                }.listStyle(PlainListStyle())
+                case .loading:
+                    
+                    ProgressView()
+                case .results(let values):
+                    List {
+                        ForEach(values) { result in
+                            HStack {
+                                Text(result.name)
+                                Text("(\(result.symbol))")
+                            }.onTapGesture {
+                                selectedItem = result
+                            }
+                        }
+                    }.listStyle(PlainListStyle())
+                case .error(let error):
+                    Text("Something went wrong.. \(error.localizedDescription)")
+                }
+                Spacer()
+
 
             }
             .padding()
@@ -40,6 +56,7 @@ struct SearchView: View {
             .navigationBarTitle("Search")
         }
     }
+
 }
 
 struct SearchView_Previews: PreviewProvider {

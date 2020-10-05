@@ -13,6 +13,7 @@ protocol APIProtocol {
     func chart(from symbol: String, period: String) -> AnyPublisher<Result<[Chart], APIError>, Never>
     func news(from symbol: String, items: Int) -> AnyPublisher<Result<[News], APIError>, Never>
     func autcocomplete(from text: String) -> AnyPublisher<Result<[AutocompleteResult], APIError>, Never>
+    func collections(type: String) -> AnyPublisher<Result<[Collection], APIError>, Never>
 }
 
 enum APIError: Error, LocalizedError {
@@ -71,7 +72,7 @@ struct API: APIProtocol {
         dataLoader.request(Endpoint<[IEXNews]>.news(from: symbol, items: items)).map { result -> Result<[News], APIError> in
             switch result {
             case .success(let news):
-                return .success(news)
+                return .success(news.map(News.init(news:)))
             case .failure(let error):
                 return .failure(error)
             }
@@ -83,6 +84,30 @@ struct API: APIProtocol {
             switch result {
             case .success(let response):
                 return .success(response.quotes.compactMap(AutocompleteResult.init))
+            case .failure(let error):
+                return .failure(error)
+            }
+        }.eraseToAnyPublisher()
+    }
+
+    func collections(type: String) -> AnyPublisher<Result<[Collection], APIError>, Never> {
+        dataLoader.request(Endpoint<[IEXCollection]>.collections(type: type)).map { result -> Result<[Collection], APIError> in
+            switch result {
+            case .success(let collections):
+                return .success(collections.map(Collection.init(collection:)))
+            case .failure(let error):
+                return .failure(error)
+            }
+        }.eraseToAnyPublisher()
+    }
+
+    func collection(type: String) -> AnyPublisher<Result<[StockDetail], APIError>, Never> {
+        dataLoader.request(Endpoint<[IEXStock]>.collection(type: type)).map { result -> Result<[StockDetail], APIError> in
+            switch result {
+            case .success(let stocks):
+                return .success(stocks.map({ iexStock -> StockDetail in
+                    StockDetail(iexStock: iexStock, shares: 0)
+                }))
             case .failure(let error):
                 return .failure(error)
             }

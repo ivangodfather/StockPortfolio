@@ -19,16 +19,13 @@ class NewsViewModel: ObservableObject {
     private let numberOfNewsXItem = 3
 
     private let api: API
-    private let dataStorage: DataStorage
 
-    init(api: API = API(),
-         dataStorage: DataStorage = CoreDataStorage()) {
+    init(api: API = API()) {
         self.api = api
-        self.dataStorage = dataStorage
     }
 
     func request(symbols: [String]) {
-        (symbols.isEmpty ? ["vti", "vtsax", "vym", "sphd", "pey"] : symbols)
+        symbols
             .publisher
             .map { ($0, numberOfNewsXItem) }
             .flatMap(api.news(from:items:))

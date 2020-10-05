@@ -27,6 +27,11 @@ struct MainView: View {
                     Image(systemName: "newspaper")
                     Text("News")
                 }
+            DiscoverView()
+                .tabItem {
+                    Image(systemName: "antenna.radiowaves.left.and.right")
+                    Text("Discover")
+                }
         }.foregroundColor(Color.Stock.gray)
     }
 }

@@ -10,22 +10,33 @@ import SwiftUI
 import Combine
 
 final class SearchViewModel: ObservableObject {
-    @Published var autocompleteResults = [AutocompleteResult]()
     private let searchSubject = PassthroughSubject<String, Never>()
 
     private let api: API
     private var cancellables = Set<AnyCancellable>()
 
+    enum State {
+        case initial
+        case loading
+        case results([AutocompleteResult])
+        case error(Error)
+    }
+
+    @Published var state = State.initial
+
     init(api: API = API()) {
         self.api = api
         searchSubject
+            .handleEvents(receiveOutput: { _ in
+                self.state = .loading
+            })
             .throttle(for: .seconds(0.5), scheduler: DispatchQueue.main, latest: false)
             .map(api.autcocomplete(from:))
             .switchToLatest()
             .sink { result in
                 switch result {
-                    case .success(let values):self.autocompleteResults = values
-                    case .failure(let error): print(error.localizedDescription)
+                case .success(let values): self.state = .results(values)
+                case .failure(let error): self.state = .error(error)
                 }
             }.store(in: &cancellables)
     }
