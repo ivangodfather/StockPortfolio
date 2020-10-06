@@ -35,7 +35,7 @@ extension Endpoint {
         Endpoint<[String: IEXQuote]>(provider: EndpointProvider.iexCloud, path: "/stable/stock/market/batch",
         queryItems: [
             URLQueryItem(name: "symbols", value: symbols.joined(separator: ",")),
-            URLQueryItem(name: "types", value: "quote"),
+            URLQueryItem(name: "types", value: "quote,logo"),
             URLQueryItem(name: "token", value: EnvironmentValue.iexToken)
         ])
     }

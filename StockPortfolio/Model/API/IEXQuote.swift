@@ -10,6 +10,7 @@ import Foundation
 struct IEXQuote: Decodable {
 
     let quote: Quote
+    let logo: IEXLogo
 
     struct Quote: Decodable {
         let symbol: String

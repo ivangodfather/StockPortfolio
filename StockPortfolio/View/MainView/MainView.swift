@@ -32,7 +32,7 @@ struct MainView: View {
                     Image(systemName: "antenna.radiowaves.left.and.right")
                     Text("Discover")
                 }
-        }.foregroundColor(Color.Stock.gray)
+        }
     }
 }
 

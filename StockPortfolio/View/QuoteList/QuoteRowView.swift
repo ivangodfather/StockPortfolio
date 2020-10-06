@@ -15,7 +15,7 @@ struct QuoteRowView: View {
         HStack {
             ZStack {
                 Circle().fill(Color.gray)
-                AsyncImage(url: URL(string: "https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2020/06/640/320/TESLA-LOGO.jpg?ve=1&tl=1")!) {
+                AsyncImage(url: quote.logo) {
                     ProgressView()
                 }.frame(width: 48, height: 48)
             }.frame(width: 48, height: 48, alignment: .center)

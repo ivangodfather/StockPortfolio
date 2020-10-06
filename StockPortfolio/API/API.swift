@@ -97,14 +97,21 @@ struct API: APIProtocol {
     }
 
     func marketInfo(listType: String) -> AnyPublisher<Result<[Quote], APIError>, Never> {
-        dataLoader.request(Endpoint<[IEXQuote.Quote]>.marketInfo(listType: listType)).map { result in
-            switch result {
-            case .success(let iexQuotes):
-                return .success(iexQuotes.map(Quote.init(quote:)))
-            case .failure(let error):
-                return .failure(error)
+        dataLoader.request(Endpoint<[IEXQuote.Quote]>.marketInfo(listType: listType))
+            .tryMap { try! $0.get() }
+            .flatMap { $0.publisher }
+            .eraseToAnyPublisher()
+            .flatMap { quote in
+                    logo(from: quote.symbol).map { (quote, try! $0.get()) }
+                        .eraseToAnyPublisher()
             }
-        }.eraseToAnyPublisher()
+            .map { (Quote.init(quote: $0.0, iexLogo: IEXLogo(url: $0.1))) }
+            .collect()
+            .map {
+                Result.success($0)
+            }
+            .replaceError(with: .failure(APIError.unknown))
+            .eraseToAnyPublisher()
     }
 
     func logo(from symbol: String) -> AnyPublisher<Result<URL, APIError>, Never> {
