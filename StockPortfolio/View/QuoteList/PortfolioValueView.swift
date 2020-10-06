@@ -49,3 +49,12 @@ struct StockValueView_Previews: PreviewProvider {
         PortfolioValueView(portfolioValue: PortfolioValue.random)
     }
 }
+
+// TODO
+//struct PortfolioValueUseCase {
+//    static func value(from stocks: [StockDetail]) -> PortfolioValue {
+//        let total = stocks.map { $0.latestPrice * Double($0.shares) }.reduce(0,+)
+//        let fractional = String(modf(total).1.description.prefix(4).suffix(2))
+//        return PortfolioValue(portfolioTotalValue: Int(total), portfolioFractionalValue: fractional, portfolioTodayGain: 3, portfolioPercentage: 3.55)
+//    }
+//}

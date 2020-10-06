@@ -8,29 +8,30 @@
 import SwiftUI
 import Foundation
 
-struct StockRowView: View {
-    var stock: StockDetail
+struct QuoteRowView: View {
+    var quote: Quote
 
     var body: some View {
         HStack {
             ZStack {
                 Circle().fill(Color.gray)
-                AsyncImage(url: stock.logo) {
+                AsyncImage(url: URL(string: "https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2020/06/640/320/TESLA-LOGO.jpg?ve=1&tl=1")!) {
                     ProgressView()
                 }.frame(width: 48, height: 48)
             }.frame(width: 48, height: 48, alignment: .center)
             VStack(alignment: .leading, spacing: 4) {
-                Text(stock.companyName).bold()
-                Text(stock.symbol + " - " + "\(stock.shares) shares").font(.caption)
+                Text(quote.companyName).bold()
+                Text(quote.symbol).font(.caption)
             }.padding(0)
             Spacer()
             VStack(alignment: .trailing) {
                 HStack(spacing: 0) {
                     Text("$")
-                    Text(stock.latestPrice.description)
+                    Text(quote.latestPrice.description)
                 }.font(.headline)
-                Text("\(stock.percentage.round2())%").foregroundColor(stock.percentage > 0 ? Color.Stock.green : Color.Stock.red)
-                    .font(.body)
+                // TODO
+//                Text("\(stock.percentage.round2())%").foregroundColor(quote.percentage > 0 ? Color.Stock.green : Color.Stock.red)
+//                    .font(.body)
             }.padding(.horizontal)
         }
         .padding(.vertical)
@@ -39,6 +40,6 @@ struct StockRowView: View {
 
 struct StockRowView_Previews: PreviewProvider {
     static var previews: some View {
-        StockRowView(stock: StockDetail.random)
+        QuoteRowView(quote: Quote.random)
     }
 }

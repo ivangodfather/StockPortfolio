@@ -31,12 +31,11 @@ struct Endpoint<Item: Decodable> {
 }
 
 extension Endpoint {
-    static func get(symbols: [String]) -> Endpoint<[String: IEXStock]> {
-        Endpoint<[String: IEXStock]>(provider: EndpointProvider.iexCloud, path: "/stable/stock/market/batch",
+    static func get(symbols: [String]) -> Endpoint<[String: IEXQuote]> {
+        Endpoint<[String: IEXQuote]>(provider: EndpointProvider.iexCloud, path: "/stable/stock/market/batch",
         queryItems: [
             URLQueryItem(name: "symbols", value: symbols.joined(separator: ",")),
-            URLQueryItem(name: "types", value: "quote,logo,company"),
-            URLQueryItem(name: "range", value: "1m"),
+            URLQueryItem(name: "types", value: "quote"),
             URLQueryItem(name: "token", value: EnvironmentValue.iexToken)
         ])
     }
@@ -67,15 +66,8 @@ extension Endpoint {
         ])
     }
 
-    static func collections(type: String) -> Endpoint<[IEXCollection]> {
-        Endpoint<[IEXCollection]>(provider: EndpointProvider.iexCloud, path: "/stable/ref-data/\(type)", queryItems: [
-            URLQueryItem(name: "token", value: EnvironmentValue.iexToken)
-        ])
-    }
-
-    static func collection(type: String, value: String) -> Endpoint<[IEXStock.Quote]> {
-        Endpoint<[IEXStock.Quote]>(provider: EndpointProvider.iexCloud, path: "/stable/stock/market/collection/\(type)", queryItems: [
-            URLQueryItem(name: "collectionName", value: value),
+    static func marketInfo(listType: String) -> Endpoint<[IEXQuote.Quote]> {
+        Endpoint<[IEXQuote.Quote]>(provider: EndpointProvider.iexCloud, path: "/stable/stock/market/list/\(listType)", queryItems: [
             URLQueryItem(name: "token", value: EnvironmentValue.iexToken)
         ])
     }

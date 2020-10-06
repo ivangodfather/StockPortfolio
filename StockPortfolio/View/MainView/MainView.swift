@@ -6,13 +6,13 @@
 //
 
 import SwiftUI
+import Combine
 
 struct MainView: View {
-
-
+    
     var body: some View {
         TabView {
-            StockListView()
+            PortfolioView()
                 .tabItem {
                     Image(systemName: "list.star")
                     Text("Your Stocks")

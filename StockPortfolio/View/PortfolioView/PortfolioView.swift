@@ -1,0 +1,44 @@
+//
+//  PortfolioView.swift
+//  StockPortfolio
+//
+//  Created by Ivan Ruiz Monjo on 06/10/2020.
+//
+
+import SwiftUI
+
+struct PortfolioView: View {
+
+    @StateObject private var viewModel = PortfolioViewModel()
+    @State private var showingAddStockView = false
+
+    var body: some View {
+        NavigationView {
+            VStack {
+                // TODO
+//                PortfolioValueView(portfolioValue: viewModel.portfolioValue)
+                QuoteListView(quotes: viewModel.quotes) { indexSet in
+                    self.viewModel.deleteQuote(at: indexSet)
+                }
+            }
+            .sheet(isPresented: $showingAddStockView, content: {
+                AddStockView { stock in
+                    viewModel.loadQuotes()
+                }
+            })
+            .navigationTitle("Stock Portfolio")
+            .navigationBarItems(leading: EditButton(), trailing: Button(action: {
+                self.showingAddStockView = true
+            }) { Image(systemName: "plus").imageScale(.large) })
+        }
+        .onAppear {
+            viewModel.loadQuotes()
+        }
+    }
+}
+
+struct PortfolioView_Previews: PreviewProvider {
+    static var previews: some View {
+        PortfolioView()
+    }
+}

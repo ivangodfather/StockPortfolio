@@ -15,7 +15,6 @@ struct AddStockView: View {
     @State private var numShares = ""
     @Environment(\.presentationMode) var presentationMode
 
-
     private let viewModel = AddStockViewModel()
 
     init(completion: @escaping (Stock) -> (), symbol: String = "") {
@@ -56,7 +55,6 @@ struct AddStockView: View {
                 self.symbol = symbol
             }
         }
-
     }
 }
 

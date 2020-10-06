@@ -15,35 +15,22 @@ struct DiscoverView: View {
     @State private var selectedCollection = 0
 
     var body: some View {
+
         NavigationView {
             VStack {
-                Picker(selection: $selectedCollection, label: Text("Select a collection")) {
-                    ForEach(CollectionType.allCases, id: \.rawValue) { collectionType in
-                        Text(collectionType.description).tag(collectionType.rawValue)
+                Picker(selection: $selectedCollection, label: Text("Choose option"), content: {
+                    ForEach(ListType.allCases) { listType in
+                        Text(listType.description).tag(listType.id)
                     }
-                }.pickerStyle(SegmentedPickerStyle())
+                }).pickerStyle(SegmentedPickerStyle())
                 .padding()
-                List {
-                    ForEach(viewModel.collections, id: \.name) { collection in
-                        NavigationLink(destination: DiscoverSectorView(sector: collection.name)) {
-                            Text(collection.name)
-                        }
-                    }
-                }
-                .listStyle(PlainListStyle())
-                .onAppear {
-                    self.viewModel.requestCollection(type: .sector)
-                }
+                QuoteListView(quotes: viewModel.quotes, onDelete: nil)
             }
-            .onChange(of: selectedCollection, perform: { selectedCollectionType in
-                switch selectedCollectionType {
-                case CollectionType.sector.rawValue:
-                    self.viewModel.requestCollection(type: .sector)
-                default :
-                    self.viewModel.requestCollection(type: .tags)
-                }
-            })
+            .onChange(of: selectedCollection, perform: self.viewModel.request(listIndex:))
             .navigationBarTitle("Discover")
+            .onAppear {
+                self.viewModel.request(listIndex: selectedCollection)
+            }
         }
     }
 }

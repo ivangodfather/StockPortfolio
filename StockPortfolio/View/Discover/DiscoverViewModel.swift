@@ -13,24 +13,24 @@ import Combine
 import CoreData
 
 class DiscoverViewModel: ObservableObject {
-
-    @Published var collections = [Collection]()
+    @Published var quotes = [Quote]()
 
     private var cancellables = Set<AnyCancellable>()
-    private let numberOfNewsXItem = 3
-
     private let api: API
 
     init(api: API = API()) {
         self.api = api
     }
 
-    func requestCollection(type: CollectionType) {
-        api.collections(type: type.description).sink { result in
-            switch result {
-            case .success(let collections): self.collections = collections
-            case.failure(let error): print(error.localizedDescription)
-            }
-        }.store(in: &cancellables)
+    func request(listIndex: Int) {
+        guard let listType = ListType(rawValue: listIndex) else { return }
+        api
+            .marketInfo(listType: listType.apiDescription)
+            .sink { result in
+                switch result {
+                case .success(let quotes): self.quotes = quotes
+                case.failure(let error): print(error.localizedDescription)
+                }
+            }.store(in: &cancellables)
     }
 }
