@@ -37,7 +37,7 @@
 		42CA5CB8252214DC00198C29 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CA5CB7252214DC00198C29 /* Environment.swift */; };
 		42CA5CBD252216C800198C29 /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CA5CBC252216C800198C29 /* Quote.swift */; };
 		42CA5CC6252257E600198C29 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CA5CC5252257E600198C29 /* API.swift */; };
-		42CA5CC9252270C800198C29 /* IEXQuote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CA5CC8252270C800198C29 /* IEXQuote.swift */; };
+		42CA5CC9252270C800198C29 /* IEXBatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CA5CC8252270C800198C29 /* IEXBatch.swift */; };
 		42CA5CCC2523016B00198C29 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CA5CCB2523016B00198C29 /* Endpoint.swift */; };
 		42CA5CD625231D8600198C29 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CA5CD525231D8600198C29 /* ImageLoader.swift */; };
 		42CA5CDB25231DD200198C29 /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CA5CDA25231DD200198C29 /* AsyncImage.swift */; };
@@ -101,7 +101,7 @@
 		42CA5CB7252214DC00198C29 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		42CA5CBC252216C800198C29 /* Quote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quote.swift; sourceTree = "<group>"; };
 		42CA5CC5252257E600198C29 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
-		42CA5CC8252270C800198C29 /* IEXQuote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IEXQuote.swift; sourceTree = "<group>"; };
+		42CA5CC8252270C800198C29 /* IEXBatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IEXBatch.swift; sourceTree = "<group>"; };
 		42CA5CCB2523016B00198C29 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		42CA5CD525231D8600198C29 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		42CA5CDA25231DD200198C29 /* AsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImage.swift; sourceTree = "<group>"; };
@@ -246,7 +246,7 @@
 		42C8C0B525246D8300BA2BB4 /* API */ = {
 			isa = PBXGroup;
 			children = (
-				42CA5CC8252270C800198C29 /* IEXQuote.swift */,
+				42CA5CC8252270C800198C29 /* IEXBatch.swift */,
 				42C8C0AD25246C2100BA2BB4 /* IEXChart.swift */,
 				4287BE47252771C300D0D238 /* IEXNews.swift */,
 				4287BE742529BE2900D0D238 /* IEXTag.swift */,
@@ -495,7 +495,7 @@
 				42DEDC092525BEF3007A351C /* View+.swift in Sources */,
 				42CA5CD625231D8600198C29 /* ImageLoader.swift in Sources */,
 				42C8C0AE25246C2100BA2BB4 /* IEXChart.swift in Sources */,
-				42CA5CC9252270C800198C29 /* IEXQuote.swift in Sources */,
+				42CA5CC9252270C800198C29 /* IEXBatch.swift in Sources */,
 				42CA5CB8252214DC00198C29 /* Environment.swift in Sources */,
 				42C8C0B125246D4900BA2BB4 /* Chart.swift in Sources */,
 				42DEDC0F2525C60F007A351C /* Stock.swift in Sources */,

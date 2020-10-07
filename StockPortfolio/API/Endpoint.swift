@@ -24,15 +24,15 @@ struct Endpoint<Item: Decodable> {
             preconditionFailure("invalid URL")
         }
         var request = URLRequest(url: url)
-        request.timeoutInterval = 5
+        request.timeoutInterval = 15
         request.allHTTPHeaderFields = provider.headers
         return request
     }
 }
 
 extension Endpoint {
-    static func get(symbols: [String]) -> Endpoint<[String: IEXQuote]> {
-        Endpoint<[String: IEXQuote]>(provider: EndpointProvider.iexCloud, path: "/stable/stock/market/batch",
+    static func get(symbols: [String]) -> Endpoint<[String: IEXBatch]> {
+        Endpoint<[String: IEXBatch]>(provider: EndpointProvider.iexCloud, path: "/stable/stock/market/batch",
         queryItems: [
             URLQueryItem(name: "symbols", value: symbols.joined(separator: ",")),
             URLQueryItem(name: "types", value: "quote,logo"),
@@ -66,14 +66,23 @@ extension Endpoint {
         ])
     }
 
-    static func marketInfo(listType: String) -> Endpoint<[IEXQuote.Quote]> {
-        Endpoint<[IEXQuote.Quote]>(provider: EndpointProvider.iexCloud, path: "/stable/stock/market/list/\(listType)", queryItems: [
+    static func marketInfo(listType: String) -> Endpoint<[IEXBatch.Quote]> {
+        Endpoint<[IEXBatch.Quote]>(provider: EndpointProvider.iexCloud, path: "/stable/stock/market/list/\(listType)", queryItems: [
             URLQueryItem(name: "token", value: EnvironmentValue.iexToken)
         ])
     }
 
     static func logo(from symbol: String) -> Endpoint<IEXLogo> {
         Endpoint<IEXLogo>(provider: EndpointProvider.iexCloud, path: "/stable/stock/\(symbol)/logo", queryItems: [
+            URLQueryItem(name: "token", value: EnvironmentValue.iexToken)
+        ])
+    }
+
+    static func logos(from symbols: [String]) -> Endpoint<[String: IEXLogoResponse]> {
+        Endpoint<[String: IEXLogoResponse]>(provider: EndpointProvider.iexCloud, path: "/stable/stock/market/batch",
+        queryItems: [
+            URLQueryItem(name: "symbols", value: symbols.joined(separator: ",")),
+            URLQueryItem(name: "types", value: "logo"),
             URLQueryItem(name: "token", value: EnvironmentValue.iexToken)
         ])
     }

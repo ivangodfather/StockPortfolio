@@ -17,13 +17,14 @@ struct DataLoader {
     }
 
     func request<T: Decodable>(_ endpoint: Endpoint<T>) -> AnyPublisher<Result<T, APIError>, Never> {
-        print(endpoint.urlRequest)
         return session
             .dataTaskPublisher(for: endpoint.urlRequest)
             .tryMap { data, response in
                 guard let httpResponse = response as? HTTPURLResponse else {
                     throw APIError.unknown
                 }
+                print(endpoint.urlRequest.debugDescription + " \(httpResponse.statusCode)" )
+
                 guard 200...299 ~= httpResponse.statusCode else {
                     throw APIError.networkError(reason: HTTPURLResponse.localizedString(forStatusCode: httpResponse.statusCode))
                 }
@@ -32,7 +33,6 @@ struct DataLoader {
             .decode(type: T.self, decoder: JSONDecoder())
             .map { Result.success($0) }
             .catch { error -> Just<Result<T, APIError>> in
-                print(error)
                 if let urlError = error as? URLError {
                     return Just(Result.failure(APIError.networkError(reason: urlError.localizedDescription)))
                 }

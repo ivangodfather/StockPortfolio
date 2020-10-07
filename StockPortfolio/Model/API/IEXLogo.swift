@@ -7,6 +7,10 @@
 
 import Foundation
 
+struct IEXLogoResponse: Decodable {
+    let logo: IEXLogo
+}
+
 struct IEXLogo: Decodable {
     let url: URL
 }

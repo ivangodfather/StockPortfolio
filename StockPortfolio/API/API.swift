@@ -40,11 +40,11 @@ struct API: APIProtocol {
     }
 
     func quotes(from symbols: [String]) -> AnyPublisher<Result<[Quote], APIError>, Never> {
-        dataLoader.request(Endpoint<[String: IEXQuote]>.get(symbols: symbols))
+        dataLoader.request(Endpoint<[String: IEXBatch]>.get(symbols: symbols))
             .map { result  in
                 switch result {
                 case .success(let valuesDictionary):
-                    return .success(valuesDictionary.values.map(Quote.init(iexQuote:)))
+                    return .success(valuesDictionary.values.map(Quote.init(batch:)))
                 case .failure(let error):
                     return .failure(error)
                 }
@@ -97,16 +97,26 @@ struct API: APIProtocol {
     }
 
     func marketInfo(listType: String) -> AnyPublisher<Result<[Quote], APIError>, Never> {
-        dataLoader.request(Endpoint<[IEXQuote.Quote]>.marketInfo(listType: listType))
-            .tryMap { try! $0.get() }
-            .flatMap { $0.publisher }
-            .eraseToAnyPublisher()
-            .flatMap { quote in
-                    logo(from: quote.symbol).map { (quote, try! $0.get()) }
-                        .eraseToAnyPublisher()
+        dataLoader.request(Endpoint<[IEXBatch.Quote]>.marketInfo(listType: listType))
+            .tryMap { result -> [IEXBatch.Quote] in
+                do {
+                    return try result.get()
+                } catch {
+                    throw APIError.unknown
+                }
             }
-            .map { (Quote.init(quote: $0.0, iexLogo: IEXLogo(url: $0.1))) }
-            .collect()
+            .flatMap { iexQuotes in
+                logos(from: iexQuotes.map { $0.symbol }).tryMap { resultLogos -> [String: URL]  in
+                    do {
+                        return try resultLogos.get()
+                    } catch {
+                        throw APIError.unknown
+                    }
+                }
+                .map { logosTuples in
+                    iexQuotes.map { Quote(quote: $0, iexLogo: IEXLogo(url: URL(string: $0.symbol)!))}
+                }
+            }
             .map {
                 Result.success($0)
             }
@@ -119,6 +129,21 @@ struct API: APIProtocol {
             switch result {
             case .success(let iexLogo):
                 return .success(iexLogo.url)
+            case .failure(let error):
+                return .failure(error)
+            }
+        }.eraseToAnyPublisher()
+    }
+
+    func logos(from symbols: [String]) -> AnyPublisher<Result<[String: URL], APIError>, Never> {
+        dataLoader.request(Endpoint<[String: IEXLogoResponse]>.logos(from: symbols)).map { result in
+            switch result {
+            case .success(let response):
+                var valueToReturn = [String: URL]()
+                response.forEach { key, value in
+                    valueToReturn[key] = value.logo.url
+                }
+                return .success(valueToReturn)
             case .failure(let error):
                 return .failure(error)
             }

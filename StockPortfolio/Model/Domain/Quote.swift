@@ -25,15 +25,11 @@ extension Quote: Identifiable {
 }
 
 extension Quote {
-    init(iexQuote: IEXQuote) {
-        symbol = iexQuote.quote.symbol
-        companyName = iexQuote.quote.companyName
-        latestPrice = iexQuote.quote.latestPrice ?? 0
-        previousClose = iexQuote.quote.previousClose ?? 0
-        logo = iexQuote.logo.url
+    init(batch: IEXBatch) {
+        self.init(quote: batch.quote, iexLogo: batch.logo)
     }
 
-    init(quote: IEXQuote.Quote, iexLogo: IEXLogo) {
+    init(quote: IEXBatch.Quote, iexLogo: IEXLogo) {
         symbol = quote.symbol
         companyName = quote.companyName
         latestPrice = quote.latestPrice ?? 0

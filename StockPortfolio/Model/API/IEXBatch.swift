@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct IEXQuote: Decodable {
+struct IEXBatch: Decodable {
 
     let quote: Quote
     let logo: IEXLogo
