@@ -15,10 +15,10 @@ final class StockDetailViewModel: ObservableObject {
     @Published var company: Company?
     @Published var logoURL: URL?
 
-    private let api: API
+    private let api: APIProtocol
     private var cancellables = Set<AnyCancellable>()
 
-    init(api: API = API()) {
+    init(api: APIProtocol = API()) {
         self.api = api
     }
 

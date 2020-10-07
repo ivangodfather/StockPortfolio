@@ -18,9 +18,9 @@ class NewsViewModel: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     private let numberOfNewsXItem = 3
 
-    private let api: API
+    private let api: APIProtocol
 
-    init(api: API = API()) {
+    init(api: APIProtocol = API()) {
         self.api = api
     }
 

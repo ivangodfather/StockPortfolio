@@ -16,9 +16,9 @@ class DiscoverViewModel: ObservableObject {
     @Published var quotes = [Quote]()
 
     private var cancellables = Set<AnyCancellable>()
-    private let api: API
+    private let api: APIProtocol
 
-    init(api: API = API()) {
+    init(api: APIProtocol = API()) {
         self.api = api
     }
 

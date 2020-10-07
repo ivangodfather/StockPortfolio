@@ -12,7 +12,7 @@ import Combine
 final class SearchViewModel: ObservableObject {
     private let searchSubject = PassthroughSubject<String, Never>()
 
-    private let api: API
+    private let api: APIProtocol
     private var cancellables = Set<AnyCancellable>()
 
     enum State {
@@ -24,7 +24,7 @@ final class SearchViewModel: ObservableObject {
 
     @Published var state = State.initial
 
-    init(api: API = API()) {
+    init(api: APIProtocol = API()) {
         self.api = api
         searchSubject
             .handleEvents(receiveOutput: { _ in

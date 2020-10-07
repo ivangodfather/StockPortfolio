@@ -13,10 +13,10 @@ final class PortfolioViewModel: ObservableObject {
     @Published var quotes: [Quote] = []
 
     private var cancellables = Set<AnyCancellable>()
-    private let api: API
+    private let api: APIProtocol
     private let dataStorage: DataStorage
 
-    init(api: API = API(),
+    init(api: APIProtocol = API(),
          dataStorage: DataStorage = CoreDataStorage()) {
         self.api = api
         self.dataStorage = dataStorage

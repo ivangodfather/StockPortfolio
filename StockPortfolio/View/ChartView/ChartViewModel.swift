@@ -16,10 +16,10 @@ class ChartViewModel: ObservableObject {
     }
     @Published var percentageIncrease = 0
 
-    private let api: API
+    private let api: APIProtocol
     private let dataStorage: DataStorage
 
-    init(api: API = API(),
+    init(api: APIProtocol = API(),
          dataStorage: DataStorage = CoreDataStorage()) {
         self.api = api
         self.dataStorage = dataStorage
