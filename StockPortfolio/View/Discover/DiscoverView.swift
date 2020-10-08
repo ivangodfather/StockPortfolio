@@ -12,7 +12,7 @@ import Combine
 struct DiscoverView: View {
 
     @StateObject private var viewModel = DiscoverViewModel()
-    @State private var selectedCollection = 0
+    @AppStorage("discoverSelection") private var selectedCollection = 0
 
     var body: some View {
 
