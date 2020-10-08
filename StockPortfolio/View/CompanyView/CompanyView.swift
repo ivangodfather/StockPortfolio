@@ -1,5 +1,5 @@
 //
-//  StockDetail.swift
+//  CompanyDetail.swift
 //  StockPortfolio
 //
 //  Created by Ivan Ruiz Monjo on 29/09/2020.
@@ -8,11 +8,11 @@
 import SwiftUI
 import Combine
 
-struct StockDetailView: View {
+struct CompanyView: View {
 
     let symbol: String
 
-    @StateObject var viewModel = StockDetailViewModel()
+    @StateObject var viewModel = CompanyViewModel()
 
         var companyInfo: [(key: String, image: String, value: String)] {  [
             ("Symbol", "textformat.abc", viewModel.company!.symbol),
@@ -53,8 +53,8 @@ struct StockDetailView: View {
     }
 }
 
-struct StockDetail_Previews: PreviewProvider {
+struct CompanyView_Previews: PreviewProvider {
     static var previews: some View {
-        StockDetailView(symbol: "AAPL")
+        CompanyView(symbol: "AAPL")
     }
 }

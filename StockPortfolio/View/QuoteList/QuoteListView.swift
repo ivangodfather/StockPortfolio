@@ -17,7 +17,7 @@ struct QuoteListView: View {
         List {
             ForEach(quotes, id: \.symbol) { quote in
                 NavigationLink(
-                    destination: StockDetailView(symbol: quote.symbol)) {
+                    destination: CompanyView(symbol: quote.symbol)) {
                     QuoteRowView(quote: quote)
                 }
             }.onDelete(perform: onDelete)

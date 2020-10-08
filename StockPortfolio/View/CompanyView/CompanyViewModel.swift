@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 import Combine
 
-final class StockDetailViewModel: ObservableObject {
+final class CompanyViewModel: ObservableObject {
 
 
     @Published var company: Company?
