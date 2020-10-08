@@ -15,10 +15,15 @@ struct PortfolioView: View {
     var body: some View {
         NavigationView {
             VStack {
-                // TODO
-//                PortfolioValueView(portfolioValue: viewModel.portfolioValue)
-                QuoteListView(quotes: viewModel.quotes) { indexSet in
-                    self.viewModel.deleteQuote(at: indexSet)
+                if viewModel.quotes.isEmpty {
+                    Button("Insert sample data") {
+                        viewModel.insertSampleData()
+                    }.font(.headline)
+                } else {
+                    PortfolioValueView(portfolioValue: viewModel.portfolioValue)
+                    QuoteListView(quotes: viewModel.quotes) { indexSet in
+                        self.viewModel.deleteQuote(at: indexSet)
+                    }
                 }
             }
             .sheet(isPresented: $showingAddStockView, content: {

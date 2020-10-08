@@ -10,7 +10,10 @@ import Combine
 
 final class PortfolioViewModel: ObservableObject {
 
-    @Published var quotes: [Quote] = []
+    @Published var quotes: [Quote] = [] {
+        didSet { updatePortfolioValue() }
+    }
+    @Published var portfolioValue: PortfolioValue? = nil
 
     private var cancellables = Set<AnyCancellable>()
     private let api: APIProtocol
@@ -30,9 +33,19 @@ final class PortfolioViewModel: ObservableObject {
             .sink { _ in
             } receiveValue: { result in
                 switch result {
-                case.success(let quotes): self.quotes = quotes
+                case.success(let quotes):
+                    self.quotes = quotes
                 case .failure(let error): print(error.localizedDescription)
                 }
+            }.store(in: &cancellables)
+    }
+
+    private func updatePortfolioValue() {
+        dataStorage
+            .get()
+            .sink { _ in
+            } receiveValue: { stocks in
+                self.portfolioValue = PortfolioValueUseCase.value(from: stocks, withQuotes: self.quotes)
             }.store(in: &cancellables)
     }
 
@@ -46,5 +59,11 @@ final class PortfolioViewModel: ObservableObject {
             case.failure(let error): print(error.localizedDescription)
             }
         } receiveValue: { _ in }.store(in: &cancellables)
+    }
+
+    func insertSampleData() {
+        CoreDataStorage().insertSampleData().sink { _ in
+            self.loadQuotes()
+        }.store(in: &cancellables)
     }
 }

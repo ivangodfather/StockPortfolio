@@ -15,4 +15,8 @@ extension Double {
     func percentage(from initialValue: Double) -> Double {
         ((self - initialValue) * 100 / initialValue)
     }
+
+    var first2Decimals: String {
+        String(modf(self).1.description.prefix(4).suffix(2))
+    }
 }

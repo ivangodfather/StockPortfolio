@@ -31,7 +31,7 @@ final class SearchViewModel: ObservableObject {
                 self.state = .loading
             })
             .throttle(for: .seconds(0.5), scheduler: DispatchQueue.main, latest: false)
-            .map(api.autcocomplete(from:))
+            .map(api.search(from:))
             .switchToLatest()
             .sink { result in
                 switch result {

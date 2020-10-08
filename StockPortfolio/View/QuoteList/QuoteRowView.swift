@@ -38,7 +38,7 @@ struct QuoteRowView: View {
     }
 }
 
-struct StockRowView_Previews: PreviewProvider {
+struct QuoteRowView_Previews: PreviewProvider {
     static var previews: some View {
         QuoteRowView(quote: Quote.random)
     }

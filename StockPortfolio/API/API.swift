@@ -12,7 +12,7 @@ protocol APIProtocol {
     func quotes(from symbols: [String]) -> AnyPublisher<Result<[Quote], APIError>, Never>
     func chart(from symbol: String, period: String) -> AnyPublisher<Result<[Chart], APIError>, Never>
     func news(from symbol: String, items: Int) -> AnyPublisher<Result<[News], APIError>, Never>
-    func autcocomplete(from text: String) -> AnyPublisher<Result<[AutocompleteResult], APIError>, Never>
+    func search(from text: String) -> AnyPublisher<Result<[AutocompleteResult], APIError>, Never>
     func marketInfo(listType: String) -> AnyPublisher<Result<[Quote], APIError>, Never>
     func logo(from symbol: String) -> AnyPublisher<Result<URL, APIError>, Never>
     func company(from symbol: String) -> AnyPublisher<Result<Company, APIError>, Never>
@@ -76,7 +76,7 @@ struct API: APIProtocol {
         }.eraseToAnyPublisher()
     }
 
-    func autcocomplete(from text: String) -> AnyPublisher<Result<[AutocompleteResult], APIError>, Never> {
+    func search(from text: String) -> AnyPublisher<Result<[AutocompleteResult], APIError>, Never> {
         dataLoader.request(Endpoint<RapidAPIAutocompleteResponse>.autocomplete(from: text)).map { result in
             switch result {
             case .success(let response):
