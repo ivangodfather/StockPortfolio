@@ -20,19 +20,18 @@ struct SearchView: View {
                 Spacer()
                 switch viewModel.state {
                 case .initial:
-                    VStack {
-                        Image(systemName: "magnifyingglass").resizable().frame(width: 128, height: 128)
+                    VStack(spacing: 16) {
+                        Image(systemName: "magnifyingglass").resizable().frame(width: 64, height: 64)
                         Text("Start searching now!")
-                    }
+                    }.foregroundColor(Color.Stock.gray)
                 case .loading:
-                    
                     ProgressView()
                 case .results(let values):
                     List {
                         ForEach(values) { result in
                             HStack {
                                 Text(result.name)
-                                Text("(\(result.symbol))")
+                                Text(result.symbol)
                             }.onTapGesture {
                                 selectedItem = result
                             }
@@ -42,8 +41,6 @@ struct SearchView: View {
                     Text("Something went wrong.. \(error.localizedDescription)")
                 }
                 Spacer()
-
-
             }
             .padding()
             .onChange(of: searchText) { term in
@@ -52,7 +49,6 @@ struct SearchView: View {
             .sheet(item: self.$selectedItem, content: { item in
                 AddStockView(completion: { _ in }, symbol: item.symbol)
             })
-
             .navigationBarTitle("Search")
         }
     }
