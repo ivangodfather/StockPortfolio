@@ -10,15 +10,15 @@ import Combine
 import CoreData
 
 struct QuoteListView: View {
-    let quotes: [Quote]
+    let stockQuotes: [StockQuote]
     let onDelete: ((IndexSet) -> Void)?
     
     var body: some View {
         List {
-            ForEach(quotes, id: \.symbol) { quote in
+            ForEach(stockQuotes) { stockQuote in
                 NavigationLink(
-                    destination: CompanyView(symbol: quote.symbol)) {
-                    QuoteRowView(quote: quote)
+                    destination: CompanyView(symbol: stockQuote.quote.symbol)) {
+                    QuoteRowView(stockQuote: stockQuote)
                 }
             }.onDelete(perform: onDelete)
         }
@@ -26,9 +26,8 @@ struct QuoteListView: View {
     }
 }
 
-
 struct QuoteListView_Previews: PreviewProvider {
     static var previews: some View {
-        QuoteListView(quotes: [Quote.random, Quote.random], onDelete: nil)
+        QuoteListView(stockQuotes: [StockQuote.random, StockQuote.random], onDelete: nil)
     }
 }

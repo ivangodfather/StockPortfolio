@@ -8,10 +8,8 @@
 import Foundation
 
 struct PortfolioValueUseCase {
-    static func value(from stocks: [Stock], withQuotes quotes: [Quote]) -> PortfolioValue {
-        let totalValue = stocks.map { stock in
-            (quotes.first { $0.symbol == stock.symbol }?.latestPrice ?? 0) * Double(stock.shares)
-        }.reduce(0,+)
+    static func value(from stockQuotes: [StockQuote]) -> PortfolioValue {
+        let totalValue = stockQuotes.map { Double($0.numberOfShares) * $0.quote.latestPrice }.reduce(0,+)
         return PortfolioValue(portfolioTotalValue: Int(totalValue),
                               portfolioFractionalValue: totalValue.first2Decimals,
                               portfolioTodayGain: 3,

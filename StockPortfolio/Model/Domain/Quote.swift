@@ -12,6 +12,7 @@ struct Quote {
     let companyName: String
     let latestPrice: Double
     let previousClose: Double
+    let changePercent: String
     let logo: URL
 
     var percentage: Double {
@@ -34,6 +35,7 @@ extension Quote {
         companyName = quote.companyName
         latestPrice = quote.latestPrice ?? 0
         previousClose = quote.previousClose ?? 0
+        changePercent = (quote.changePercent * 100).round2()
         logo = iexLogo.url
     }
 }

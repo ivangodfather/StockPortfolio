@@ -17,5 +17,6 @@ struct IEXBatch: Decodable {
         let companyName: String
         let latestPrice: Double?
         let previousClose: Double?
+        let changePercent: Double
     }
 }

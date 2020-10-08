@@ -15,13 +15,13 @@ struct PortfolioView: View {
     var body: some View {
         NavigationView {
             VStack {
-                if viewModel.quotes.isEmpty {
+                if viewModel.hasNoStocks {
                     Button("Insert sample data") {
                         viewModel.insertSampleData()
                     }.font(.headline)
                 } else {
                     PortfolioValueView(portfolioValue: viewModel.portfolioValue)
-                    QuoteListView(quotes: viewModel.quotes) { indexSet in
+                    QuoteListView(stockQuotes: viewModel.stockQuotes) { indexSet in
                         self.viewModel.deleteQuote(at: indexSet)
                     }
                 }

@@ -10,10 +10,12 @@ import Combine
 
 final class PortfolioViewModel: ObservableObject {
 
-    @Published var quotes: [Quote] = [] {
+    @Published var stockQuotes: [StockQuote] = [] {
         didSet { updatePortfolioValue() }
     }
+    
     @Published var portfolioValue: PortfolioValue? = nil
+    @Published var hasNoStocks = false
 
     private var cancellables = Set<AnyCancellable>()
     private let api: APIProtocol
@@ -28,13 +30,19 @@ final class PortfolioViewModel: ObservableObject {
     func loadQuotes() {
         dataStorage
             .get()
-            .map { $0.map { $0.symbol }}
-            .flatMap(api.quotes(from:))
+            .handleEvents(receiveOutput: { stocks in
+                self.hasNoStocks = stocks.isEmpty
+            })
+            .flatMap { stocks in
+                self.api.quotes(from: stocks.map { $0.symbol }).map { ($0, stocks) }
+            }
             .sink { _ in
-            } receiveValue: { result in
-                switch result {
+            } receiveValue: { (quoteResult, stocks) in
+                switch quoteResult {
                 case.success(let quotes):
-                    self.quotes = quotes
+                    self.stockQuotes = stocks.map { stock in
+                        (quotes.first { stock.symbol == $0.symbol }!, stock.shares)
+                    }.map(StockQuote.init)
                 case .failure(let error): print(error.localizedDescription)
                 }
             }.store(in: &cancellables)
@@ -45,17 +53,17 @@ final class PortfolioViewModel: ObservableObject {
             .get()
             .sink { _ in
             } receiveValue: { stocks in
-                self.portfolioValue = PortfolioValueUseCase.value(from: stocks, withQuotes: self.quotes)
+                self.portfolioValue = PortfolioValueUseCase.value(from: self.stockQuotes)
             }.store(in: &cancellables)
     }
 
 
     func deleteQuote(at offsets: IndexSet) {
-        let symbols = offsets.map { quotes[$0].symbol }
+        let symbols = offsets.map { stockQuotes[$0].quote.symbol }
         symbols.publisher.flatMap(dataStorage.remove(symbol:)).sink { completion in
             switch completion {
             case.finished:
-                self.quotes.removeAll { symbols.contains($0.symbol) }
+                self.stockQuotes.removeAll { symbols.contains($0.quote.symbol) }
             case.failure(let error): print(error.localizedDescription)
             }
         } receiveValue: { _ in }.store(in: &cancellables)
