@@ -20,10 +20,7 @@ struct QuoteRowView: View {
                 }.frame(width: 48, height: 48)
             }.frame(width: 48, height: 48, alignment: .center)
             VStack(alignment: .leading, spacing: 4) {
-                HStack(spacing: 5) {
-                    Text(stockQuote.quote.companyName).bold().font(.callout)
-                    Text("(\(stockQuote.quote.symbol))").font(.footnote)
-                }
+                Text("\(stockQuote.quote.companyName) (\(stockQuote.quote.symbol))").bold().font(.callout)
                 HStack {
                     Text("\(stockQuote.numberOfShares) shares * \(stockQuote.quote.latestPrice.round2())")
                 }.font(.footnote)
@@ -39,7 +36,7 @@ struct QuoteRowView: View {
                     Text("(\(stockQuote.quote.gainLossString))")
                 }
                 .foregroundColor(stockQuote.quote.percentage > 0 ? Color.Stock.green : Color.Stock.red)
-                .font(Font.system(size: 9))
+                .font(.footnote)
             }
         }
         .padding(.vertical)
@@ -48,6 +45,6 @@ struct QuoteRowView: View {
 
 struct QuoteRowView_Previews: PreviewProvider {
     static var previews: some View {
-        QuoteRowView(stockQuote: StockQuote.random).previewLayout(PreviewLayout.fixed(width: 500, height: 100))
+        QuoteRowView(stockQuote: StockQuote.random).previewLayout(PreviewLayout.fixed(width: 300, height: 100))
     }
 }
