@@ -53,10 +53,9 @@ extension Endpoint {
         ])
     }
 
-    static func autocomplete(from text: String) -> Endpoint<RapidAPIAutocompleteResponse> {
-        Endpoint<RapidAPIAutocompleteResponse>(provider: EndpointProvider.rapidAPI, path: "/auto-complete", queryItems: [
-            URLQueryItem(name: "region", value: "US"),
-            URLQueryItem(name: "q", value: text)
+    static func search(from text: String) -> Endpoint<[IEXSearchResult]> {
+        Endpoint<[IEXSearchResult]>(provider: EndpointProvider.iexCloud, path: "/stable/search/\(text)", queryItems: [
+            URLQueryItem(name: "token", value: EnvironmentValue.iexToken)
         ])
     }
 

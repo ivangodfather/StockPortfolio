@@ -18,7 +18,7 @@ final class SearchViewModel: ObservableObject {
     enum State {
         case initial
         case loading
-        case results([AutocompleteResult])
+        case results([SearchResult])
         case error(Error)
     }
 

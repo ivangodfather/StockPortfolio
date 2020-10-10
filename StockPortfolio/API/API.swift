@@ -12,7 +12,7 @@ protocol APIProtocol {
     func quotes(from symbols: [String]) -> AnyPublisher<Result<[Quote], APIError>, Never>
     func chart(from symbol: String, period: String) -> AnyPublisher<Result<[Chart], APIError>, Never>
     func news(from symbol: String, items: Int) -> AnyPublisher<Result<[News], APIError>, Never>
-    func search(from text: String) -> AnyPublisher<Result<[AutocompleteResult], APIError>, Never>
+    func search(from text: String) -> AnyPublisher<Result<[SearchResult], APIError>, Never>
     func marketInfo(listType: String) -> AnyPublisher<Result<[Quote], APIError>, Never>
     func logo(from symbol: String) -> AnyPublisher<Result<URL, APIError>, Never>
     func company(from symbol: String) -> AnyPublisher<Result<Company, APIError>, Never>
@@ -76,11 +76,11 @@ struct API: APIProtocol {
         }.eraseToAnyPublisher()
     }
 
-    func search(from text: String) -> AnyPublisher<Result<[AutocompleteResult], APIError>, Never> {
-        dataLoader.request(Endpoint<RapidAPIAutocompleteResponse>.autocomplete(from: text)).map { result in
+    func search(from text: String) -> AnyPublisher<Result<[SearchResult], APIError>, Never> {
+        dataLoader.request(Endpoint<[IEXSearchResult]>.search(from: text)).map { result in
             switch result {
             case .success(let response):
-                return .success(response.quotes.compactMap(AutocompleteResult.init))
+                return .success(response.compactMap(SearchResult.init))
             case .failure(let error):
                 return .failure(error)
             }

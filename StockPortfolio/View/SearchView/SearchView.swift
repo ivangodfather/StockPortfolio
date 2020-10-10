@@ -11,7 +11,7 @@ import Combine
 struct SearchView: View {
     @StateObject private var viewModel = SearchViewModel()
     @State private var searchText = ""
-    @State private var selectedItem: AutocompleteResult?
+    @State private var selectedItem: SearchResult?
 
     var body: some View {
         NavigationView {
