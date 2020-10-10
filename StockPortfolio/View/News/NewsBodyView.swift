@@ -10,9 +10,14 @@ import SwiftUI
 struct NewsBodyView: View {
     let news: [News]
     var body: some View {
-        List(news) {
-            NewsRowView(news: $0)
-
+        ScrollView {
+            ForEach(news) {
+                if !$0.isFeatured {
+                    FeaturedNewsRowView(news: $0)
+                } else {
+                    NewsRowView(news: $0)
+                }
+            }
         }
     }
 }

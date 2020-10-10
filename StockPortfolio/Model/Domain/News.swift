@@ -22,6 +22,10 @@ struct News: Decodable, Identifiable {
         formatter.unitsStyle = .full
        return formatter.localizedString(for: date, relativeTo: Date())
     }
+
+    var isFeatured: Bool {
+        headline.contains("i") && headline.contains("w")
+    }
 }
 
 extension News {

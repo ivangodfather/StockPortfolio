@@ -16,14 +16,7 @@ struct NewsRowView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack(alignment: .top) {
-                VStack(alignment: .leading) {
-                    Text(news.headline).bold().font(.headline)
-                    HStack {
-                        Text(news.related)
-                        Text(news.dateString)
-                    }.padding(.top)
-                    .font(.footnote)
-                }
+                NewsRowHeadlineView(news: news)
                 Spacer()
                 AsyncImage(url: news.imageURL) {
                     Color.red // TODO
@@ -31,20 +24,39 @@ struct NewsRowView: View {
                 .frame(width: 100, height: 80, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 .clipped()
             }
-            .padding(.vertical, 8)
+            .padding(.vertical, 0)
             .onTapGesture {
                 showFullDetail.toggle()
             }
             if showFullDetail {
                 Text(news.summary)
-                Link("Go to website", destination: news.url)
+                HStack {
+                    Link("Go to website", destination: news.url)
+                    Text("(Source: \(news.source))")
+                }
             }
+            Divider()
         }
+        .padding()
     }
 }
 
 struct NewsRowView_Previews: PreviewProvider {
     static var previews: some View {
-        NewsRowView(news: News.random).previewLayout(.fixed(width: 400, height: 150))
+        NewsRowView(news: News.random).previewLayout(.fixed(width: 400, height: 400))
+    }
+}
+
+struct NewsRowHeadlineView: View {
+    let news: News
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text(news.headline).bold().font(.body)
+            HStack {
+                Text(news.related)
+                Text(news.dateString)
+            }.padding(.top)
+            .font(.footnote)
+        }
     }
 }
