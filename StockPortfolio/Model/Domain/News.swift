@@ -10,10 +10,18 @@ import Foundation
 struct News: Decodable, Identifiable {
     let headline: String
     let source: String
+    let date: Date
     let url: URL
     let summary: String
-    let image: String
+    let imageURL: URL
+    let related: String
     var id: String { headline }
+
+    var dateString: String {
+        let formatter = RelativeDateTimeFormatter()
+        formatter.unitsStyle = .full
+       return formatter.localizedString(for: date, relativeTo: Date())
+    }
 }
 
 extension News {
@@ -22,6 +30,8 @@ extension News {
         source = news.source
         url = news.url
         summary = news.summary
-        image = news.image
+        imageURL = news.image
+        related = news.related
+        date = Date(timeIntervalSince1970: news.datetime / 1000)
     }
 }

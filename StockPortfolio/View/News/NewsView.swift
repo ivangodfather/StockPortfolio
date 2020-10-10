@@ -10,28 +10,22 @@ import SwiftUI
 import CoreData
 
 struct NewsView: View {
-
+    
     @FetchRequest(entity: StockCoreData.entity(), sortDescriptors: [])
     var stocks: FetchedResults<StockCoreData>
-
+    
     @StateObject private var viewModel = NewsViewModel()
-
+    
     var body: some View {
         NavigationView {
-            ScrollView {
-                VStack {
-                    if stocks.isEmpty {
-                        ProgressView()
-                    } else {
-                        NewsBodyView(news: viewModel.news).onAppear {
-                            self.viewModel.request(symbols: stocks.map { $0.symbol ?? "" })
-                        }
-                        .navigationBarTitle(Text("News"))
-                    }
-                }
-                .padding()
-
+            if stocks.isEmpty {
+                ProgressView()
+            } else {
+                NewsBodyView(news: viewModel.news)
+                    .navigationBarTitle(Text("News"))
             }
+        }.onAppear {
+            self.viewModel.request(symbols: stocks.map { $0.symbol ?? "" })
         }
     }
 }

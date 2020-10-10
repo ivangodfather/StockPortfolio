@@ -33,6 +33,7 @@ struct DataLoader {
             .decode(type: T.self, decoder: JSONDecoder())
             .map { Result.success($0) }
             .catch { error -> Just<Result<T, APIError>> in
+                print(error)
                 if let urlError = error as? URLError {
                     return Just(Result.failure(APIError.networkError(reason: urlError.localizedDescription)))
                 }

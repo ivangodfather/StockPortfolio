@@ -1,0 +1,50 @@
+//
+//  NewsRowView.swift
+//  StockPortfolio
+//
+//  Created by Ivan Ruiz Monjo on 10/10/2020.
+//
+
+import SwiftUI
+
+struct NewsRowView: View {
+
+    @State private var showFullDetail = false
+
+    let news: News
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            HStack(alignment: .top) {
+                VStack(alignment: .leading) {
+                    Text(news.headline).bold().font(.headline)
+                    HStack {
+                        Text(news.related)
+                        Text(news.dateString)
+                    }.padding(.top)
+                    .font(.footnote)
+                }
+                Spacer()
+                AsyncImage(url: news.imageURL) {
+                    Color.red // TODO
+                }
+                .frame(width: 100, height: 80, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                .clipped()
+            }
+            .padding(.vertical, 8)
+            .onTapGesture {
+                showFullDetail.toggle()
+            }
+            if showFullDetail {
+                Text(news.summary)
+                Link("Go to website", destination: news.url)
+            }
+        }
+    }
+}
+
+struct NewsRowView_Previews: PreviewProvider {
+    static var previews: some View {
+        NewsRowView(news: News.random).previewLayout(.fixed(width: 400, height: 150))
+    }
+}

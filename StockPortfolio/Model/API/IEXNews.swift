@@ -12,5 +12,7 @@ struct IEXNews: Decodable {
     let source: String
     let url: URL
     let summary: String
-    let image: String
+    let image: URL
+    let related: String
+    let datetime: Double
 }

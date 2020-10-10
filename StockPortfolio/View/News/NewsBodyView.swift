@@ -10,31 +10,15 @@ import SwiftUI
 struct NewsBodyView: View {
     let news: [News]
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 8) {
-                ForEach(news) { news in
-                    DisclosureGroup(news.headline) {
-                        VStack {
-                            HStack {
-                                AsyncImage(url: URL(string: news.image)!) {
-                                    ProgressView()
-                                }
-                                Text("Source: " + news.source).bold()
-                                Link("Go to website", destination: news.url)
-                            }.padding(.vertical)
-                            .font(.callout)
-                            Text(news.summary)
-                        }.padding(.vertical)
-                    }
-                }
-                Divider()
-            }
+        List(news) {
+            NewsRowView(news: $0)
+
         }
     }
 }
 
 struct NewsBodyView_Previews: PreviewProvider {
     static var previews: some View {
-        NewsBodyView(news: [News.random])
+        NewsBodyView(news: [News.random, News.random])
     }
 }
