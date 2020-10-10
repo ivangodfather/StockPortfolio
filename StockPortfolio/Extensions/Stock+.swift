@@ -9,8 +9,8 @@ import Foundation
 
 extension Quote {
 
-    static let random = Quote(symbol: "AAPL",
-                                    companyName: "Apple Inc.",
+    static let random = Quote(symbol: "AMD",
+                                    companyName: "Advanced Micro Devices Inc.",
                                     latestPrice: 100,
                                     previousClose: 90,
                                     changePercent: "-1.19",

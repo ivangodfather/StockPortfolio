@@ -14,4 +14,8 @@ struct StockQuote: Identifiable {
     var id: String {
         quote.symbol
     }
+
+    var currentValueString: String {
+        (quote.latestPrice * Double(numberOfShares)).round2()
+    }
 }

@@ -14,15 +14,23 @@ struct Quote {
     let previousClose: Double
     let changePercent: String
     let logo: URL
+}
+
+extension Quote: Identifiable {
+    var id: String { symbol }
 
     var percentage: Double {
         latestPrice.percentage(from: previousClose)
     }
 
-}
+    var gainLoss: Double {
+        latestPrice - previousClose
+    }
 
-extension Quote: Identifiable {
-    var id: String { symbol }
+    var gainLossString: String {
+        let symbol = gainLoss > 0 ? "+" : ""
+        return symbol + gainLoss.round2()
+    }
 }
 
 extension Quote {
@@ -39,4 +47,3 @@ extension Quote {
         logo = iexLogo.url
     }
 }
-

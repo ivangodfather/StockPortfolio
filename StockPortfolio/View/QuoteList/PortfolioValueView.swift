@@ -17,18 +17,19 @@ struct PortfolioValueView: View {
                 HStack(alignment: .firstTextBaseline, spacing: 0) {
                     Text("$")
                         .font(Font.system(size: 32, weight: .light, design: .monospaced))
-                    Text(portfolioValue.portfolioTotalValue.withDotSeparator)
+                    Text(Int(portfolioValue.currentValue).description)
                         .font(Font.system(size: 56, weight: .medium, design: .monospaced))
-                    Text("," + portfolioValue.portfolioFractionalValue.description)
+                    Text(portfolioValue.portfolioFractionalValue.description)
                         .font(Font.system(size: 32, weight: .light, design: .monospaced))
 
                 }
                 HStack(spacing: 8) {
-                    Text("+$\(portfolioValue.portfolioTodayGain)").foregroundColor(Color.Stock.green)
-                    Text("(\(portfolioValue.portfolioPercentage.round2())%)").foregroundColor(Color.Stock.green)
+                    Text("$\(portfolioValue.portfolioTodayGain.round2())")
+                    Text("(\(portfolioValue.portfolioPercentage)%)")
                     Text("TODAY")
                 }
                 .font(Font.system(size: 16, weight: .light, design: .monospaced))
+                .foregroundColor(portfolioValue.portfolioTodayGain > 0 ? Color.Stock.green : Color.Stock.red)
             }
             .padding()
         } else {
@@ -38,10 +39,10 @@ struct PortfolioValueView: View {
 }
 
 struct PortfolioValue {
-    let portfolioTotalValue: Int
+    let currentValue: Double
     let portfolioFractionalValue: String
-    let portfolioTodayGain: Int
-    let portfolioPercentage: Double
+    let portfolioTodayGain: Double
+    let portfolioPercentage: String
 }
 
 struct StockValueView_Previews: PreviewProvider {
