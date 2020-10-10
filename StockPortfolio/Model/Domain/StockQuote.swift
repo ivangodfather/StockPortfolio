@@ -18,4 +18,9 @@ struct StockQuote: Identifiable {
     var currentValueString: String {
         (quote.latestPrice * Double(numberOfShares)).round2()
     }
+
+    var totalGainLoss: String {
+        let symbol = quote.gainLoss > 0 ? "+" : ""
+        return symbol + (quote.gainLoss * Double(numberOfShares)).round2()
+    }
 }

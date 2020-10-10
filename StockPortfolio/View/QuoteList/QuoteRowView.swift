@@ -22,7 +22,7 @@ struct QuoteRowView: View {
             VStack(alignment: .leading, spacing: 4) {
                 Text("\(stockQuote.quote.companyName) (\(stockQuote.quote.symbol))").bold().font(.callout)
                 HStack {
-                    Text("\(stockQuote.numberOfShares) shares * \(stockQuote.quote.latestPrice.round2())")
+                    Text("\(stockQuote.numberOfShares) shares * $\(stockQuote.quote.latestPrice.round2())")
                 }.font(.footnote)
             }.layoutPriority(-1)
             Spacer()
@@ -33,10 +33,10 @@ struct QuoteRowView: View {
                 }.font(.headline)
                 HStack(spacing: 4) {
                     Text("\(stockQuote.quote.changePercent)%")
-                    Text("(\(stockQuote.quote.gainLossString))")
+                    Text("(\(stockQuote.totalGainLoss))")
                 }
                 .foregroundColor(stockQuote.quote.percentage > 0 ? Color.Stock.green : Color.Stock.red)
-                .font(.footnote)
+                .font(.system(size: 9))
             }
         }
         .padding(.vertical)
