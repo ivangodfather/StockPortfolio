@@ -37,5 +37,6 @@ extension News {
         imageURL = news.image
         related = news.related
         date = Date(timeIntervalSince1970: news.datetime / 1000)
+        print("source \(news.source) \(news.headline) \(news.image)")
     }
 }

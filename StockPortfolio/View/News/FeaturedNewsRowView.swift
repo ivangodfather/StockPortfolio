@@ -13,21 +13,22 @@ struct FeaturedNewsRowView: View {
     var body: some View {
         ZStack(alignment: Alignment.init(horizontal: .leading, vertical: .bottom)) {
             AsyncImage(url: news.imageURL) {
-                Color.white
+                Image(systemName: "photo.on.rectangle.angled")
+            }.frame(width: UIScreen.main.bounds.width, height: 180)
+            HStack {
+                NewsRowHeadlineView(news: news)
+                    .padding()
+                    .frame(width: UIScreen.main.bounds.width)
+                    .foregroundColor(.white)
+                    .background(LinearGradient(gradient: Gradient(colors: [.black, Color.black.opacity(0.5)]), startPoint: .bottom, endPoint: .top))
             }
-            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 180).clipped()
-            NewsRowHeadlineView(news: news)
-                .frame(minWidth: 0, maxWidth: .infinity)
-                .padding()
-                .foregroundColor(.white)
-                .background(LinearGradient(gradient: Gradient(colors: [.black, Color.black.opacity(0.5)]), startPoint: .bottom, endPoint: .top))
         }
+        .clipped()
     }
 }
 
 struct FeaturedNewsRowView_Previews: PreviewProvider {
     static var previews: some View {
-        FeaturedNewsRowView(news: News.random)
-            .previewLayout(.fixed(width: 300, height: 200))
+        FeaturedNewsRowView(news: News.random).previewLayout(.fixed(width: 400, height: 250))
     }
 }

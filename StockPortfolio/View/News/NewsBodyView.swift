@@ -11,11 +11,13 @@ struct NewsBodyView: View {
     let news: [News]
     var body: some View {
         ScrollView {
-            ForEach(news) {
-                if !$0.isFeatured {
-                    FeaturedNewsRowView(news: $0)
-                } else {
-                    NewsRowView(news: $0)
+            VStack {
+                ForEach(news) {
+                    if !$0.isFeatured {
+                        FeaturedNewsRowView(news: $0)
+                    } else {
+                        NewsRowView(news: $0)
+                    }
                 }
             }
         }

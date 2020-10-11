@@ -19,7 +19,7 @@ struct NewsRowView: View {
                 NewsRowHeadlineView(news: news)
                 Spacer()
                 AsyncImage(url: news.imageURL) {
-                    Color.red // TODO
+                    Image(systemName: "photo.on.rectangle.angled")
                 }
                 .frame(width: 100, height: 80, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 .clipped()
@@ -50,13 +50,23 @@ struct NewsRowView_Previews: PreviewProvider {
 struct NewsRowHeadlineView: View {
     let news: News
     var body: some View {
-        VStack(alignment: .leading) {
-            Text(news.headline).bold().font(.body)
-            HStack {
-                Text(news.related)
-                Text(news.dateString)
-            }.padding(.top)
-            .font(.footnote)
+        HStack(spacing: 0) {
+            VStack(alignment: .leading) {
+                Text(news.headline).bold().font(.body)
+                HStack {
+                    Text(news.related)
+                    Text(news.dateString)
+                }
+                .padding(.top)
+                .font(.footnote)
+            }
+            Spacer()
         }
+    }
+}
+
+struct NewsRowHeadlineView_Previews: PreviewProvider {
+    static var previews: some View {
+        NewsRowHeadlineView(news: News.random).previewLayout(.fixed(width: 400, height: 400))
     }
 }
