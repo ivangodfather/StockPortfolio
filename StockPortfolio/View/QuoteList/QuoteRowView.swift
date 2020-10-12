@@ -13,10 +13,8 @@ struct QuoteRowView: View {
 
     var body: some View {
         HStack {
-            ZStack {
-                Circle().fill(Color.gray)
-                RemoteImage(url: stockQuote.quote.logo).frame(width: 48, height: 48)
-            }.frame(width: 48, height: 48, alignment: .center)
+            RemoteImage(url: stockQuote.quote.logo)
+                .frame(width: 48, height: 48)
             VStack(alignment: .leading, spacing: 4) {
                 Text("\(stockQuote.quote.companyName) (\(stockQuote.quote.symbol))").bold().font(.callout)
                 HStack {

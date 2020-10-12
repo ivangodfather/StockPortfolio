@@ -31,7 +31,7 @@ class NewsViewModel: ObservableObject {
             .flatMap(api.news(from:items:))
             .collect()
             .sink { result in
-                self.news = result.compactMap { try? $0.get() }.flatMap { $0 }
+                self.news = result.compactMap { try? $0.get() }.flatMap { $0 }.shuffled()
             }.store(in: &cancellables)
     }
 }

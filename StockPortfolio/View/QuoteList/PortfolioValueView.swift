@@ -17,9 +17,9 @@ struct PortfolioValueView: View {
                 HStack(alignment: .firstTextBaseline, spacing: 0) {
                     Text("$")
                         .font(Font.system(size: 32, weight: .light, design: .monospaced))
-                    Text(Int(portfolioValue.currentValue).description)
+                    Text(Int(portfolioValue.currentValue).withDotSeparator.description)
                         .font(Font.system(size: 56, weight: .medium, design: .monospaced))
-                    Text(portfolioValue.portfolioFractionalValue.description)
+                    Text("," + portfolioValue.portfolioFractionalValue.description)
                         .font(Font.system(size: 32, weight: .light, design: .monospaced))
 
                 }

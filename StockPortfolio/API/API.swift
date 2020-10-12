@@ -116,7 +116,7 @@ struct API: APIProtocol {
                     }
                 }
                 .map { logosTuples in
-                    iexQuotes.map { Quote(quote: $0, iexLogo: IEXLogo(url: URL(string: $0.symbol)!))}
+                    iexQuotes.map { Quote(quote: $0, iexLogo: IEXLogo(url: logosTuples[$0.symbol] ?? URL(string: "")!))}
                 }
             }
             .map {

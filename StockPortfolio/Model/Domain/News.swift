@@ -24,7 +24,7 @@ struct News: Decodable, Identifiable {
     }
 
     var isFeatured: Bool {
-        headline.contains("i") && headline.contains("w")
+        related.contains("TSLA")
     }
 }
 
