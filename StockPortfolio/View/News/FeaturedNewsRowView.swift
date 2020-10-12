@@ -12,9 +12,9 @@ struct FeaturedNewsRowView: View {
 
     var body: some View {
         ZStack(alignment: Alignment.init(horizontal: .leading, vertical: .bottom)) {
-            AsyncImage(url: news.imageURL) {
-                Image(systemName: "photo.on.rectangle.angled")
-            }.frame(width: UIScreen.main.bounds.width, height: 180)
+            RemoteImage(url: news.imageURL)
+                .aspectRatio(contentMode: .fill)
+                .frame(width: UIScreen.main.bounds.width, height: 200)
             HStack {
                 NewsRowHeadlineView(news: news)
                     .padding()

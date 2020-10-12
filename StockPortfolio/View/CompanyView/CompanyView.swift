@@ -27,9 +27,7 @@ struct CompanyView: View {
     var body: some View {
         if let logoURL = viewModel.logoURL, let company = viewModel.company {
             List {
-                AsyncImage(url: logoURL) {
-                    ProgressView()
-                }.padding()
+                RemoteImage(url: logoURL).padding()
                 Section(header: Text("About")) {
                     Text(company.description)
                         .padding(.bottom)

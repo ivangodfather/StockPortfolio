@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		4217C19F25232A4A002F66DA /* AddStockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4217C19E25232A4A002F66DA /* AddStockView.swift */; };
+		422687792534AA1C004997C8 /* RemoteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422687782534AA1C004997C8 /* RemoteImage.swift */; };
+		4226877E2534AEF9004997C8 /* NewsRowHeadlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4226877D2534AEF9004997C8 /* NewsRowHeadlineView.swift */; };
 		427755882524725F008E0EF0 /* ChartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427755872524725F008E0EF0 /* ChartViewModel.swift */; };
 		4277559225247756008E0EF0 /* ChartPeriod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4277559125247756008E0EF0 /* ChartPeriod.swift */; };
 		4287BE4425276DEF00D0D238 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4287BE4325276DEF00D0D238 /* MainView.swift */; };
@@ -40,8 +42,6 @@
 		42CA5CC6252257E600198C29 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CA5CC5252257E600198C29 /* API.swift */; };
 		42CA5CC9252270C800198C29 /* IEXBatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CA5CC8252270C800198C29 /* IEXBatch.swift */; };
 		42CA5CCC2523016B00198C29 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CA5CCB2523016B00198C29 /* Endpoint.swift */; };
-		42CA5CD625231D8600198C29 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CA5CD525231D8600198C29 /* ImageLoader.swift */; };
-		42CA5CDB25231DD200198C29 /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CA5CDA25231DD200198C29 /* AsyncImage.swift */; };
 		42DE2E81252B5CDC0066CC71 /* EndpointProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DE2E80252B5CDC0066CC71 /* EndpointProvider.swift */; };
 		42DE2E90252B7A380066CC71 /* IEXCompany.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DE2E8F252B7A380066CC71 /* IEXCompany.swift */; };
 		42DE2E93252B7B200066CC71 /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DE2E92252B7B200066CC71 /* Company.swift */; };
@@ -76,6 +76,8 @@
 
 /* Begin PBXFileReference section */
 		4217C19E25232A4A002F66DA /* AddStockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStockView.swift; sourceTree = "<group>"; };
+		422687782534AA1C004997C8 /* RemoteImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImage.swift; sourceTree = "<group>"; };
+		4226877D2534AEF9004997C8 /* NewsRowHeadlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsRowHeadlineView.swift; sourceTree = "<group>"; };
 		427755872524725F008E0EF0 /* ChartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewModel.swift; sourceTree = "<group>"; };
 		4277559125247756008E0EF0 /* ChartPeriod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartPeriod.swift; sourceTree = "<group>"; };
 		4287BE4325276DEF00D0D238 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -109,8 +111,6 @@
 		42CA5CC5252257E600198C29 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		42CA5CC8252270C800198C29 /* IEXBatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IEXBatch.swift; sourceTree = "<group>"; };
 		42CA5CCB2523016B00198C29 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
-		42CA5CD525231D8600198C29 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
-		42CA5CDA25231DD200198C29 /* AsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImage.swift; sourceTree = "<group>"; };
 		42DE2E80252B5CDC0066CC71 /* EndpointProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointProvider.swift; sourceTree = "<group>"; };
 		42DE2E8F252B7A380066CC71 /* IEXCompany.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IEXCompany.swift; sourceTree = "<group>"; };
 		42DE2E92252B7B200066CC71 /* Company.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
@@ -199,6 +199,7 @@
 				4287BE4F252776FD00D0D238 /* NewsViewModel.swift */,
 				4287BE59252879FF00D0D238 /* NewsBodyView.swift */,
 				42F539C62531C1B000D47AF3 /* NewsRowView.swift */,
+				4226877D2534AEF9004997C8 /* NewsRowHeadlineView.swift */,
 				42A180872531F5BD00952D80 /* FeaturedNewsRowView.swift */,
 			);
 			path = News;
@@ -370,8 +371,7 @@
 		42CA5CD925231DC700198C29 /* ImageLoader */ = {
 			isa = PBXGroup;
 			children = (
-				42CA5CD525231D8600198C29 /* ImageLoader.swift */,
-				42CA5CDA25231DD200198C29 /* AsyncImage.swift */,
+				422687782534AA1C004997C8 /* RemoteImage.swift */,
 			);
 			path = ImageLoader;
 			sourceTree = "<group>";
@@ -495,6 +495,7 @@
 				42E4380C25249CEF00F8385C /* NewsView.swift in Sources */,
 				4287BE6C2528AA9A00D0D238 /* SearchViewModel.swift in Sources */,
 				4287BE812529C2D800D0D238 /* DiscoverView.swift in Sources */,
+				422687792534AA1C004997C8 /* RemoteImage.swift in Sources */,
 				42F7D31A2523C75700537E30 /* CompanyView.swift in Sources */,
 				42F7D30925238FEA00537E30 /* CoreDataStorage.swift in Sources */,
 				42F7D30425237AD900537E30 /* StockCoreData+CoreDataProperties.swift in Sources */,
@@ -509,7 +510,6 @@
 				42E438182524A9F800F8385C /* StockValue+.swift in Sources */,
 				42CA5CCC2523016B00198C29 /* Endpoint.swift in Sources */,
 				42DEDC092525BEF3007A351C /* View+.swift in Sources */,
-				42CA5CD625231D8600198C29 /* ImageLoader.swift in Sources */,
 				42C8C0AE25246C2100BA2BB4 /* IEXChart.swift in Sources */,
 				42CA5CC9252270C800198C29 /* IEXBatch.swift in Sources */,
 				42CA5CB8252214DC00198C29 /* Environment.swift in Sources */,
@@ -520,9 +520,9 @@
 				42E438152524A76600F8385C /* PortfolioValueView.swift in Sources */,
 				42DEDC0C2525BFDB007A351C /* Color+.swift in Sources */,
 				42DE2E81252B5CDC0066CC71 /* EndpointProvider.swift in Sources */,
+				4226877E2534AEF9004997C8 /* NewsRowHeadlineView.swift in Sources */,
 				4287BE5E25287B6000D0D238 /* News+.swift in Sources */,
 				4217C19F25232A4A002F66DA /* AddStockView.swift in Sources */,
-				42CA5CDB25231DD200198C29 /* AsyncImage.swift in Sources */,
 				42F539C72531C1B000D47AF3 /* NewsRowView.swift in Sources */,
 				42CA5CA32522144300198C29 /* QuoteListView.swift in Sources */,
 				4287BE6F2528BE3E00D0D238 /* AddStockViewModel.swift in Sources */,

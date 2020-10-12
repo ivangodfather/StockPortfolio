@@ -12,12 +12,16 @@ struct NewsBodyView: View {
     var body: some View {
         ScrollView {
             VStack {
-                ForEach(news) {
-                    if !$0.isFeatured {
-                        FeaturedNewsRowView(news: $0)
-                    } else {
-                        NewsRowView(news: $0)
-                    }
+                ForEach(news) { news in
+                    NavigationLink(
+                        destination: WebViewWrapper(url: news.url),
+                        label: {
+                            if news.isFeatured {
+                                FeaturedNewsRowView(news: news)
+                            } else {
+                                NewsRowView(news: news)
+                            }
+                        })
                 }
             }
         }
@@ -27,5 +31,24 @@ struct NewsBodyView: View {
 struct NewsBodyView_Previews: PreviewProvider {
     static var previews: some View {
         NewsBodyView(news: [News.random, News.random])
+    }
+}
+
+import WebKit
+final class WebViewWrapper: UIViewRepresentable {
+    let request: URLRequest
+
+    init(url: URL) {
+        request = URLRequest(url: url)
+    }
+
+    func makeUIView(context: Context) -> WKWebView {
+        let view = WKWebView()
+        view.load(request)
+        return view
+    }
+
+    func updateUIView(_ uiView: WKWebView, context: Context) {
+
     }
 }

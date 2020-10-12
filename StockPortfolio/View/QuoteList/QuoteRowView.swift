@@ -15,9 +15,7 @@ struct QuoteRowView: View {
         HStack {
             ZStack {
                 Circle().fill(Color.gray)
-                AsyncImage(url: stockQuote.quote.logo) {
-                    ProgressView()
-                }.frame(width: 48, height: 48)
+                RemoteImage(url: stockQuote.quote.logo).frame(width: 48, height: 48)
             }.frame(width: 48, height: 48, alignment: .center)
             VStack(alignment: .leading, spacing: 4) {
                 Text("\(stockQuote.quote.companyName) (\(stockQuote.quote.symbol))").bold().font(.callout)
