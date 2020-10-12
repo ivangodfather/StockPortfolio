@@ -29,7 +29,9 @@ struct QuoteRowView: View {
                 }.font(.headline)
                 HStack(spacing: 4) {
                     Text("\(stockQuote.quote.changePercent)%")
-                    Text("(\(stockQuote.totalGainLoss))")
+                    if stockQuote.numberOfShares > 0 {
+                        Text("(\(stockQuote.totalGainLoss))")
+                    }
                 }
                 .foregroundColor(stockQuote.quote.percentage > 0 ? Color.Stock.green : Color.Stock.red)
                 .font(.system(size: 9))

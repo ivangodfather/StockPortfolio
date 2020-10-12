@@ -10,6 +10,7 @@
 		4217C19F25232A4A002F66DA /* AddStockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4217C19E25232A4A002F66DA /* AddStockView.swift */; };
 		422687792534AA1C004997C8 /* RemoteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422687782534AA1C004997C8 /* RemoteImage.swift */; };
 		4226877E2534AEF9004997C8 /* NewsRowHeadlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4226877D2534AEF9004997C8 /* NewsRowHeadlineView.swift */; };
+		422687812534DD07004997C8 /* RapidAPIAutocompleteResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422687802534DD07004997C8 /* RapidAPIAutocompleteResponse.swift */; };
 		427755882524725F008E0EF0 /* ChartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427755872524725F008E0EF0 /* ChartViewModel.swift */; };
 		4277559225247756008E0EF0 /* ChartPeriod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4277559125247756008E0EF0 /* ChartPeriod.swift */; };
 		4287BE4425276DEF00D0D238 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4287BE4325276DEF00D0D238 /* MainView.swift */; };
@@ -78,6 +79,7 @@
 		4217C19E25232A4A002F66DA /* AddStockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStockView.swift; sourceTree = "<group>"; };
 		422687782534AA1C004997C8 /* RemoteImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImage.swift; sourceTree = "<group>"; };
 		4226877D2534AEF9004997C8 /* NewsRowHeadlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsRowHeadlineView.swift; sourceTree = "<group>"; };
+		422687802534DD07004997C8 /* RapidAPIAutocompleteResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RapidAPIAutocompleteResponse.swift; sourceTree = "<group>"; };
 		427755872524725F008E0EF0 /* ChartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewModel.swift; sourceTree = "<group>"; };
 		4277559125247756008E0EF0 /* ChartPeriod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartPeriod.swift; sourceTree = "<group>"; };
 		4287BE4325276DEF00D0D238 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 				4287BE602528837600D0D238 /* IEXSearchResult.swift */,
 				42DE2E8F252B7A380066CC71 /* IEXCompany.swift */,
 				42DE2E98252B7E500066CC71 /* IEXLogo.swift */,
+				422687802534DD07004997C8 /* RapidAPIAutocompleteResponse.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -490,6 +493,7 @@
 				42F7D30325237AD900537E30 /* StockCoreData+CoreDataClass.swift in Sources */,
 				42CA5CB32522148C00198C29 /* DataLoader.swift in Sources */,
 				4287BE48252771C300D0D238 /* IEXNews.swift in Sources */,
+				422687812534DD07004997C8 /* RapidAPIAutocompleteResponse.swift in Sources */,
 				42F539BF252F75AF00D47AF3 /* StockQuote.swift in Sources */,
 				42F7D2F12523748B00537E30 /* PersistenceManager.swift in Sources */,
 				42E4380C25249CEF00F8385C /* NewsView.swift in Sources */,

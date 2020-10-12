@@ -27,7 +27,9 @@ struct CompanyView: View {
     var body: some View {
         if let logoURL = viewModel.logoURL, let company = viewModel.company {
             List {
-                RemoteImage(url: logoURL).padding()
+                RemoteImage(url: logoURL)
+                    .aspectRatio(contentMode: .fill)
+                    .padding()
                 Section(header: Text("About")) {
                     Text(company.description)
                         .padding(.bottom)

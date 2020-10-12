@@ -78,11 +78,18 @@ extension Endpoint {
     }
 
     static func logos(from symbols: [String]) -> Endpoint<[String: IEXLogoResponse]> {
-        Endpoint<[String: IEXLogoResponse]>(provider: EndpointProvider.iexCloud, path: "/stable/stock/market/batch",
+        Endpoint<[String: IEXLogoResponse]>(provider: .iexCloud, path: "/stable/stock/market/batch",
         queryItems: [
             URLQueryItem(name: "symbols", value: symbols.joined(separator: ",")),
             URLQueryItem(name: "types", value: "logo"),
             URLQueryItem(name: "token", value: EnvironmentValue.iexToken)
+        ])
+    }
+
+    static func autocomplete(from text: String) -> Endpoint<RapidAPIAutocompleteResponse> {
+        Endpoint<RapidAPIAutocompleteResponse>(provider: .rapidAPI, path: "/auto-complete", queryItems: [
+            URLQueryItem(name: "region", value: "US"),
+            URLQueryItem(name: "q", value: text)
         ])
     }
 }

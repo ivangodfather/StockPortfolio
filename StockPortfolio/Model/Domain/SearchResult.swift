@@ -20,4 +20,10 @@ extension SearchResult {
         symbol = searchResult.symbol
         exchange = searchResult.exchange
     }
+
+    init(response: RapidAPIAutocompleteResponse.Quote) {
+        name = response.shortname
+        symbol = response.symbol
+        exchange = response.exchange
+    }
 }
