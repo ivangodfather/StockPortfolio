@@ -18,7 +18,7 @@ struct StockPortfolioApp: App {
         UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
         UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor(Color.Stock.gray)], for: .normal)
     }
-    
+
     var body: some Scene {
         WindowGroup {
             MainView().environment(\.managedObjectContext, PersistenceManager.shared.context)

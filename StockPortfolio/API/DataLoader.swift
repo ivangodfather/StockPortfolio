@@ -26,7 +26,8 @@ struct DataLoader {
                 print(endpoint.urlRequest.debugDescription + " \(httpResponse.statusCode)" )
 
                 guard 200...299 ~= httpResponse.statusCode else {
-                    throw APIError.networkError(reason: HTTPURLResponse.localizedString(forStatusCode: httpResponse.statusCode))
+                    let reason = HTTPURLResponse.localizedString(forStatusCode: httpResponse.statusCode)
+                    throw APIError.networkError(reason: reason)
                 }
                 return data
             }

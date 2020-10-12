@@ -13,7 +13,6 @@ final class PortfolioViewModel: ObservableObject {
     @Published var stockQuotes: [StockQuote] = [] {
         didSet { updatePortfolioValue() }
     }
-    
     @Published var portfolioValue: PortfolioValue? = nil
     @Published var hasNoStocks = false
 

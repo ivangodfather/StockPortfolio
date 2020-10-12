@@ -8,5 +8,4 @@
 import SwiftUI
 
 extension View {
-    
 }

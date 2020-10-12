@@ -27,7 +27,7 @@ struct PortfolioView: View {
                 }
             }
             .sheet(isPresented: $showingAddStockView, content: {
-                AddStockView { stock in
+                AddStockView { _ in
                     viewModel.loadQuotes()
                 }
             })

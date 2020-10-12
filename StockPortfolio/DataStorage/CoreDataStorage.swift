@@ -19,7 +19,12 @@ class CoreDataStorage: DataStorage {
     }
 
     func save(stock: Stock) -> AnyPublisher<Stock, DataStorageError> {
-        let entity = NSEntityDescription.insertNewObject(forEntityName: String(describing: StockCoreData.self), into: manager.context) as! StockCoreData
+        let entityName = String(describing: StockCoreData.self)
+        guard let entity = NSEntityDescription
+                .insertNewObject(forEntityName: entityName, into: manager.context) as? StockCoreData else {
+            return Fail(outputType: Stock.self,
+                        failure: DataStorageError.unkown(reason: "invalid schema")).eraseToAnyPublisher()
+        }
         entity.symbol = stock.symbol
         entity.shares = Int64(stock.shares)
         do {
@@ -38,7 +43,8 @@ class CoreDataStorage: DataStorage {
             let elements = stocks.map { ($0.symbol ?? "", Int($0.shares)) }.map(Stock.init(symbol:shares:))
             return Just(elements).setFailureType(to: DataStorageError.self).eraseToAnyPublisher()
         } catch {
-            return Fail(outputType: [Stock].self, failure: DataStorageError.unkown(reason: error.localizedDescription)).eraseToAnyPublisher()
+            let failure = DataStorageError.unkown(reason: error.localizedDescription)
+            return Fail(outputType: [Stock].self, failure: failure).eraseToAnyPublisher()
         }
     }
 
@@ -53,7 +59,8 @@ class CoreDataStorage: DataStorage {
             try manager.context.save()
             return Just(()).setFailureType(to: DataStorageError.self).eraseToAnyPublisher()
         } catch {
-            return Fail(outputType: Void.self, failure: DataStorageError.unkown(reason: error.localizedDescription)).eraseToAnyPublisher()
+            let failure = DataStorageError.unkown(reason: error.localizedDescription)
+            return Fail(outputType: Void.self, failure: failure).eraseToAnyPublisher()
         }
     }
 

@@ -6,8 +6,6 @@
 //
 
 import Foundation
-
-import Foundation
 import SwiftUI
 import Combine
 import CoreData
@@ -28,8 +26,10 @@ class DiscoverViewModel: ObservableObject {
             .marketInfo(listType: listType.apiDescription)
             .sink { result in
                 switch result {
-                case .success(let quotes): self.stockQuotes = quotes.map { StockQuote.init(quote: $0, numberOfShares: 0) }
-                case.failure(let error): print(error.localizedDescription)
+                case .success(let quotes):
+                    self.stockQuotes = quotes.map { StockQuote.init(quote: $0, numberOfShares: 0) }
+                case.failure(let error):
+                    print(error.localizedDescription)
                 }
             }.store(in: &cancellables)
     }

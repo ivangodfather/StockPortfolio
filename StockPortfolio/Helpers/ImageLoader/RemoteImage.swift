@@ -17,7 +17,7 @@ struct RemoteImage: View {
         var state = LoadState.loading
 
         init(url: URL) {
-            URLSession.shared.dataTask(with: url) { data, response, error in
+            URLSession.shared.dataTask(with: url) { data, _, _ in
                 if let data = data, data.count > 0 {
                     self.data = data
                     self.state = .success

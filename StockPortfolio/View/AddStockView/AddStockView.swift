@@ -9,7 +9,7 @@ import SwiftUI
 import Combine
 
 struct AddStockView: View {
-    let completion: (Stock) ->()
+    let completion: (Stock) -> Void
 
     @State private var symbol: String
     @State private var numShares = ""
@@ -17,7 +17,7 @@ struct AddStockView: View {
 
     private let viewModel = AddStockViewModel()
 
-    init(completion: @escaping (Stock) -> (), symbol: String = "") {
+    init(completion: @escaping (Stock) -> Void, symbol: String = "") {
         self.completion = completion
         self._symbol = State(initialValue: symbol)
     }
@@ -36,9 +36,9 @@ struct AddStockView: View {
                     Button(action: {
                         symbol = ""
                         numShares = ""
-                    }) {
+                    }, label: {
                         Text("Reset All")
-                    }
+                    })
                 }
             }
             .navigationBarTitle(Text("Add stock"), displayMode: .inline)
