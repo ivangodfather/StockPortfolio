@@ -10,7 +10,7 @@ import Combine
 
 protocol APIProtocol {
     func quotes(from symbols: [String]) -> AnyPublisher<Result<[Quote], APIError>, Never>
-    func chart(from symbol: String, period: String) -> AnyPublisher<Result<[Chart], APIError>, Never>
+    func chart(from symbol: String, period: String, interval: String) -> AnyPublisher<Result<[Chart], APIError>, Never>
     func news(from symbol: String, items: Int) -> AnyPublisher<Result<[News], APIError>, Never>
     func search(from text: String) -> AnyPublisher<Result<[SearchResult], APIError>, Never>
     func marketInfo(listType: String) -> AnyPublisher<Result<[Quote], APIError>, Never>
@@ -55,8 +55,8 @@ struct API: APIProtocol {
             .eraseToAnyPublisher()
     }
 
-    func chart(from symbol: String, period: String) -> AnyPublisher<Result<[Chart], APIError>, Never> {
-        dataLoader.request(Endpoint<[IEXChart]>.chart(from: symbol, period: period)).map { result in
+    func chart(from symbol: String, period: String, interval: String) -> AnyPublisher<Result<[Chart], APIError>, Never> {
+        dataLoader.request(Endpoint<[IEXChart]>.chart(from: symbol, period: period, interval: interval)).map { result in
             switch result {
             case .success(let charts):
                 return .success(charts.map(Chart.init(chart:)))

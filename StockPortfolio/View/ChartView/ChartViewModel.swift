@@ -26,7 +26,8 @@ class ChartViewModel: ObservableObject {
     }
 
     func chart(from symbol: String, selectedPeriod: Int) {
-        api.chart(from: symbol, period: ChartPeriod.allCases[selectedPeriod].rawValue).sink { result in
+        let period = ChartPeriod.allCases[selectedPeriod]
+        api.chart(from: symbol, period: period.rawValue, interval: period.interval).sink { result in
             switch result {
             case .success(let chart): self.chartData = chart.map { $0.closePrize }
             case .failure(let error): print(error.localizedDescription)

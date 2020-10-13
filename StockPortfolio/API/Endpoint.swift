@@ -40,10 +40,11 @@ extension Endpoint {
         ])
     }
 
-    static func chart(from symbol: String, period: String) -> Endpoint<[IEXChart]> {
+    static func chart(from symbol: String, period: String, interval: String) -> Endpoint<[IEXChart]> {
         Endpoint<[IEXChart]>(provider: EndpointProvider.iexCloud, path: "/stable/stock/\(symbol)/chart/\(period)",
                              queryItems: [
             URLQueryItem(name: "chartCloseOnly", value: "true"),
+            URLQueryItem(name: "chartInterval", value: interval),
             URLQueryItem(name: "token", value: EnvironmentValue.iexToken)
         ])
     }
