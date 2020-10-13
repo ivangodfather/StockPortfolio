@@ -10,8 +10,6 @@ import SwiftUI
 import Combine
 
 final class CompanyViewModel: ObservableObject {
-
-
     @Published var company: Company?
     @Published var logoURL: URL?
 
@@ -23,13 +21,16 @@ final class CompanyViewModel: ObservableObject {
     }
 
     func requestCompanyData(from symbol: String) {
-        Publishers.Zip(api.company(from: symbol), api.logo(from: symbol)).sink { (companyResult, urLogoResult) in
-            switch (companyResult, urLogoResult) {
-            case (.success(let company), .success(let url)):
-                self.company = company
-                self.logoURL = url
-            default: print("something went wrong...")
-            }
-        }.store(in: &cancellables)
+        Publishers
+            .Zip(self.api.company(from: symbol), self.api.logo(from: symbol))
+            .sink { (companyResult, urLogoResult) in
+                switch (companyResult, urLogoResult) {
+                case (.success(let company), .success(let url)):
+                    self.company = company
+                    self.logoURL = url
+                    self.objectWillChange.send()
+                default: print("something went wrong...")
+                }
+            }.store(in: &cancellables)
     }
 }

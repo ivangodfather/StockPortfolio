@@ -17,7 +17,7 @@ struct QuoteListView: View {
         List {
             ForEach(stockQuotes) { stockQuote in
                 NavigationLink(
-                    destination: CompanyView(symbol: stockQuote.quote.symbol)) {
+                    destination: CompanyContainerView(symbol: stockQuote.quote.symbol)) {
                     QuoteRowView(stockQuote: stockQuote)
                 }
             }.onDelete(perform: onDelete)

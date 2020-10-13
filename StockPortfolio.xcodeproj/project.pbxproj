@@ -14,6 +14,7 @@
 		4226878825359F0F004997C8 /* CompanyBodyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4226878725359F0F004997C8 /* CompanyBodyView.swift */; };
 		4226878B2535A138004997C8 /* Company+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4226878A2535A138004997C8 /* Company+.swift */; };
 		4226878E2535A19C004997C8 /* URL+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4226878D2535A19B004997C8 /* URL+.swift */; };
+		422687912535D68A004997C8 /* CompanyContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422687902535D68A004997C8 /* CompanyContainerView.swift */; };
 		427755882524725F008E0EF0 /* ChartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427755872524725F008E0EF0 /* ChartViewModel.swift */; };
 		4277559225247756008E0EF0 /* ChartPeriod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4277559125247756008E0EF0 /* ChartPeriod.swift */; };
 		4287BE4425276DEF00D0D238 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4287BE4325276DEF00D0D238 /* MainView.swift */; };
@@ -86,6 +87,7 @@
 		4226878725359F0F004997C8 /* CompanyBodyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyBodyView.swift; sourceTree = "<group>"; };
 		4226878A2535A138004997C8 /* Company+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Company+.swift"; sourceTree = "<group>"; };
 		4226878D2535A19B004997C8 /* URL+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+.swift"; sourceTree = "<group>"; };
+		422687902535D68A004997C8 /* CompanyContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyContainerView.swift; sourceTree = "<group>"; };
 		427755872524725F008E0EF0 /* ChartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewModel.swift; sourceTree = "<group>"; };
 		4277559125247756008E0EF0 /* ChartPeriod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartPeriod.swift; sourceTree = "<group>"; };
 		4287BE4325276DEF00D0D238 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 		4277558A25247264008E0EF0 /* CompanyView */ = {
 			isa = PBXGroup;
 			children = (
+				422687902535D68A004997C8 /* CompanyContainerView.swift */,
 				42F7D3192523C75700537E30 /* CompanyView.swift */,
 				4226878725359F0F004997C8 /* CompanyBodyView.swift */,
 				42DE2E95252B7D1F0066CC71 /* CompanyViewModel.swift */,
@@ -557,6 +560,7 @@
 				42E4381B2524AAF500F8385C /* Int+.swift in Sources */,
 				4226878B2535A138004997C8 /* Company+.swift in Sources */,
 				4287BE5A252879FF00D0D238 /* NewsBodyView.swift in Sources */,
+				422687912535D68A004997C8 /* CompanyContainerView.swift in Sources */,
 				42F539C2252F78D600D47AF3 /* StockQuote+.swift in Sources */,
 				42DE2E90252B7A380066CC71 /* IEXCompany.swift in Sources */,
 				42F7D3142523B14200537E30 /* Double+.swift in Sources */,

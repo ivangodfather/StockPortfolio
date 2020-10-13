@@ -65,4 +65,6 @@ struct CompanyBodyView_Previews: PreviewProvider {
     static var previews: some View {
         CompanyBodyView(company: .random, logoURL: .random)
     }
+
+
 }

@@ -14,14 +14,17 @@ struct CompanyView: View {
     @StateObject private var viewModel = CompanyViewModel()
 
     var body: some View {
-        if let logoURL = viewModel.logoURL, let company = viewModel.company {
-            CompanyBodyView(company: company, logoURL: logoURL)
-            .navigationTitle(symbol)
-            .navigationBarItems(trailing: NavigationLink("Chart", destination: ChartView(symbol: symbol)))
-        } else {
-            ProgressView().onAppear {
-                self.viewModel.requestCompanyData(from: symbol)
+        VStack {
+            if let logoURL = viewModel.logoURL, let company = viewModel.company {
+                CompanyBodyView(company: company, logoURL: logoURL)
+                    .navigationTitle(symbol)
+                    .navigationBarItems(trailing: NavigationLink("Chart", destination: ChartView(symbol: symbol)))
+            } else {
+                ProgressView()
             }
+        }
+        .onAppear {
+            self.viewModel.requestCompanyData(from: symbol)
         }
     }
 }
