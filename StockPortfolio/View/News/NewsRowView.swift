@@ -20,6 +20,7 @@ struct NewsRowView: View {
                     .frame(width: 90, height: 90)
                 .clipped()
             }
+            Divider()
         }
         .foregroundColor(Color.Stock.gray)
         .padding()
