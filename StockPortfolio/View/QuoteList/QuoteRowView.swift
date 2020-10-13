@@ -18,24 +18,31 @@ struct QuoteRowView: View {
             VStack(alignment: .leading, spacing: 4) {
                 Text("\(stockQuote.quote.companyName) (\(stockQuote.quote.symbol))").bold().font(.callout)
                 HStack {
-                    Text("\(stockQuote.numberOfShares) shares * $\(stockQuote.quote.latestPrice.round2())")
+                    if stockQuote.numberOfShares > 0 {
+                        Text("\(stockQuote.numberOfShares) shares * ")
+                    }
+                    Text("$" + stockQuote.quote.latestPrice.round2())
                 }.font(.footnote)
             }.layoutPriority(-1)
             Spacer()
             VStack(alignment: .trailing) {
-                HStack(spacing: 0) {
-                    Text("$")
-                    Text(stockQuote.currentValueString)
-                }.font(.headline)
-                HStack(spacing: 4) {
-                    Text("\(stockQuote.quote.changePercent)%")
-                    if stockQuote.numberOfShares > 0 {
+                if stockQuote.numberOfShares > 0 {
+                    HStack(spacing: 0) {
+                        Text("$")
+                        Text(stockQuote.currentValueString)
+                    }.font(.headline)
+                    .foregroundColor(Color.Stock.gray)
+                    HStack(spacing: 4) {
+                        Text("\(stockQuote.quote.changePercent)%")
                         Text("(\(stockQuote.totalGainLoss))")
                     }
+                    .font(.system(size: 9))
+                } else {
+                    Text("\(stockQuote.quote.changePercent)%")
+                        .font(.callout).bold()
                 }
-                .foregroundColor(stockQuote.quote.percentage > 0 ? Color.Stock.green : Color.Stock.red)
-                .font(.system(size: 9))
-            }
+            }.foregroundColor(stockQuote.quote.percentage >= 0 ? Color.Stock.green : Color.Stock.red)
+
         }
         .padding(.vertical)
     }
