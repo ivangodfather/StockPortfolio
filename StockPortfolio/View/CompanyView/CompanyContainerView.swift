@@ -17,22 +17,8 @@ struct CompanyContainerView: View {
         VStack {
             VStack(alignment: selectedIndex == 0 ? .leading : .trailing) {
                 HStack {
-                    Button(action: {
-                        withAnimation {
-                            selectedIndex = 0
-                        }
-                    }) {
-                        Spacer()
-                        Text("Summary").padding()
-                            .foregroundColor(selectedIndex == 0 ? .black : Color.Stock.gray)
-                        Spacer()
-                    }
-                    Button(action: { withAnimation { selectedIndex = 1 } }) {
-                        Spacer()
-                        Text("Details").padding()
-                            .foregroundColor(selectedIndex == 1 ? .black : Color.Stock.gray)
-                        Spacer()
-                    }
+                    CompanyHeaderButtonView(selectedIndex: $selectedIndex, text: "Summary", index: 0)
+                    CompanyHeaderButtonView(selectedIndex: $selectedIndex, text: "Details", index: 1)
                 }
                 Rectangle()
                     .frame(width: UIScreen.main.bounds.width / 2, height: 2)
@@ -44,6 +30,22 @@ struct CompanyContainerView: View {
                 Text("random").tag(1)
             }.tabViewStyle(PageTabViewStyle())
 
+        }
+    }
+}
+
+private struct CompanyHeaderButtonView: View {
+    @Binding var selectedIndex: Int
+    let text: String
+    let index: Int
+
+    var body: some View {
+        Button(action: { withAnimation { selectedIndex = index } }) {
+            Spacer()
+            Text(text)
+                .padding()
+                .foregroundColor(selectedIndex == index ? .black : Color.Stock.gray)
+            Spacer()
         }
     }
 }
