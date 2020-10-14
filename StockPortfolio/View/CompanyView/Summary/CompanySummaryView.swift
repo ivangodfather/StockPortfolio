@@ -8,18 +8,17 @@
 import Foundation
 import SwiftUI
 
-struct CompanyBodyView: View {
+struct CompanySummaryView: View {
     
-    let company: Company
-    let logoURL: URL
+    let companyDetail: CompanyDetail
 
     var companyInfo: [(key: String, image: String, value: String)] {  [
-        ("Symbol", "textformat.abc", company.symbol),
-        ("Exchange", "dollarsign.square", company.exchange),
-        ("Industry", "wrench", company.industry),
-        ("CEO", "figure.wave", company.ceo),
-        ("Employees", "person.3", company.employees.description),
-        ("Country", "flag", company.country),
+        ("Symbol", "textformat.abc", companyDetail.company.symbol),
+        ("Exchange", "dollarsign.square", companyDetail.company.exchange),
+        ("Industry", "wrench", companyDetail.company.industry),
+        ("CEO", "figure.wave", companyDetail.company.ceo),
+        ("Employees", "person.3", companyDetail.company.employees.description),
+        ("Country", "flag", companyDetail.company.country),
     ] }
 
     let rows: [GridItem] =  [
@@ -28,12 +27,12 @@ struct CompanyBodyView: View {
 
     var body: some View {
         List {
-            RemoteImage(url: logoURL)
+            RemoteImage(url: companyDetail.logo)
                 .aspectRatio(contentMode: .fill)
                 .padding()
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHGrid(rows: rows) {
-                    if let tags = company.tags {
+                    if let tags = companyDetail.company.tags {
                         ForEach(tags, id: \.self) { tag in
                             Text(tag)
                                 .padding(8)
@@ -46,7 +45,7 @@ struct CompanyBodyView: View {
                 }
             }.padding(.vertical)
             Section(header: Text("About")) {
-                Text(company.description)
+                Text(companyDetail.company.description)
                     .padding(.bottom)
             }
             Section(header: Text("Company details")) {
@@ -63,7 +62,7 @@ struct CompanyBodyView: View {
 
 struct CompanyBodyView_Previews: PreviewProvider {
     static var previews: some View {
-        CompanyBodyView(company: .random, logoURL: .random)
+        CompanySummaryView(companyDetail: .random)
     }
 
 

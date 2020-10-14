@@ -17,6 +17,7 @@ protocol APIProtocol {
     func logo(from symbol: String) -> AnyPublisher<Result<URL, APIError>, Never>
     func company(from symbol: String) -> AnyPublisher<Result<Company, APIError>, Never>
     func autcocomplete(from text: String) -> AnyPublisher<Result<[SearchResult], APIError>, Never>
+    func companyDetail(from symbol: String) -> AnyPublisher<Result<CompanyDetail, APIError>, Never>
 }
 
 enum APIError: Error, LocalizedError {
@@ -158,6 +159,17 @@ struct API: APIProtocol {
             switch result {
             case .success(let response):
                 return .success(response.quotes.compactMap(SearchResult.init))
+            case .failure(let error):
+                return .failure(error)
+            }
+        }.eraseToAnyPublisher()
+    }
+
+    func companyDetail(from symbol: String) -> AnyPublisher<Result<CompanyDetail, APIError>, Never> {
+        dataLoader.request(Endpoint<IEXCompany>.companyDetail(from: symbol)).map { result in
+            switch result {
+            case .success(let iexCompanyDetail):
+                return .success(CompanyDetail(companyDetail: iexCompanyDetail))
             case .failure(let error):
                 return .failure(error)
             }
