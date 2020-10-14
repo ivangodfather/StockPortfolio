@@ -25,6 +25,7 @@ struct KeyDataView: View {
     var body: some View {
         VStack(spacing: 0) {
             Title("Key Stats")
+                .padding(.leading)
             ForEach(Array(tuples.enumerated()), id: \.0) { index, tuple in
                 HStack {
                     Text(tuple.key)

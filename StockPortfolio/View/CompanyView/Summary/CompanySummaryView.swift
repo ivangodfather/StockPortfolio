@@ -26,7 +26,7 @@ struct CompanySummaryView: View {
     ]
 
     var body: some View {
-        List {
+        ScrollView {
             HStack {
                 RemoteImage(url: companyDetail.logo)
                     .aspectRatio(contentMode: .fit)
@@ -47,36 +47,39 @@ struct CompanySummaryView: View {
                     }
                     Spacer()
                 }
-            }
+            }.padding()
 
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHGrid(rows: rows) {
                     if let tags = companyDetail.company.tags {
                         ForEach(tags, id: \.self) { tag in
                             Text(tag)
-                                .padding(8)
+                                .padding()
                                 .background(
-                                    RoundedRectangle(cornerRadius: 16).fill(Color.Stock.gray)
+                                    Capsule().fill(Color.Stock.gray)
                                 ).font(.footnote)
                                 .foregroundColor(.white)
                         }
                     }
-                }
-            }.padding(.vertical)
-
-
-            Section(header: Text("About")) {
-                Text(companyDetail.company.description)
-                    .padding(.bottom)
-            }
-            Section(header: Text("Company details")) {
-                ForEach(companyInfo, id: \.self.0) { companyInfo in
-                    HStack(alignment: .top, spacing: 4) {
-                        Text("\(companyInfo.key): ")
-                        Text("\(companyInfo.value)").bold()
+                }.padding(.horizontal)
+            }.frame(height: 60)
+            VStack(spacing: 0) {
+                Title("Details").padding(.horizontal)
+                List() {
+                    ForEach(companyInfo, id: \.self.0) { companyInfo in
+                        HStack(alignment: .top, spacing: 4) {
+                            Text("\(companyInfo.key): ")
+                            Text("\(companyInfo.value)").bold()
+                        }
                     }
-                }
+                }.frame(height: 270)
             }
+            VStack(alignment: .leading, spacing: 4) {
+                Title("About")
+                Text(companyDetail.company.description)
+                    .multilineTextAlignment(.leading)
+            }.padding()
+
         }
     }
 }

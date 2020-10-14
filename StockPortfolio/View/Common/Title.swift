@@ -20,6 +20,7 @@ struct Title: View {
                 .foregroundColor(.blue)
                 .bold()
             Spacer()
-        }.padding(.horizontal)
+        }
+        .padding(.top, 16)
     }
 }
