@@ -18,6 +18,9 @@ struct Stats {
     let peRatio: Double
     let exDividendDate: String?
     let marketcap: Double
+    let sharesOutstanding: Int
+    let nextEarningsDate: String
+    let avg30Volume: Double
 }
 
 extension Stats {
@@ -32,6 +35,9 @@ extension Stats {
         peRatio = stats.peRatio
         exDividendDate =  stats.exDividendDate
         marketcap = stats.marketcap
+        sharesOutstanding = stats.sharesOutstanding
+        nextEarningsDate = stats.nextEarningsDate
+        avg30Volume = stats.avg30Volume
     }
 
     static let random = Stats(dividendYield: 2.52,
@@ -42,6 +48,9 @@ extension Stats {
                               year2ChangePercent: 15.76,
                               year1ChangePercent: 10.5,
                               peRatio: 2.5,
-                              exDividendDate: "2020-20-01",
-                              marketcap: 12345678)
+                              exDividendDate: "2020-10-01",
+                              marketcap: 12345678,
+                              sharesOutstanding: 123456789,
+                              nextEarningsDate: "2020-20-05",
+                              avg30Volume: 35321.23)
 }

@@ -15,7 +15,8 @@ struct ChartView: View {
     @State private var showChart = false
 
     var body: some View {
-        ScrollView {
+        VStack {
+            Title("Chart")
             Picker(selection: $selectedPeriod, label: Text("Select")) {
                 ForEach(0..<ChartPeriod.allCases.count) {
                     Text(ChartPeriod.allCases[$0].rawValue)

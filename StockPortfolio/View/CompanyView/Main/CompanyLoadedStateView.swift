@@ -25,9 +25,8 @@ struct CompanyLoadedStateView: View {
             TabView(selection: $selectedIndex) {
                 CompanySummaryView(companyDetail: companyDetail)
                     .tag(0)
-                Text("random").tag(1)
+                CompanyDetailsView(companyDetail: companyDetail).tag(1)
             }.tabViewStyle(PageTabViewStyle())
-
         }
     }
 }

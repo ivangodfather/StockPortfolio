@@ -18,4 +18,7 @@ struct IEXStats: Decodable {
     let peRatio: Double
     let exDividendDate: String?
     let marketcap: Double
+    let sharesOutstanding: Int
+    let nextEarningsDate: String
+    let avg30Volume: Double
 }

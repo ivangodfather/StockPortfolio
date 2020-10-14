@@ -13,6 +13,8 @@ struct Quote {
     let latestPrice: Double
     let previousClose: Double
     let changePercent: String
+    let change: Double
+    let latestUpdate: Date
 }
 
 extension Quote: Identifiable {
@@ -22,13 +24,20 @@ extension Quote: Identifiable {
         latestPrice.percentage(from: previousClose)
     }
 
-    var gainLoss: Double {
-        latestPrice - previousClose
+    var percentageString: String {
+        percentage.round2() + "%"
     }
 
     var gainLossString: String {
-        let symbol = gainLoss > 0 ? "+" : ""
-        return symbol + gainLoss.round2()
+        let symbol = change > 0 ? "+" : ""
+        return symbol + change.round2()
+    }
+
+    var latestUpdateString: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .short
+        return dateFormatter.string(from: latestUpdate)
     }
 }
 
@@ -38,12 +47,15 @@ extension Quote {
         companyName = quote.companyName
         latestPrice = quote.latestPrice ?? 0
         previousClose = quote.previousClose ?? 0
-        changePercent = (quote.changePercent * 100).round2()
+        changePercent = quote.changePercent.round2()
+        change = quote.change
+        latestUpdate = Date(timeIntervalSince1970: quote.latestUpdate / 1000)
     }
 
     static let random = Quote(symbol: "AMD",
                                     companyName: "Advanced Micro Devices Inc.",
                                     latestPrice: 100,
                                     previousClose: 90,
-                                    changePercent: "-1.19")
+                                    changePercent: "-1.19",
+                                    change: 10.1, latestUpdate: Date())
 }

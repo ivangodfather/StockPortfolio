@@ -12,4 +12,5 @@ struct IEXCompanyDetail: Decodable {
     let news: [IEXNews]
     let stats: IEXStats
     let logo: IEXLogo
+    let quote: IEXQuote
 }

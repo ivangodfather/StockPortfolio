@@ -27,9 +27,28 @@ struct CompanySummaryView: View {
 
     var body: some View {
         List {
-            RemoteImage(url: companyDetail.logo)
-                .aspectRatio(contentMode: .fill)
-                .padding()
+            HStack {
+                RemoteImage(url: companyDetail.logo)
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: UIScreen.main.bounds.width / 3, height: UIScreen.main.bounds.width / 3)
+                    .border(Color.Stock.gray, width: 10)
+
+                HStack {
+                    Spacer()
+                    VStack(alignment: .leading) {
+                        Text(companyDetail.quote.companyName).font(.title)
+                        Text("$" + companyDetail.quote.latestPrice.round2())
+                            .font(.title).bold()
+                        HStack {
+                            Text(companyDetail.quote.gainLossString)
+                            Text("(" + companyDetail.quote.percentageString + ")")
+                        }.foregroundColor(companyDetail.quote.change >= 0 ? Color.Stock.green : Color.Stock.red)
+                        Text(companyDetail.quote.latestUpdateString).font(.caption)
+                    }
+                    Spacer()
+                }
+            }
+
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHGrid(rows: rows) {
                     if let tags = companyDetail.company.tags {
@@ -44,6 +63,8 @@ struct CompanySummaryView: View {
                     }
                 }
             }.padding(.vertical)
+
+
             Section(header: Text("About")) {
                 Text(companyDetail.company.description)
                     .padding(.bottom)

@@ -21,7 +21,7 @@ struct QuoteRowView: View {
                     if stockQuote.numberOfShares > 0 {
                         Text("\(stockQuote.numberOfShares) shares * ")
                     }
-                    Text("$" + stockQuote.quoteDetail.quote.latestPrice.round2())
+                    Text(stockQuote.quoteDetail.quote.latestPrice.round2())
                 }.font(.footnote)
             }.layoutPriority(-1)
             Spacer()
