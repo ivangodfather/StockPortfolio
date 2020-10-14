@@ -47,4 +47,17 @@ extension Company {
         country = iexCompany.country
         ceo = iexCompany.CEO
     }
+
+    static let random = Company(symbol: "AAPL",
+                                exchange: "NASDAQ",
+                                industry: "Some Industry",
+                                website: .random,
+                                ceo: "Tim Cook",
+                                description: "Some random description",
+                                securityName: "Apple Inc.",
+                                issueType: .cs,
+                                sector: "IT",
+                                employees: 150,
+                                tags: ["IT", "Medical Care"],
+                                country: "US")
 }

@@ -31,8 +31,8 @@ struct Endpoint<Item: Decodable> {
 }
 
 extension Endpoint {
-    static func get(symbols: [String]) -> Endpoint<[String: IEXBatch]> {
-        Endpoint<[String: IEXBatch]>(provider: EndpointProvider.iexCloud, path: "/stable/stock/market/batch",
+    static func get(symbols: [String]) -> Endpoint<[String: IEXQuoteDetail]> {
+        Endpoint<[String: IEXQuoteDetail]>(provider: EndpointProvider.iexCloud, path: "/stable/stock/market/batch",
         queryItems: [
             URLQueryItem(name: "symbols", value: symbols.joined(separator: ",")),
             URLQueryItem(name: "types", value: "quote,logo"),
@@ -68,8 +68,8 @@ extension Endpoint {
         ])
     }
 
-    static func marketInfo(listType: String) -> Endpoint<[IEXBatch.Quote]> {
-        Endpoint<[IEXBatch.Quote]>(provider: EndpointProvider.iexCloud, path: "/stable/stock/market/list/\(listType)",
+    static func marketInfo(listType: String) -> Endpoint<[IEXQuote]> {
+        Endpoint<[IEXQuote]>(provider: EndpointProvider.iexCloud, path: "/stable/stock/market/list/\(listType)",
                                    queryItems: [
             URLQueryItem(name: "token", value: EnvironmentValue.iexToken)
         ])

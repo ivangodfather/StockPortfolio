@@ -9,11 +9,11 @@ import Foundation
 import Combine
 
 protocol APIProtocol {
-    func quotes(from symbols: [String]) -> AnyPublisher<Result<[Quote], APIError>, Never>
+    func quoteDetails(from symbols: [String]) -> AnyPublisher<Result<[QuoteDetail], APIError>, Never>
     func chart(from symbol: String, period: String, interval: String) -> AnyPublisher<Result<[Chart], APIError>, Never>
     func news(from symbol: String, items: Int) -> AnyPublisher<Result<[News], APIError>, Never>
     func search(from text: String) -> AnyPublisher<Result<[SearchResult], APIError>, Never>
-    func marketInfo(listType: String) -> AnyPublisher<Result<[Quote], APIError>, Never>
+    func marketInfo(listType: String) -> AnyPublisher<Result<[QuoteDetail], APIError>, Never>
     func logo(from symbol: String) -> AnyPublisher<Result<URL, APIError>, Never>
     func company(from symbol: String) -> AnyPublisher<Result<Company, APIError>, Never>
     func autcocomplete(from text: String) -> AnyPublisher<Result<[SearchResult], APIError>, Never>
@@ -43,12 +43,12 @@ struct API: APIProtocol {
         self.dataLoader = dataLoader
     }
 
-    func quotes(from symbols: [String]) -> AnyPublisher<Result<[Quote], APIError>, Never> {
-        dataLoader.request(Endpoint<[String: IEXBatch]>.get(symbols: symbols))
+    func quoteDetails(from symbols: [String]) -> AnyPublisher<Result<[QuoteDetail], APIError>, Never> {
+        dataLoader.request(Endpoint<[String: IEXQuoteDetail]>.get(symbols: symbols))
             .map { result  in
                 switch result {
                 case .success(let valuesDictionary):
-                    return .success(valuesDictionary.values.map(Quote.init(batch:)))
+                    return .success(valuesDictionary.values.map(QuoteDetail.init(quoteDetail:)))
                 case .failure(let error):
                     return .failure(error)
                 }
@@ -100,9 +100,9 @@ struct API: APIProtocol {
         }.eraseToAnyPublisher()
     }
 
-    func marketInfo(listType: String) -> AnyPublisher<Result<[Quote], APIError>, Never> {
-        dataLoader.request(Endpoint<[IEXBatch.Quote]>.marketInfo(listType: listType))
-            .tryMap { result -> [IEXBatch.Quote] in
+    func marketInfo(listType: String) -> AnyPublisher<Result<[QuoteDetail], APIError>, Never> {
+      dataLoader.request(Endpoint<[IEXQuote]>.marketInfo(listType: listType))
+            .tryMap { result -> [IEXQuote] in
                 do {
                     return try result.get()
                 } catch {
@@ -118,7 +118,7 @@ struct API: APIProtocol {
                     }
                 }
                 .map { logosTuples in
-                    iexQuotes.map { Quote(quote: $0, iexLogo: IEXLogo(url: logosTuples[$0.symbol] ?? URL(string: "")!))}
+                    iexQuotes.map { QuoteDetail(quote: Quote(quote: $0), logo: logosTuples[$0.symbol] ?? URL(string: "")!) }
                 }
             }
             .map {

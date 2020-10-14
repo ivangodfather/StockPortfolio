@@ -27,7 +27,7 @@ class DiscoverViewModel: ObservableObject {
             .sink { result in
                 switch result {
                 case .success(let quotes):
-                    self.stockQuotes = quotes.map { StockQuote.init(quote: $0, numberOfShares: 0) }
+                    self.stockQuotes = quotes.map { StockQuote(quoteDetail: $0, numberOfShares: 0) }
                 case.failure(let error):
                     print(error.localizedDescription)
                 }

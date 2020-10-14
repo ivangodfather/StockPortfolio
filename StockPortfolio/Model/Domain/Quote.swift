@@ -13,7 +13,6 @@ struct Quote {
     let latestPrice: Double
     let previousClose: Double
     let changePercent: String
-    let logo: URL
 }
 
 extension Quote: Identifiable {
@@ -34,16 +33,17 @@ extension Quote: Identifiable {
 }
 
 extension Quote {
-    init(batch: IEXBatch) {
-        self.init(quote: batch.quote, iexLogo: batch.logo)
-    }
-
-    init(quote: IEXBatch.Quote, iexLogo: IEXLogo) {
+    init(quote: IEXQuote) {
         symbol = quote.symbol
         companyName = quote.companyName
         latestPrice = quote.latestPrice ?? 0
         previousClose = quote.previousClose ?? 0
         changePercent = (quote.changePercent * 100).round2()
-        logo = iexLogo.url
     }
+
+    static let random = Quote(symbol: "AMD",
+                                    companyName: "Advanced Micro Devices Inc.",
+                                    latestPrice: 100,
+                                    previousClose: 90,
+                                    changePercent: "-1.19")
 }

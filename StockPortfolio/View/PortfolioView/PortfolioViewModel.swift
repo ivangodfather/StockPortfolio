@@ -33,14 +33,14 @@ final class PortfolioViewModel: ObservableObject {
                 self.hasNoStocks = stocks.isEmpty
             })
             .flatMap { stocks in
-                self.api.quotes(from: stocks.map { $0.symbol }).map { ($0, stocks) }
+                self.api.quoteDetails(from: stocks.map { $0.symbol }).map { ($0, stocks) }
             }
             .sink { _ in
-            } receiveValue: { (quoteResult, stocks) in
-                switch quoteResult {
-                case.success(let quotes):
+            } receiveValue: { (quoteDetailResult, stocks) in
+                switch quoteDetailResult {
+                case.success(let quoteDetails):
                     self.stockQuotes = stocks.map { stock in
-                        (quotes.first { stock.symbol == $0.symbol }!, stock.shares)
+                        (quoteDetails.first { stock.symbol == $0.quote.symbol }!, stock.shares)
                     }.map(StockQuote.init)
                 case .failure(let error): print(error.localizedDescription)
                 }
@@ -58,11 +58,11 @@ final class PortfolioViewModel: ObservableObject {
 
 
     func deleteQuote(at offsets: IndexSet) {
-        let symbols = offsets.map { stockQuotes[$0].quote.symbol }
+        let symbols = offsets.map { stockQuotes[$0].quoteDetail.quote.symbol }
         symbols.publisher.flatMap(dataStorage.remove(symbol:)).sink { completion in
             switch completion {
             case.finished:
-                self.stockQuotes.removeAll { symbols.contains($0.quote.symbol) }
+                self.stockQuotes.removeAll { symbols.contains($0.quoteDetail.quote.symbol) }
             case.failure(let error): print(error.localizedDescription)
             }
         } receiveValue: { _ in }.store(in: &cancellables)

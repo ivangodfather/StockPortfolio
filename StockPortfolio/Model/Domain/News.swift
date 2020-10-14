@@ -37,6 +37,14 @@ extension News {
         imageURL = news.image
         related = news.related
         date = Date(timeIntervalSince1970: news.datetime / 1000)
-        print("source \(news.source) \(news.headline) \(news.image)")
     }
+
+    private static let newsSummary = "aipe lbtthUernwm rtptHttls eto tis ue eszf  asdf"
+    static let random = News(headline: "Random headline",
+                             source: "Wikipedia",
+                             date: Date(),
+                             url: URL(string: "http://wikipedia.org")!,
+                             summary: newsSummary ,
+                             imageURL: .randomImage,
+                             related: "AMZN")
 }

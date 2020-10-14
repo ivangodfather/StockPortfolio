@@ -8,19 +8,23 @@
 import Foundation
 
 struct StockQuote: Identifiable {
-    let quote: Quote
+    let quoteDetail: QuoteDetail
     var numberOfShares: Int
 
     var id: String {
-        quote.symbol
+        quoteDetail.quote.symbol
     }
 
     var currentValueString: String {
-        (quote.latestPrice * Double(numberOfShares)).round2()
+        (quoteDetail.quote.latestPrice * Double(numberOfShares)).round2()
     }
 
     var totalGainLoss: String {
-        let symbol = quote.gainLoss > 0 ? "+" : ""
-        return symbol + (quote.gainLoss * Double(numberOfShares)).round2()
+        let symbol = quoteDetail.quote.gainLoss > 0 ? "+" : ""
+        return symbol + (quoteDetail.quote.gainLoss * Double(numberOfShares)).round2()
     }
+}
+
+extension StockQuote {
+    static let random = StockQuote(quoteDetail: .random, numberOfShares: 5)
 }

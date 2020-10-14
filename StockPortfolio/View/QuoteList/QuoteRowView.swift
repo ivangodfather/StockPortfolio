@@ -13,15 +13,15 @@ struct QuoteRowView: View {
 
     var body: some View {
         HStack {
-            RemoteImage(url: stockQuote.quote.logo)
+            RemoteImage(url: stockQuote.quoteDetail.logo)
                 .frame(width: 48, height: 48)
             VStack(alignment: .leading, spacing: 4) {
-                Text("\(stockQuote.quote.companyName) (\(stockQuote.quote.symbol))").bold().font(.callout)
+                Text("\(stockQuote.quoteDetail.quote.companyName) (\(stockQuote.quoteDetail.quote.symbol))").bold().font(.callout)
                 HStack {
                     if stockQuote.numberOfShares > 0 {
                         Text("\(stockQuote.numberOfShares) shares * ")
                     }
-                    Text("$" + stockQuote.quote.latestPrice.round2())
+                    Text("$" + stockQuote.quoteDetail.quote.latestPrice.round2())
                 }.font(.footnote)
             }.layoutPriority(-1)
             Spacer()
@@ -33,15 +33,15 @@ struct QuoteRowView: View {
                     }.font(.headline)
                     .foregroundColor(Color.Stock.gray)
                     HStack(spacing: 4) {
-                        Text("\(stockQuote.quote.changePercent)%")
+                        Text("\(stockQuote.quoteDetail.quote.changePercent)%")
                         Text("(\(stockQuote.totalGainLoss))")
                     }
                     .font(.system(size: 9))
                 } else {
-                    Text("\(stockQuote.quote.changePercent)%")
+                    Text("\(stockQuote.quoteDetail.quote.changePercent)%")
                         .font(.callout).bold()
                 }
-            }.foregroundColor(stockQuote.quote.percentage >= 0 ? Color.Stock.green : Color.Stock.red)
+            }.foregroundColor(stockQuote.quoteDetail.quote.percentage >= 0 ? Color.Stock.green : Color.Stock.red)
 
         }
         .padding(.vertical)

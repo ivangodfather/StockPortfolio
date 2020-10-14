@@ -21,4 +21,9 @@ extension CompanyDetail {
         news = companyDetail.news.map(News.init(news:))
         logo = companyDetail.logo.url
     }
+
+    static let random = CompanyDetail(company: .random,
+                                      news: [.random, .random, .random],
+                                      stats: .random,
+                                      logo: .random)
 }
