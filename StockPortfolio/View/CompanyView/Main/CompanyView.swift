@@ -24,7 +24,7 @@ struct CompanyView: View {
                 CompanyLoadedStateView(companyDetail: companyDetail)
             }
         }
-        .navigationTitle(symbol)
+        .navigationBarTitle(symbol, displayMode: .inline)
         .onAppear {
             self.viewModel.requestCompanyData(from: symbol)
         }
