@@ -15,6 +15,11 @@ struct Stats {
     let year5ChangePercent: Double
     let year2ChangePercent: Double
     let year1ChangePercent: Double
+    let ytdChangePercent: Double
+    let month6ChangePercent: Double
+    let month3ChangePercent: Double
+    let month1ChangePercent: Double
+    let day5ChangePercent: Double
     let peRatio: Double
     let exDividendDate: String?
     let marketcap: Double
@@ -38,6 +43,11 @@ extension Stats {
         sharesOutstanding = stats.sharesOutstanding
         nextEarningsDate = stats.nextEarningsDate
         avg30Volume = stats.avg30Volume
+        ytdChangePercent = stats.ytdChangePercent * 100
+        month6ChangePercent = stats.month6ChangePercent * 100
+        month3ChangePercent = stats.month3ChangePercent * 100
+        month1ChangePercent = stats.month1ChangePercent * 100
+        day5ChangePercent = stats.day5ChangePercent * 100
     }
 
     static let random = Stats(dividendYield: 2.52,
@@ -47,6 +57,11 @@ extension Stats {
                               year5ChangePercent: 50.25,
                               year2ChangePercent: 15.76,
                               year1ChangePercent: 10.5,
+                              ytdChangePercent: 25.5,
+                              month6ChangePercent: 20.5,
+                              month3ChangePercent: 15.23,
+                              month1ChangePercent: 10.3,
+                              day5ChangePercent: 2.1,
                               peRatio: 2.5,
                               exDividendDate: "2020-10-01",
                               marketcap: 12345678,
