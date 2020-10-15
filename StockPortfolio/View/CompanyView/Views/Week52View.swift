@@ -8,19 +8,21 @@
 import SwiftUI
 
 struct Week52View: View {
-    let companyDetail: CompanyDetail
 
-    private var stats: Stats { companyDetail.stats }
+    let stats: Stats
+    let latestPrice: Double
 
     var body: some View {
-        HStack(spacing: 16) {
+        HStack(spacing: 24) {
             Text("52 Week H/L").foregroundColor(Color.Stock.gray).bold()
             VStack(alignment: .leading) {
                 GeometryReader { reader in
-                    Image(systemName: "arrowtriangle.down")
-                        .imageScale(.small)
-                        .offset(x: calculateOffset(width: reader.size.width) - 8, y: 8)
-                        .foregroundColor(.blue)
+                    VStack(spacing: 0) {
+                        Text(latestPrice.round2()).font(.system(size: 11))
+                        Image(systemName: "arrowtriangle.down")
+                            .imageScale(.small)
+                            .foregroundColor(.blue)
+                    }.offset(x: calculateOffset(width: reader.size.width) - 19, y: -4)
                 }.frame(height: 15)
                 Rectangle()
                     .fill(Color.gray)
@@ -33,17 +35,17 @@ struct Week52View: View {
                         .foregroundColor(Color.Stock.green)
                 }.font(.footnote)
             }
-        }.padding()
+        }
     }
 
     private func calculateOffset(width: CGFloat) -> CGFloat {
-        let increment = (200 - stats.week52low) / (stats.week52high - stats.week52low)
-        return width * CGFloat(increment)
+        let increment = (latestPrice - stats.week52low) / (stats.week52high - stats.week52low)
+        return min(width * CGFloat(increment), width)
     }
 }
 
 struct Week52View_Previews: PreviewProvider {
     static var previews: some View {
-        Week52View(companyDetail: .random)
+        Week52View(stats: .random, latestPrice: 150)
     }
 }

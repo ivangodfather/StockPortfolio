@@ -14,8 +14,8 @@ struct CompanyDetailsView: View {
         ScrollView {
             VStack {
                 ChartView(symbol: companyDetail.quote.symbol)
-                Week52View(companyDetail: companyDetail)
-                PerformanceView(stats: companyDetail.stats)
+                PerformanceView(stats: companyDetail.stats,
+                                latestPrice: companyDetail.quote.latestPrice)
                 KeyDataView(stats: companyDetail.stats)
             }
         }

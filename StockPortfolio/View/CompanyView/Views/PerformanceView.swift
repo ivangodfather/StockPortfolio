@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PerformanceView: View {
     let stats: Stats
+    let latestPrice: Double
 
     fileprivate var performances: [Performance] {
         [
@@ -33,14 +34,16 @@ struct PerformanceView: View {
                         Text(performance.value.round2() + "%")
                             .frame(width: 80, alignment: .trailing)
                         Rectangle()
-                            .frame(width: min(1.5 * CGFloat(performance.value), 150), height: 15)
+                            .frame(width: min(1.5 * CGFloat(abs(performance.value)), 150), height: 15)
                             .frame(width: 150, alignment: .leading)
                             .padding(.trailing)
-                            .foregroundColor(stats.month1ChangePercent < 0 ? Color.Stock.red : Color.Stock.green)
+                            .foregroundColor(performance.value < 0 ? Color.Stock.red : Color.Stock.green)
                     }
                     Divider()
                 }
             }
+            Week52View(stats: stats, latestPrice: latestPrice)
+                .padding(.vertical)
         }
         .padding(.horizontal)
     }
@@ -55,6 +58,6 @@ private struct Performance: Identifiable {
 
 struct PerformanceView_Previews: PreviewProvider {
     static var previews: some View {
-        PerformanceView(stats: .random)
+        PerformanceView(stats: .random, latestPrice: 30)
     }
 }

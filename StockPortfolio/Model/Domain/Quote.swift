@@ -54,7 +54,7 @@ extension Quote {
 
     static let random = Quote(symbol: "AMD",
                                     companyName: "Advanced Micro Devices Inc.",
-                                    latestPrice: 400,
+                                    latestPrice: 27.30,
                                     previousClose: 90,
                                     changePercent: "-1.19",
                                     change: 10.1, latestUpdate: Date())

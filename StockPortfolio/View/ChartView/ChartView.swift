@@ -35,7 +35,7 @@ struct ChartView: View {
         .padding()
         .onAppear {
             viewModel.chart(from: symbol, selectedPeriod: selectedPeriod)
-        }.navigationTitle("Chart")
+        }
     }
 }
 
