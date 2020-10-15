@@ -52,8 +52,8 @@ extension Stats {
 
     static let random = Stats(dividendYield: 2.52,
                               week52change: 23.5,
-                              week52high: 545,
-                              week52low: 423,
+                              week52high: 400,
+                              week52low: 200,
                               year5ChangePercent: 50.25,
                               year2ChangePercent: 15.76,
                               year1ChangePercent: 10.5,
