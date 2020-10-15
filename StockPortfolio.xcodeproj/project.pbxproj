@@ -71,6 +71,10 @@
 		42E6B23B25378C12000DF7D4 /* Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E6B23A25378C12000DF7D4 /* Title.swift */; };
 		42E6B23F2538212A000DF7D4 /* PerformanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E6B23E2538212A000DF7D4 /* PerformanceView.swift */; };
 		42E6B24225383955000DF7D4 /* Week52View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E6B24125383955000DF7D4 /* Week52View.swift */; };
+		42EDB9C12538A301000B0514 /* IEXRecommendationTrend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42EDB9C02538A301000B0514 /* IEXRecommendationTrend.swift */; };
+		42EDB9C42538A57F000B0514 /* RecommendationTrend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42EDB9C32538A57F000B0514 /* RecommendationTrend.swift */; };
+		42EDB9C72538A720000B0514 /* AnalystRecommendationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42EDB9C62538A720000B0514 /* AnalystRecommendationsView.swift */; };
+		42EDB9CB2538EDB0000B0514 /* ToolTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42EDB9CA2538EDB0000B0514 /* ToolTip.swift */; };
 		42F539A0252CCA7000D47AF3 /* PortfolioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F5399F252CCA7000D47AF3 /* PortfolioView.swift */; };
 		42F539A5252CCAD900D47AF3 /* PortfolioViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F539A4252CCAD900D47AF3 /* PortfolioViewModel.swift */; };
 		42F539AC252CF6F600D47AF3 /* ListType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F539AB252CF6F600D47AF3 /* ListType.swift */; };
@@ -153,6 +157,10 @@
 		42E6B23A25378C12000DF7D4 /* Title.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Title.swift; sourceTree = "<group>"; };
 		42E6B23E2538212A000DF7D4 /* PerformanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceView.swift; sourceTree = "<group>"; };
 		42E6B24125383955000DF7D4 /* Week52View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Week52View.swift; sourceTree = "<group>"; };
+		42EDB9C02538A301000B0514 /* IEXRecommendationTrend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IEXRecommendationTrend.swift; sourceTree = "<group>"; };
+		42EDB9C32538A57F000B0514 /* RecommendationTrend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationTrend.swift; sourceTree = "<group>"; };
+		42EDB9C62538A720000B0514 /* AnalystRecommendationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalystRecommendationsView.swift; sourceTree = "<group>"; };
+		42EDB9CA2538EDB0000B0514 /* ToolTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolTip.swift; sourceTree = "<group>"; };
 		42F5399F252CCA7000D47AF3 /* PortfolioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioView.swift; sourceTree = "<group>"; };
 		42F539A4252CCAD900D47AF3 /* PortfolioViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioViewModel.swift; sourceTree = "<group>"; };
 		42F539AB252CF6F600D47AF3 /* ListType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListType.swift; sourceTree = "<group>"; };
@@ -304,6 +312,7 @@
 				429DDBD42536CBC80039B6FE /* CompanyDetail.swift */,
 				429DDBDA2536D0150039B6FE /* Stats.swift */,
 				42E6B2222537042A000DF7D4 /* QuoteDetail.swift */,
+				42EDB9C32538A57F000B0514 /* RecommendationTrend.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -322,6 +331,7 @@
 				429DDBD12536CBB30039B6FE /* IEXCompanyDetail.swift */,
 				429DDBD72536CEB20039B6FE /* IEXStats.swift */,
 				42E6B22525370451000DF7D4 /* IEXQuoteDetail.swift */,
+				42EDB9C02538A301000B0514 /* IEXRecommendationTrend.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -437,6 +447,7 @@
 				42E6B23025373E48000DF7D4 /* KeyDataView.swift */,
 				42E6B23E2538212A000DF7D4 /* PerformanceView.swift */,
 				42E6B24125383955000DF7D4 /* Week52View.swift */,
+				42EDB9C62538A720000B0514 /* AnalystRecommendationsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -453,6 +464,7 @@
 			isa = PBXGroup;
 			children = (
 				42E6B23A25378C12000DF7D4 /* Title.swift */,
+				42EDB9CA2538EDB0000B0514 /* ToolTip.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -568,7 +580,9 @@
 				427755882524725F008E0EF0 /* ChartViewModel.swift in Sources */,
 				42F7D30325237AD900537E30 /* StockCoreData+CoreDataClass.swift in Sources */,
 				428A62D42536E44200ABFF49 /* CompanyLoadedStateView.swift in Sources */,
+				42EDB9C12538A301000B0514 /* IEXRecommendationTrend.swift in Sources */,
 				42CA5CB32522148C00198C29 /* DataLoader.swift in Sources */,
+				42EDB9C72538A720000B0514 /* AnalystRecommendationsView.swift in Sources */,
 				4287BE48252771C300D0D238 /* IEXNews.swift in Sources */,
 				422687812534DD07004997C8 /* RapidAPIAutocompleteResponse.swift in Sources */,
 				42F539BF252F75AF00D47AF3 /* StockQuote.swift in Sources */,
@@ -584,6 +598,7 @@
 				42E6B24225383955000DF7D4 /* Week52View.swift in Sources */,
 				4287BE50252776FD00D0D238 /* NewsViewModel.swift in Sources */,
 				42E6B23F2538212A000DF7D4 /* PerformanceView.swift in Sources */,
+				42EDB9C42538A57F000B0514 /* RecommendationTrend.swift in Sources */,
 				42F539AC252CF6F600D47AF3 /* ListType.swift in Sources */,
 				4287BE4425276DEF00D0D238 /* MainView.swift in Sources */,
 				42E438122524A3B000F8385C /* CoreDataStorage+.swift in Sources */,
@@ -597,6 +612,7 @@
 				42E6B23625374731000DF7D4 /* CompanyDetailsView.swift in Sources */,
 				42E438182524A9F800F8385C /* StockValue+.swift in Sources */,
 				42CA5CCC2523016B00198C29 /* Endpoint.swift in Sources */,
+				42EDB9CB2538EDB0000B0514 /* ToolTip.swift in Sources */,
 				42DEDC092525BEF3007A351C /* View+.swift in Sources */,
 				42C8C0AE25246C2100BA2BB4 /* IEXChart.swift in Sources */,
 				42CA5CC9252270C800198C29 /* IEXQuote.swift in Sources */,

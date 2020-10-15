@@ -15,7 +15,6 @@ protocol APIProtocol {
     func search(from text: String) -> AnyPublisher<Result<[SearchResult], APIError>, Never>
     func marketInfo(listType: String) -> AnyPublisher<Result<[QuoteDetail], APIError>, Never>
     func logo(from symbol: String) -> AnyPublisher<Result<URL, APIError>, Never>
-    func company(from symbol: String) -> AnyPublisher<Result<Company, APIError>, Never>
     func autcocomplete(from text: String) -> AnyPublisher<Result<[SearchResult], APIError>, Never>
     func companyDetail(from symbol: String) -> AnyPublisher<Result<CompanyDetail, APIError>, Never>
 }
@@ -83,17 +82,6 @@ struct API: APIProtocol {
             switch result {
             case .success(let response):
                 return .success(response.compactMap(SearchResult.init))
-            case .failure(let error):
-                return .failure(error)
-            }
-        }.eraseToAnyPublisher()
-    }
-
-    func company(from symbol: String) -> AnyPublisher<Result<Company, APIError>, Never> {
-        dataLoader.request(Endpoint<IEXCompany>.company(from: symbol)).map { result in
-            switch result {
-            case .success(let iexCompany):
-                return .success(Company.init(iexCompany: iexCompany))
             case .failure(let error):
                 return .failure(error)
             }

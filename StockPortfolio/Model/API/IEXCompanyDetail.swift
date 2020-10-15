@@ -13,4 +13,9 @@ struct IEXCompanyDetail: Decodable {
     let stats: IEXStats
     let logo: IEXLogo
     let quote: IEXQuote
+    let recommendationTrends: [IEXRecommendationTrend]
+
+    private enum CodingKeys : String, CodingKey {
+        case company, news, stats, logo, quote, recommendationTrends = "recommendation-trends"
+    }
 }

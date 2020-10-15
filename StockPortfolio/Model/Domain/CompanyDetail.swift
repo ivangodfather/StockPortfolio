@@ -13,20 +13,23 @@ struct CompanyDetail {
     let stats: Stats
     let logo: URL
     let quote: Quote
+    let recommendationTrend: [RecommendationTrend]
 }
 
 extension CompanyDetail {
     init(companyDetail: IEXCompanyDetail) {
         company = Company(iexCompany: companyDetail.company)
         stats = Stats(stats: companyDetail.stats)
-        news = companyDetail.news.map(News.init(news:))
+        news = companyDetail.news.map(News.init)
         logo = companyDetail.logo.url
         quote = Quote(quote: companyDetail.quote)
+        recommendationTrend = companyDetail.recommendationTrends.map(RecommendationTrend.init)
     }
 
     static let random = CompanyDetail(company: .random,
                                       news: [.random, .random, .random],
                                       stats: .random,
                                       logo: .random,
-                                      quote: .random)
+                                      quote: .random,
+                                      recommendationTrend: [.random])
 }

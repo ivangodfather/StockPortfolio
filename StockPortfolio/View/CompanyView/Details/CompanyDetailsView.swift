@@ -14,6 +14,7 @@ struct CompanyDetailsView: View {
         ScrollView {
             VStack {
                 ChartView(symbol: companyDetail.quote.symbol)
+                AnalystRecommendationsView(rating: 4.3)
                 PerformanceView(stats: companyDetail.stats,
                                 latestPrice: companyDetail.quote.latestPrice)
                 KeyDataView(stats: companyDetail.stats)
