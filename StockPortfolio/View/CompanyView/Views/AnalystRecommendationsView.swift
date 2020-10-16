@@ -16,49 +16,55 @@ struct AnalystRecommendationsView: View {
         self.rating = rating
     }
 
+    @State var toolTipOffset = CGSize.zero
+
     private var ratings = ["1\nBuy", "2\nOutperform", "3\nHold", "4\nUnderperform", "5\nSell"]
 
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
             Title("Analyst Recommendations").padding()
             VStack(alignment: .leading, spacing: 0) {
                 Rectangle().fill(Color.Stock.gray).frame(height: 4).offset(y: 10)
-                GeometryReader { geo in
-                    HStack {
-                        ForEach(ratings, id: \.self) { rating in
-                            HStack {
-                                Rectangle()
-                                    .frame(width: 2, height: 16)
-                                    .background(Text(rating)
-                                                    .fixedSize()
-                                                    .multilineTextAlignment(.center)
-                                                    .offset(x: 0, y: 26)
-                                    )
-                                if rating != ratings.last {                            Spacer()
-                                }
-                            }
+                HStack {
+                    ForEach(ratings, id: \.self) { rating in
+                        VStack {
+                            Rectangle()
+                                .frame(width: 2, height: 16)
+                                .overlay(
+                                    Text(rating)
+                                        .multilineTextAlignment(.center)
+                                        .fixedSize()
+                                        .offset(y: 30)
+                                )
                         }
-                        .foregroundColor(Color.Stock.gray)
-                        .font(.footnote)
-                    }.overlay(
-                        ToolTip(text: rating.description).offset(x: calculateOffset(width: geo.size.width), y: -22)
-                            .alignmentGuide(HorizontalAlignment.leading) {
-                                $0[HorizontalAlignment.center]
-                            }, alignment: .leading
-                    )
-                }
+                        if rating != ratings.last {
+                            Spacer()
+                        }
+                    }
+                    .foregroundColor(Color.Stock.gray)
+                    .font(.footnote)
+                }.background(
+                    GeometryReader { geo in
+                        ToolTip(text: rating.description)
+                            .background(GeometryReader { toolTipGeo  in
+                                Color.clear.onAppear {
+                                    toolTipOffset = toolTipGeo.size
+                                }
+                            })
+                            .offset(x: calculateOffset(width: geo.size.width), y: -toolTipOffset.height)
+                    }, alignment: .leading)
 
-            }.padding(.horizontal, 32)
-        }.frame(height: 150)
+            }
+        }.padding(.horizontal, 32)
     }
 
     private func calculateOffset(width: CGFloat) -> CGFloat {
-        width * CGFloat((Double(rating) - 1) / 4)
+        -(toolTipOffset.width / 2) + width * CGFloat((Double(rating) - 1) / 4)
     }
 }
 
 struct AnalystRecommendationsView_Previews: PreviewProvider {
     static var previews: some View {
-        AnalystRecommendationsView(rating: 4.8)
+        AnalystRecommendationsView(rating: 3.5)
     }
 }
