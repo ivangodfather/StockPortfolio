@@ -30,9 +30,9 @@ struct AnalystRecommendationsView: View {
                                 Rectangle()
                                     .frame(width: 2, height: 16)
                                     .background(Text(rating)
-                                                .fixedSize()
-                                                .multilineTextAlignment(.center)
-                                                .offset(x: 0, y: 26)
+                                                    .fixedSize()
+                                                    .multilineTextAlignment(.center)
+                                                    .offset(x: 0, y: 26)
                                     )
                                 if rating != ratings.last {                            Spacer()
                                 }
@@ -59,6 +59,6 @@ struct AnalystRecommendationsView: View {
 
 struct AnalystRecommendationsView_Previews: PreviewProvider {
     static var previews: some View {
-        AnalystRecommendationsView(rating: 2)
+        AnalystRecommendationsView(rating: 4.8)
     }
 }
