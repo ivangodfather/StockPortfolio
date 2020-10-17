@@ -59,6 +59,7 @@
 		42DEDC092525BEF3007A351C /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DEDC082525BEF3007A351C /* View+.swift */; };
 		42DEDC0C2525BFDB007A351C /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DEDC0B2525BFDB007A351C /* Color+.swift */; };
 		42DEDC0F2525C60F007A351C /* Stock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DEDC0E2525C60F007A351C /* Stock.swift */; };
+		42E1CF2F253AD6FF00ECA9EB /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 42E1CF2E253AD6FF00ECA9EB /* Keys.plist */; };
 		42E4380C25249CEF00F8385C /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E4380B25249CEF00F8385C /* NewsView.swift */; };
 		42E438122524A3B000F8385C /* CoreDataStorage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E438112524A3B000F8385C /* CoreDataStorage+.swift */; };
 		42E438152524A76600F8385C /* PortfolioValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E438142524A76600F8385C /* PortfolioValueView.swift */; };
@@ -148,6 +149,7 @@
 		42DEDC082525BEF3007A351C /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
 		42DEDC0B2525BFDB007A351C /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		42DEDC0E2525C60F007A351C /* Stock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stock.swift; sourceTree = "<group>"; };
+		42E1CF2E253AD6FF00ECA9EB /* Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 		42E4380B25249CEF00F8385C /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
 		42E438112524A3B000F8385C /* CoreDataStorage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreDataStorage+.swift"; sourceTree = "<group>"; };
 		42E438142524A76600F8385C /* PortfolioValueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioValueView.swift; sourceTree = "<group>"; };
@@ -366,6 +368,7 @@
 				42CA5CB02522146200198C29 /* Helpers */,
 				42CA5CA42522144500198C29 /* Assets.xcassets */,
 				42CA5CA92522144500198C29 /* Info.plist */,
+				42E1CF2E253AD6FF00ECA9EB /* Keys.plist */,
 				42CA5CA62522144500198C29 /* Preview Content */,
 			);
 			path = StockPortfolio;
@@ -590,6 +593,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42E1CF2F253AD6FF00ECA9EB /* Keys.plist in Resources */,
 				42CA5CA82522144500198C29 /* Preview Assets.xcassets in Resources */,
 				42CA5CA52522144500198C29 /* Assets.xcassets in Resources */,
 			);
