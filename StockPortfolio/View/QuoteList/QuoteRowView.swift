@@ -13,27 +13,29 @@ struct QuoteRowView: View {
 
     var body: some View {
         HStack {
+            Rectangle()
+                .fill(quoteDetail.quote.change > 0 ? Color.Stock.green : Color.Stock.red)
+                .frame(width: 6)
+
             RemoteImage(url: quoteDetail.logo)
                 .frame(width: 48, height: 48)
             VStack(alignment: .leading, spacing: 4) {
-                Text("\(quoteDetail.quote.companyName) (\(quoteDetail.quote.symbol))").bold().font(.callout)
-                HStack {
-                    Text(quoteDetail.quote.latestPrice.round2())
-                }.font(.footnote)
+                Text(quoteDetail.quote.symbol).bold()
+                Text(quoteDetail.quote.companyName).font(.caption)
             }.layoutPriority(-1)
             Spacer()
             VStack(alignment: .trailing) {
                 Text("\(quoteDetail.quote.changePercent)%")
                     .font(.callout).bold()
-            }.foregroundColor(quoteDetail.quote.percentage >= 0 ? Color.Stock.green : Color.Stock.red)
-
-        }
-        .padding(.vertical)
+                Text(quoteDetail.quote.gainLossString).font(.caption)
+            }
+            .foregroundColor(quoteDetail.quote.percentage >= 0 ? Color.Stock.green : Color.Stock.red)
+        }.padding(.vertical, 4)
     }
 }
 
 struct QuoteRowView_Previews: PreviewProvider {
     static var previews: some View {
-        QuoteRowView(quoteDetail: .random).previewLayout(PreviewLayout.fixed(width: 300, height: 100))
+        QuoteRowView(quoteDetail: .random).previewLayout(PreviewLayout.fixed(width: 300, height: 80))
     }
 }

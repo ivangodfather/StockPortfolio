@@ -39,6 +39,7 @@ struct RemoteImage: View {
     var body: some View {
         selectImage()
             .resizable()
+            .aspectRatio(contentMode: .fit)
     }
 
     init(url: URL, loading: Image = Image(systemName: "photo"), failure: Image = Image(systemName: "multiply.circle")) {
