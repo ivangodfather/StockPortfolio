@@ -20,10 +20,8 @@ final class AddStockViewModel: ObservableObject {
     let didFinishPublisher = PassthroughSubject<Stock, Never>()
 
     func addStock(symbol: String, shares: String) {
-        guard let intShares = Int(shares) else { return }
-
         dataStorage
-            .save(stock: Stock(symbol: symbol, shares: intShares))
+            .save(stock: Stock(symbol: symbol))
             .sink { completion in
             } receiveValue: { [weak self] stock in
                 self?.didFinishPublisher.send(stock)

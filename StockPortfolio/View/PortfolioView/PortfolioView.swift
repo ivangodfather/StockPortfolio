@@ -20,8 +20,7 @@ struct PortfolioView: View {
                         viewModel.insertSampleData()
                     }.font(.headline)
                 } else {
-                    PortfolioValueView(portfolioValue: viewModel.portfolioValue)
-                    QuoteListView(stockQuotes: viewModel.stockQuotes) { indexSet in
+                    QuoteListView(quotes: viewModel.quotes) { indexSet in
                         self.viewModel.deleteQuote(at: indexSet)
                     }
                 }

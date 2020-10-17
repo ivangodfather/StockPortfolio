@@ -9,5 +9,4 @@ import Foundation
 
 struct Stock {
     let symbol: String
-    let shares: Int
 }

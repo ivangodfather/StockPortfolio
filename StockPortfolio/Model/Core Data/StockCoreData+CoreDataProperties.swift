@@ -16,7 +16,6 @@ extension StockCoreData {
     }
 
     @NSManaged public var symbol: String?
-    @NSManaged public var shares: Int64
 
 }
 

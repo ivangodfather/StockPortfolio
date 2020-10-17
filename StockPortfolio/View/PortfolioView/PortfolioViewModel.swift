@@ -10,10 +10,7 @@ import Combine
 
 final class PortfolioViewModel: ObservableObject {
 
-    @Published var stockQuotes: [StockQuote] = [] {
-        didSet { updatePortfolioValue() }
-    }
-    @Published var portfolioValue: PortfolioValue? = nil
+    @Published var quotes: [QuoteDetail] = []
     @Published var hasNoStocks = false
 
     private var cancellables = Set<AnyCancellable>()
@@ -38,31 +35,20 @@ final class PortfolioViewModel: ObservableObject {
             .sink { _ in
             } receiveValue: { (quoteDetailResult, stocks) in
                 switch quoteDetailResult {
-                case.success(let quoteDetails):
-                    self.stockQuotes = stocks.map { stock in
-                        (quoteDetails.first { stock.symbol == $0.quote.symbol }!, stock.shares)
-                    }.map(StockQuote.init)
+                case.success(let quotes):
+                    self.quotes = quotes
                 case .failure(let error): print(error.localizedDescription)
                 }
             }.store(in: &cancellables)
     }
 
-    private func updatePortfolioValue() {
-        dataStorage
-            .get()
-            .sink { _ in
-            } receiveValue: { stocks in
-                self.portfolioValue = PortfolioValueUseCase.value(from: self.stockQuotes)
-            }.store(in: &cancellables)
-    }
-
 
     func deleteQuote(at offsets: IndexSet) {
-        let symbols = offsets.map { stockQuotes[$0].quoteDetail.quote.symbol }
+        let symbols = offsets.map { quotes[$0].quote.symbol }
         symbols.publisher.flatMap(dataStorage.remove(symbol:)).sink { completion in
             switch completion {
             case.finished:
-                self.stockQuotes.removeAll { symbols.contains($0.quoteDetail.quote.symbol) }
+                self.quotes.removeAll { symbols.contains($0.quote.symbol) }
             case.failure(let error): print(error.localizedDescription)
             }
         } receiveValue: { _ in }.store(in: &cancellables)

@@ -26,7 +26,6 @@ class CoreDataStorage: DataStorage {
                         failure: DataStorageError.unkown(reason: "invalid schema")).eraseToAnyPublisher()
         }
         entity.symbol = stock.symbol
-        entity.shares = Int64(stock.shares)
         do {
             try manager.context.save()
             return Just(stock).setFailureType(to: DataStorageError.self).eraseToAnyPublisher()
@@ -40,7 +39,7 @@ class CoreDataStorage: DataStorage {
         let request: NSFetchRequest<StockCoreData> = StockCoreData.fetchRequest()
         do {
             let stocks = try PersistenceManager.shared.context.fetch(request)
-            let elements = stocks.map { ($0.symbol ?? "", Int($0.shares)) }.map(Stock.init(symbol:shares:))
+            let elements = stocks.map { $0.symbol ?? "" }.map(Stock.init(symbol:))
             return Just(elements).setFailureType(to: DataStorageError.self).eraseToAnyPublisher()
         } catch {
             let failure = DataStorageError.unkown(reason: error.localizedDescription)

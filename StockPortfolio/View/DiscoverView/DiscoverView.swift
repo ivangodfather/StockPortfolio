@@ -24,7 +24,7 @@ struct DiscoverView: View {
                     }
                 }).pickerStyle(SegmentedPickerStyle())
                 .padding()
-                QuoteListView(stockQuotes: viewModel.stockQuotes, onDelete: nil)
+                QuoteListView(quotes: viewModel.quotesDetails, onDelete: nil)
             }
             .onChange(of: selectedCollection, perform: self.viewModel.request(listIndex:))
             .navigationBarTitle("Discover")

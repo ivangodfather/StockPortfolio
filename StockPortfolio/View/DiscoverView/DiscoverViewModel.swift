@@ -11,7 +11,7 @@ import Combine
 import CoreData
 
 class DiscoverViewModel: ObservableObject {
-    @Published var stockQuotes = [StockQuote]()
+    @Published var quotesDetails = [QuoteDetail]()
 
     private var cancellables = Set<AnyCancellable>()
     private let api: APIProtocol
@@ -26,8 +26,8 @@ class DiscoverViewModel: ObservableObject {
             .marketInfo(listType: listType.apiDescription)
             .sink { result in
                 switch result {
-                case .success(let quotes):
-                    self.stockQuotes = quotes.map { StockQuote(quoteDetail: $0, numberOfShares: 0) }
+                case .success(let quotesDetails):
+                    self.quotesDetails = quotesDetails
                 case.failure(let error):
                     print(error.localizedDescription)
                 }

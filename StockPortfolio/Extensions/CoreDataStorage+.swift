@@ -10,7 +10,7 @@ import Combine
 
 extension CoreDataStorage {
     func insertSampleData() -> AnyPublisher<[Stock], Never> {
-        [("TSLA", 5), ("KO", 25), ("PEP", 43), ("AMD", 15)]
+        ["TSLA", "KO", "PEP", "AMD"]
             .publisher
             .map(Stock.init)
             .flatMap(save(stock:))
