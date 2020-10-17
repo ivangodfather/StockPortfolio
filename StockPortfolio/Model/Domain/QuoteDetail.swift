@@ -8,9 +8,11 @@
 import Foundation
 
 
-struct QuoteDetail {
+struct QuoteDetail: Identifiable {
     let quote: Quote
     let logo: URL
+
+    var id: String { quote.id }
 }
 
 extension QuoteDetail {

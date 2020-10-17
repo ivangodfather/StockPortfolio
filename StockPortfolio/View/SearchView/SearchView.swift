@@ -11,7 +11,7 @@ import Combine
 struct SearchView: View {
     @StateObject private var viewModel = SearchViewModel()
     @State private var searchText = ""
-    @State private var selectedItem: SearchResult?
+    @State private var selectedItem: QuoteDetail?
 
     var body: some View {
         NavigationView {
@@ -28,17 +28,17 @@ struct SearchView: View {
                     ProgressView()
                 case .results(let values):
                     List {
-                        ForEach(values) { result in
+                        ForEach(values) { quoteDetail in
                             HStack {
-                                Text(result.name)
-                                Text(result.symbol)
+                                Text(quoteDetail.quote.symbol)
+                                Text(quoteDetail.quote.symbol)
                             }.onTapGesture {
-                                selectedItem = result
+                                selectedItem = quoteDetail
                             }
                         }
                     }.listStyle(PlainListStyle())
-                case .error(let error):
-                    Text("Something went wrong.. \(error.localizedDescription)")
+                case .error(let description):
+                    Text("Something went wrong.. \(description)")
                 }
                 Spacer()
             }
@@ -47,7 +47,7 @@ struct SearchView: View {
                 viewModel.didSearch(term)
             }
             .sheet(item: self.$selectedItem, content: { item in
-                AddStockView(completion: { _ in }, symbol: item.symbol)
+                AddStockView(completion: { _ in }, symbol: item.quote.symbol)
             })
             .navigationBarTitle("Search")
         }

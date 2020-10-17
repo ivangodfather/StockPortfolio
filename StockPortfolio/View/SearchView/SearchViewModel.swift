@@ -18,8 +18,8 @@ final class SearchViewModel: ObservableObject {
     enum State {
         case initial
         case loading
-        case results([SearchResult])
-        case error(Error)
+        case results([QuoteDetail])
+        case error(String)
     }
 
     @Published var state = State.initial
@@ -33,12 +33,18 @@ final class SearchViewModel: ObservableObject {
             .throttle(for: .seconds(0.5), scheduler: DispatchQueue.main, latest: false)
             .map(api.search(from:))
             .switchToLatest()
-            .sink { result in
+            .tryMap { try $0.get() }
+            .map { $0.map { $0.symbol }}
+            .flatMap(api.quoteDetails(from:))
+            .eraseToAnyPublisher()
+            .sink { (completion) in
+            } receiveValue: { result in
                 switch result {
-                case .success(let values): self.state = .results(values)
-                case .failure(let error): self.state = .error(error)
+                case .success(let quoteDetails): self.state = .results(quoteDetails)
+                case .failure(let error): self.state = .error(error.localizedDescription)
                 }
             }.store(in: &cancellables)
+
     }
 
     func didSearch(_ term: String) {
