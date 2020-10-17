@@ -14,6 +14,7 @@ struct CompanyDetail {
     let logo: URL
     let quote: Quote
     let recommendationTrend: [RecommendationTrend]
+    let priceTarget: PriceTarget
 }
 
 extension CompanyDetail {
@@ -24,6 +25,7 @@ extension CompanyDetail {
         logo = companyDetail.logo.url
         quote = Quote(quote: companyDetail.quote)
         recommendationTrend = companyDetail.recommendationTrends.map(RecommendationTrend.init)
+        priceTarget = PriceTarget(priceTarget: companyDetail.priceTarget)
     }
 
     static let random = CompanyDetail(company: .random,
@@ -31,5 +33,6 @@ extension CompanyDetail {
                                       stats: .random,
                                       logo: .random,
                                       quote: .random,
-                                      recommendationTrend: [.random])
+                                      recommendationTrend: [.random],
+                                      priceTarget: .random)
 }

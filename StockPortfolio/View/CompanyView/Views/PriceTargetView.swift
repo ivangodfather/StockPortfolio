@@ -8,10 +8,8 @@
 import SwiftUI
 
 struct PriceTargetView: View {
-    let numberOfAnalysts: Int
-    let priceTargetLow: Double
-    let priceTargetHigh: Double
-    let priceTargetAverage: Double
+
+    let priceTarget: PriceTarget
     let currentPrice: Double
 
     var body: some View {
@@ -21,11 +19,11 @@ struct PriceTargetView: View {
                 GeometryReader { geo in
                     PinmarkView()
                         .modifier(BackgroundModifier(
-                                    text: "Average\n\(priceTargetAverage.round2())",
+                                    text: "Average\n\(priceTarget.average.round2())",
                                     color: Color.Stock.gray,
                                     yOffset: -32)
                         )
-                        .offset(x: calculateOffset(geo.size.width, value: priceTargetAverage), y: -20)
+                        .offset(x: calculateOffset(geo.size.width, value: priceTarget.average), y: -20)
                     PinmarkView(color: Color.blue)
                         .rotationEffect(.degrees(180))
                         .modifier(BackgroundModifier(
@@ -42,9 +40,9 @@ struct PriceTargetView: View {
                         PriceCircleView()
                     }
                     HStack {
-                        Text("Low \(priceTargetLow.round2())")
+                        Text("Low \(priceTarget.low.round2())")
                         Spacer()
-                        Text("High \(priceTargetHigh.round2())")
+                        Text("High \(priceTarget.high.round2())")
                     }
                     .padding(.top, 8)
                     .font(.system(size: 10))
@@ -54,7 +52,7 @@ struct PriceTargetView: View {
     }
 
     private func calculateOffset(_ width: CGFloat, value: Double) -> CGFloat {
-        CGFloat((value - priceTargetLow) / (priceTargetHigh - priceTargetLow)) * width
+        CGFloat((value - priceTarget.low) / (priceTarget.high - priceTarget.low)) * width
     }
 }
 
@@ -78,8 +76,9 @@ private struct BackgroundModifier: ViewModifier {
 }
 
 struct PriceTargetView_Previews: PreviewProvider {
+    static let priceTarget = PriceTarget(average: 70.30, high: 90.4, low: 60.95, numberOfAnalysts: 31)
     static var previews: some View {
-        PriceTargetView(numberOfAnalysts: 34, priceTargetLow: 220.05, priceTargetHigh: 320.15, priceTargetAverage: 250.05, currentPrice: 240.99)
+        PriceTargetView(priceTarget: PriceTargetView_Previews.priceTarget, currentPrice: 270.32)
     }
 }
 

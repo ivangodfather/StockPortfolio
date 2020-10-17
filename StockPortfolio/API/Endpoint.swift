@@ -96,7 +96,7 @@ extension Endpoint {
     static func companyDetail(from symbol: String) -> Endpoint<IEXCompanyDetail> {
         Endpoint<IEXCompanyDetail>(provider: EndpointProvider.iexCloud, path: "/stable/stock/\(symbol)/batch",
         queryItems: [
-            URLQueryItem(name: "types", value: "news,company,stats,logo,quote,recommendation-trends"),
+            URLQueryItem(name: "types", value: "news,company,stats,logo,quote,recommendation-trends,price-target"),
             URLQueryItem(name: "last", value: "5"),
             URLQueryItem(name: "displayPercent", value: "true"),
             URLQueryItem(name: "token", value: EnvironmentValue.iexToken)

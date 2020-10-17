@@ -76,6 +76,8 @@
 		42EDB9C72538A720000B0514 /* AnalystRecommendationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42EDB9C62538A720000B0514 /* AnalystRecommendationsView.swift */; };
 		42EDB9CB2538EDB0000B0514 /* ToolTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42EDB9CA2538EDB0000B0514 /* ToolTip.swift */; };
 		42EDB9CE2539EF98000B0514 /* PriceTargetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42EDB9CD2539EF98000B0514 /* PriceTargetView.swift */; };
+		42EDB9D1253AD208000B0514 /* PriceTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42EDB9D0253AD208000B0514 /* PriceTarget.swift */; };
+		42EDB9D4253AD22A000B0514 /* IEXPriceTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42EDB9D3253AD22A000B0514 /* IEXPriceTarget.swift */; };
 		42F539A0252CCA7000D47AF3 /* PortfolioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F5399F252CCA7000D47AF3 /* PortfolioView.swift */; };
 		42F539A5252CCAD900D47AF3 /* PortfolioViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F539A4252CCAD900D47AF3 /* PortfolioViewModel.swift */; };
 		42F539AC252CF6F600D47AF3 /* ListType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F539AB252CF6F600D47AF3 /* ListType.swift */; };
@@ -163,6 +165,8 @@
 		42EDB9C62538A720000B0514 /* AnalystRecommendationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalystRecommendationsView.swift; sourceTree = "<group>"; };
 		42EDB9CA2538EDB0000B0514 /* ToolTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolTip.swift; sourceTree = "<group>"; };
 		42EDB9CD2539EF98000B0514 /* PriceTargetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceTargetView.swift; sourceTree = "<group>"; };
+		42EDB9D0253AD208000B0514 /* PriceTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceTarget.swift; sourceTree = "<group>"; };
+		42EDB9D3253AD22A000B0514 /* IEXPriceTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IEXPriceTarget.swift; sourceTree = "<group>"; };
 		42F5399F252CCA7000D47AF3 /* PortfolioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioView.swift; sourceTree = "<group>"; };
 		42F539A4252CCAD900D47AF3 /* PortfolioViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioViewModel.swift; sourceTree = "<group>"; };
 		42F539AB252CF6F600D47AF3 /* ListType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListType.swift; sourceTree = "<group>"; };
@@ -303,18 +307,15 @@
 		42C8C0B425246D7C00BA2BB4 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				42EDB9D7253AD2B2000B0514 /* CompanyDetail */,
 				42CA5CBC252216C800198C29 /* Quote.swift */,
-				42C8C0B025246D4900BA2BB4 /* Chart.swift */,
 				42DEDC0E2525C60F007A351C /* Stock.swift */,
 				4287BE772529BE4200D0D238 /* Tag.swift */,
 				4287BE4A252771E200D0D238 /* News.swift */,
 				4287BE642528857200D0D238 /* SearchResult.swift */,
 				42DE2E92252B7B200066CC71 /* Company.swift */,
 				42F539BE252F75AF00D47AF3 /* StockQuote.swift */,
-				429DDBD42536CBC80039B6FE /* CompanyDetail.swift */,
-				429DDBDA2536D0150039B6FE /* Stats.swift */,
 				42E6B2222537042A000DF7D4 /* QuoteDetail.swift */,
-				42EDB9C32538A57F000B0514 /* RecommendationTrend.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -322,18 +323,15 @@
 		42C8C0B525246D8300BA2BB4 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				42EDB9D6253AD289000B0514 /* CompanyDetail */,
 				42CA5CC8252270C800198C29 /* IEXQuote.swift */,
-				42C8C0AD25246C2100BA2BB4 /* IEXChart.swift */,
 				4287BE47252771C300D0D238 /* IEXNews.swift */,
 				4287BE742529BE2900D0D238 /* IEXTag.swift */,
 				4287BE602528837600D0D238 /* IEXSearchResult.swift */,
 				42DE2E8F252B7A380066CC71 /* IEXCompany.swift */,
 				42DE2E98252B7E500066CC71 /* IEXLogo.swift */,
 				422687802534DD07004997C8 /* RapidAPIAutocompleteResponse.swift */,
-				429DDBD12536CBB30039B6FE /* IEXCompanyDetail.swift */,
-				429DDBD72536CEB20039B6FE /* IEXStats.swift */,
 				42E6B22525370451000DF7D4 /* IEXQuoteDetail.swift */,
-				42EDB9C02538A301000B0514 /* IEXRecommendationTrend.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -472,6 +470,30 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		42EDB9D6253AD289000B0514 /* CompanyDetail */ = {
+			isa = PBXGroup;
+			children = (
+				429DDBD12536CBB30039B6FE /* IEXCompanyDetail.swift */,
+				42C8C0AD25246C2100BA2BB4 /* IEXChart.swift */,
+				42EDB9D3253AD22A000B0514 /* IEXPriceTarget.swift */,
+				42EDB9C02538A301000B0514 /* IEXRecommendationTrend.swift */,
+				429DDBD72536CEB20039B6FE /* IEXStats.swift */,
+			);
+			path = CompanyDetail;
+			sourceTree = "<group>";
+		};
+		42EDB9D7253AD2B2000B0514 /* CompanyDetail */ = {
+			isa = PBXGroup;
+			children = (
+				42C8C0B025246D4900BA2BB4 /* Chart.swift */,
+				429DDBD42536CBC80039B6FE /* CompanyDetail.swift */,
+				42EDB9D0253AD208000B0514 /* PriceTarget.swift */,
+				42EDB9C32538A57F000B0514 /* RecommendationTrend.swift */,
+				429DDBDA2536D0150039B6FE /* Stats.swift */,
+			);
+			path = CompanyDetail;
+			sourceTree = "<group>";
+		};
 		42F5399E252CCA6300D47AF3 /* PortfolioView */ = {
 			isa = PBXGroup;
 			children = (
@@ -595,6 +617,7 @@
 				4287BE6C2528AA9A00D0D238 /* SearchViewModel.swift in Sources */,
 				4287BE812529C2D800D0D238 /* DiscoverView.swift in Sources */,
 				422687792534AA1C004997C8 /* RemoteImage.swift in Sources */,
+				42EDB9D4253AD22A000B0514 /* IEXPriceTarget.swift in Sources */,
 				429DDBD82536CEB20039B6FE /* IEXStats.swift in Sources */,
 				42F7D30925238FEA00537E30 /* CoreDataStorage.swift in Sources */,
 				42F7D30425237AD900537E30 /* StockCoreData+CoreDataProperties.swift in Sources */,
@@ -603,6 +626,7 @@
 				42E6B23F2538212A000DF7D4 /* PerformanceView.swift in Sources */,
 				42EDB9C42538A57F000B0514 /* RecommendationTrend.swift in Sources */,
 				42F539AC252CF6F600D47AF3 /* ListType.swift in Sources */,
+				42EDB9D1253AD208000B0514 /* PriceTarget.swift in Sources */,
 				4287BE4425276DEF00D0D238 /* MainView.swift in Sources */,
 				42E438122524A3B000F8385C /* CoreDataStorage+.swift in Sources */,
 				4287BE4B252771E200D0D238 /* News.swift in Sources */,
