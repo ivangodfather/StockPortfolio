@@ -14,6 +14,6 @@ struct IEXRecommendationTrend: Decodable {
     let ratingUnderweight: Int
     let ratingSell: Int
     let ratingScaleMark: Double
-    let consensusStartDate: Int
-    let consensusEndDate: Int
+    let consensusStartDate: Int?
+    let consensusEndDate: Int?
 }

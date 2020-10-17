@@ -14,8 +14,8 @@ struct RecommendationTrend {
     let ratingUnderweight: Int
     let ratingSell: Int
     let ratingScaleMark: Double
-    let consensusStartDate: Date
-    let consensusEndDate: Date
+    let consensusStartDate: Date?
+    let consensusEndDate: Date?
 }
 
 extension RecommendationTrend {
@@ -35,7 +35,7 @@ extension RecommendationTrend {
         ratingUnderweight = recommendationTrend.ratingUnderweight
         ratingSell = recommendationTrend.ratingSell
         ratingScaleMark = recommendationTrend.ratingScaleMark
-        consensusStartDate = Date(timeIntervalSince1970: Double(recommendationTrend.consensusStartDate) / 1000)
-        consensusEndDate = Date(timeIntervalSince1970: Double(recommendationTrend.ratingBuy) / 1000)
+        consensusStartDate = recommendationTrend.consensusStartDate != nil ? Date(timeIntervalSince1970: Double(recommendationTrend.consensusStartDate!) / 1000) : nil
+        consensusEndDate = recommendationTrend.consensusEndDate != nil ? Date(timeIntervalSince1970: Double(recommendationTrend.consensusEndDate!) / 1000) : nil
     }
 }

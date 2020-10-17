@@ -15,7 +15,6 @@ protocol APIProtocol {
     func search(from text: String) -> AnyPublisher<Result<[SearchResult], APIError>, Never>
     func marketInfo(listType: String) -> AnyPublisher<Result<[QuoteDetail], APIError>, Never>
     func logo(from symbol: String) -> AnyPublisher<Result<URL, APIError>, Never>
-    func autcocomplete(from text: String) -> AnyPublisher<Result<[SearchResult], APIError>, Never>
     func companyDetail(from symbol: String) -> AnyPublisher<Result<CompanyDetail, APIError>, Never>
 }
 
@@ -136,17 +135,6 @@ struct API: APIProtocol {
                     valueToReturn[key] = value.logo.url
                 }
                 return .success(valueToReturn)
-            case .failure(let error):
-                return .failure(error)
-            }
-        }.eraseToAnyPublisher()
-    }
-
-    func autcocomplete(from text: String) -> AnyPublisher<Result<[SearchResult], APIError>, Never> {
-        dataLoader.request(Endpoint<RapidAPIAutocompleteResponse>.autocomplete(from: text)).map { result in
-            switch result {
-            case .success(let response):
-                return .success(response.quotes.compactMap(SearchResult.init))
             case .failure(let error):
                 return .failure(error)
             }
