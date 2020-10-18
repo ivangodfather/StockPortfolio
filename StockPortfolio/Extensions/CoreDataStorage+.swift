@@ -9,13 +9,14 @@ import Foundation
 import Combine
 
 extension CoreDataStorage {
-    func insertSampleData() -> AnyPublisher<[Stock], Never> {
-        ["TSLA", "KO", "PEP", "AMD"]
-            .publisher
-            .map(Stock.init)
-            .flatMap(save(stock:))
+    func insertSampleData() -> AnyPublisher<Watchlist, Never> {
+      createWatchlist(name: "My Stocks")
+            .flatMap { watchlist in
+                ["TSLA", "KO", "PEP", "AMD"].map { ($0, watchlist) }.publisher
+            }.flatMap(save(symbol:for:))
             .collect()
-            .replaceError(with: [])
+            .map { $0.first! }
+            .replaceError(with: .empty)
             .eraseToAnyPublisher()
     }
 }

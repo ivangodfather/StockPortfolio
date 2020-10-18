@@ -18,38 +18,75 @@ class CoreDataStorage: DataStorage {
         self.manager = manager
     }
 
-    func save(stock: Stock) -> AnyPublisher<Stock, DataStorageError> {
-        let entityName = String(describing: StockCoreData.self)
-        guard let entity = NSEntityDescription
-                .insertNewObject(forEntityName: entityName, into: manager.context) as? StockCoreData else {
-            return Fail(outputType: Stock.self,
-                        failure: DataStorageError.unkown(reason: "invalid schema")).eraseToAnyPublisher()
+    func createWatchlist(name: String) -> AnyPublisher<Watchlist, DataStorageError> {
+        let entitiyName = String(describing: CoreDataWatchlist.self)
+        guard let entitiy = NSEntityDescription.insertNewObject(forEntityName: entitiyName, into: manager.context) as? CoreDataWatchlist else {
+                        return Fail(outputType: Watchlist.self,
+                                    failure: DataStorageError.unkown(reason: "invalid schema"))
+                            .eraseToAnyPublisher()
         }
-        entity.symbol = stock.symbol
+        entitiy.name = name
         do {
             try manager.context.save()
-            return Just(stock).setFailureType(to: DataStorageError.self).eraseToAnyPublisher()
+            return Just(Watchlist(coredata: entitiy)).setFailureType(to: DataStorageError.self).eraseToAnyPublisher()
         } catch {
-            return Fail(outputType: Stock.self,
+            return Fail(outputType: Watchlist.self,
                         failure: DataStorageError.unkown(reason: error.localizedDescription)).eraseToAnyPublisher()
         }
     }
 
-    func get() -> AnyPublisher<[Stock], DataStorageError> {
-        let request: NSFetchRequest<StockCoreData> = StockCoreData.fetchRequest()
+    func remove(symbol: String, in watchlist: Watchlist) -> AnyPublisher<(), DataStorageError> {
+        let request: NSFetchRequest<CoreDataWatchlist> = CoreDataWatchlist.fetchRequest()
+        request.predicate = NSPredicate(format: "%K = %@", argumentArray: [#keyPath(CoreDataWatchlist.name), watchlist.name])
         do {
-            let stocks = try PersistenceManager.shared.context.fetch(request)
-            let elements = stocks.map { $0.symbol ?? "" }.map(Stock.init(symbol:))
-            return Just(elements).setFailureType(to: DataStorageError.self).eraseToAnyPublisher()
+            let results = try manager.context.fetch(request)
+            results.forEach { watchlist in
+                var symbols = watchlist.symbols ?? []
+                symbols.removeAll { $0 == symbol }
+                watchlist.symbols = symbols
+            }
+            try manager.context.save()
+            return Just(()).setFailureType(to: DataStorageError.self).eraseToAnyPublisher()
         } catch {
             let failure = DataStorageError.unkown(reason: error.localizedDescription)
-            return Fail(outputType: [Stock].self, failure: failure).eraseToAnyPublisher()
+            return Fail(outputType: Void.self, failure: failure).eraseToAnyPublisher()
         }
     }
 
-    func remove(symbol: String) -> AnyPublisher<(), DataStorageError> {
-        let request: NSFetchRequest<StockCoreData> = StockCoreData.fetchRequest()
-        request.predicate = NSPredicate(format: "%K = %@", argumentArray: [#keyPath(StockCoreData.symbol), symbol])
+    func save(symbol: String, for watchlist: Watchlist) -> AnyPublisher<Watchlist, DataStorageError> {
+        let request: NSFetchRequest<CoreDataWatchlist> = CoreDataWatchlist.fetchRequest()
+        request.predicate = NSPredicate(format: "%K = %@", #keyPath(CoreDataWatchlist.name), watchlist.name)
+        do {
+            let result = try manager.context.fetch(request)
+            if let list = result.first {
+                list.symbols = [symbol] + (list.symbols ?? [])
+                try manager.context.save()
+                return Just(Watchlist(coredata: list)).setFailureType(to: DataStorageError.self).eraseToAnyPublisher()
+            }
+            return Fail(outputType: Watchlist.self,
+                        failure: DataStorageError.unkown(reason: "Couldn't find watchlist")).eraseToAnyPublisher()
+
+        } catch {
+            return Fail(outputType: Watchlist.self,
+                        failure: DataStorageError.unkown(reason: "invalid schema")).eraseToAnyPublisher()
+        }
+    }
+
+    func watchlists() -> AnyPublisher<[Watchlist], DataStorageError> {
+        let fetchRequest: NSFetchRequest<CoreDataWatchlist> = CoreDataWatchlist.fetchRequest()
+        do {
+            let results = try manager.context.fetch(fetchRequest)
+            let watchlists = results.map(Watchlist.init(coredata:))
+            return Just(watchlists).setFailureType(to: DataStorageError.self).eraseToAnyPublisher()
+        } catch {
+            return Fail(outputType: [Watchlist].self,
+                        failure: DataStorageError.unkown(reason: "invalid schema")).eraseToAnyPublisher()
+        }
+    }
+
+    func remove(watchlist: Watchlist) -> AnyPublisher<(), DataStorageError> {
+        let request: NSFetchRequest<CoreDataWatchlist> = CoreDataWatchlist.fetchRequest()
+        request.predicate = NSPredicate(format: "%K = %@", argumentArray: [#keyPath(CoreDataWatchlist.name), watchlist.name])
         do {
             let results = try manager.context.fetch(request)
             results.forEach {
@@ -61,10 +98,6 @@ class CoreDataStorage: DataStorage {
             let failure = DataStorageError.unkown(reason: error.localizedDescription)
             return Fail(outputType: Void.self, failure: failure).eraseToAnyPublisher()
         }
-    }
-
-    func watchlists() -> AnyPublisher<[Watchlist], DataStorageError> {
-        return Just([]).setFailureType(to: DataStorageError.self).eraseToAnyPublisher()
     }
 
 }

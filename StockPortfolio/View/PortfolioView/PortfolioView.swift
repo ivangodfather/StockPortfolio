@@ -10,15 +10,21 @@ import SwiftUI
 struct PortfolioView: View {
 
     @StateObject private var viewModel = PortfolioViewModel()
+    @State var selectedWatchList = 0
 
     var body: some View {
         NavigationView {
             VStack {
-                if viewModel.hasNoStocks {
+                if viewModel.quotes.isEmpty {
                     Button("Insert sample data") {
                         viewModel.insertSampleData()
                     }.font(.headline)
                 } else {
+                    Picker(selection: $selectedWatchList, label: Text("Select a watchlist")) {
+                        ForEach(0 ..< viewModel.watchLists.count) {
+                            Text(viewModel.watchLists[$0].name)
+                       }
+                    }
                     QuoteListView(quotes: viewModel.quotes) { indexSet in
                         self.viewModel.deleteQuote(at: indexSet)
                     }
@@ -28,7 +34,7 @@ struct PortfolioView: View {
             .navigationBarItems(leading: EditButton())
         }
         .onAppear {
-            viewModel.loadQuotes()
+            viewModel.loadWatchlists()
         }
     }
 }

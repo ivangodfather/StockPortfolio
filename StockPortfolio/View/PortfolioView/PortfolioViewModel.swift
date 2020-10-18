@@ -10,8 +10,10 @@ import Combine
 
 final class PortfolioViewModel: ObservableObject {
 
+    @Published var watchLists: [Watchlist] = []
     @Published var quotes: [QuoteDetail] = []
-    @Published var hasNoStocks = false
+
+    var selectedWatchlist: Watchlist? = nil
 
     private var cancellables = Set<AnyCancellable>()
     private let api: APIProtocol
@@ -23,17 +25,49 @@ final class PortfolioViewModel: ObservableObject {
         self.dataStorage = dataStorage
     }
 
+    func loadWatchlists() {
+        dataStorage
+            .watchlists()
+            .flatMap { watchlists -> AnyPublisher<[Watchlist], Never> in
+                if watchlists.isEmpty {
+                    return self.dataStorage
+                        .createWatchlist(name: "My Stocks")
+                        .map { [$0] }
+                        .replaceError(with: []).eraseToAnyPublisher()
+                }
+                return Just(watchlists).eraseToAnyPublisher()
+            }.sink { completion in
+                switch completion {
+                case.finished: break
+                case .failure(let error): print(error.localizedDescription)
+                }
+            } receiveValue: { watchLists in
+                self.watchLists = watchLists
+            }.store(in: &cancellables)
+
+    }
+
     func loadQuotes() {
         dataStorage
-            .get()
-            .handleEvents(receiveOutput: { stocks in
-                self.hasNoStocks = stocks.isEmpty
+            .watchlists()
+            .flatMap { watchlists -> AnyPublisher<[Watchlist], Never> in
+                if watchlists.isEmpty {
+                    return self.dataStorage
+                        .createWatchlist(name: "My Stocks")
+                        .map { [$0] }
+                        .replaceError(with: []).eraseToAnyPublisher()
+                }
+                return Just(watchlists).eraseToAnyPublisher()
+            }
+            .map { self.selectedWatchlist ?? $0.first! }
+            .handleEvents(receiveOutput: { watchList in
+                self.selectedWatchlist = watchList
             })
-            .flatMap { stocks in
-                self.api.quoteDetails(from: stocks.map { $0.symbol }).map { ($0, stocks) }
+            .flatMap { watchList in
+                self.api.quoteDetails(from: watchList.symbols)
             }
             .sink { _ in
-            } receiveValue: { (quoteDetailResult, stocks) in
+            } receiveValue: { quoteDetailResult in
                 switch quoteDetailResult {
                 case.success(let quotes):
                     self.quotes = quotes
@@ -44,14 +78,21 @@ final class PortfolioViewModel: ObservableObject {
 
 
     func deleteQuote(at offsets: IndexSet) {
-        let symbols = offsets.map { quotes[$0].quote.symbol }
-        symbols.publisher.flatMap(dataStorage.remove(symbol:)).sink { completion in
-            switch completion {
-            case.finished:
-                self.quotes.removeAll { symbols.contains($0.quote.symbol) }
-            case.failure(let error): print(error.localizedDescription)
-            }
-        } receiveValue: { _ in }.store(in: &cancellables)
+        if let watchlist = selectedWatchlist {
+            let symbols = offsets.map { quotes[$0].quote.symbol }
+            symbols
+                .publisher
+                .map { ($0, watchlist) }
+                .flatMap(dataStorage.remove(symbol:in:))
+                .sink { completion in
+                    switch completion {
+                    case .finished: self.quotes.removeAll { symbols.contains($0.quote.symbol) }
+                    case .failure(let error): print(error.localizedDescription)
+                    }
+                } receiveValue: { _ in
+                }.store(in: &cancellables)
+
+        }
     }
 
     func insertSampleData() {

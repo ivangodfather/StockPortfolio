@@ -9,10 +9,11 @@ import Foundation
 import Combine
 
 protocol DataStorage {
-    func save(stock: Stock) -> AnyPublisher<Stock, DataStorageError>
-    func get() -> AnyPublisher<[Stock], DataStorageError>
-    func remove(symbol: String) -> AnyPublisher<(), DataStorageError>
+    func save(symbol: String, for watchlist: Watchlist) -> AnyPublisher<Watchlist, DataStorageError>
+    func remove(symbol: String, in watchlist: Watchlist) -> AnyPublisher<(), DataStorageError>
     func watchlists() -> AnyPublisher<[Watchlist], DataStorageError>
+    func createWatchlist(name: String) -> AnyPublisher<Watchlist, DataStorageError>
+    func remove(watchlist: Watchlist) -> AnyPublisher<(), DataStorageError>
 }
 
 enum DataStorageError: Error {
