@@ -12,6 +12,7 @@ struct CompanyView: View {
     let symbol: String
 
     @StateObject private var viewModel = CompanyViewModel()
+    @State private var showWatchlists = false
 
     var body: some View {
         Group {
@@ -25,8 +26,16 @@ struct CompanyView: View {
             }
         }
         .navigationBarTitle(symbol, displayMode: .inline)
+        .navigationBarItems(trailing: HStack {
+            Button(action: { showWatchlists.toggle() }, label: {
+                Image(systemName: "plus")
+            })
+        })
         .onAppear {
             self.viewModel.requestCompanyData(from: symbol)
+        }
+        .sheet(isPresented: $showWatchlists) {
+            WatchlistsView()
         }
     }
 }

@@ -58,6 +58,9 @@
 		42DEDC0C2525BFDB007A351C /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DEDC0B2525BFDB007A351C /* Color+.swift */; };
 		42DEDC0F2525C60F007A351C /* Stock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DEDC0E2525C60F007A351C /* Stock.swift */; };
 		42E1CF2F253AD6FF00ECA9EB /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 42E1CF2E253AD6FF00ECA9EB /* Keys.plist */; };
+		42E1CF3D253C206100ECA9EB /* WatchlistsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E1CF3C253C206100ECA9EB /* WatchlistsView.swift */; };
+		42E1CF40253C20E100ECA9EB /* WatchlistsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E1CF3F253C20E100ECA9EB /* WatchlistsViewModel.swift */; };
+		42E1CF43253C219100ECA9EB /* Watchlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E1CF42253C219100ECA9EB /* Watchlist.swift */; };
 		42E4380C25249CEF00F8385C /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E4380B25249CEF00F8385C /* NewsView.swift */; };
 		42E438122524A3B000F8385C /* CoreDataStorage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E438112524A3B000F8385C /* CoreDataStorage+.swift */; };
 		42E4381B2524AAF500F8385C /* Int+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E4381A2524AAF500F8385C /* Int+.swift */; };
@@ -142,6 +145,9 @@
 		42DEDC0B2525BFDB007A351C /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		42DEDC0E2525C60F007A351C /* Stock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stock.swift; sourceTree = "<group>"; };
 		42E1CF2E253AD6FF00ECA9EB /* Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
+		42E1CF3C253C206100ECA9EB /* WatchlistsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistsView.swift; sourceTree = "<group>"; };
+		42E1CF3F253C20E100ECA9EB /* WatchlistsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistsViewModel.swift; sourceTree = "<group>"; };
+		42E1CF42253C219100ECA9EB /* Watchlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Watchlist.swift; sourceTree = "<group>"; };
 		42E4380B25249CEF00F8385C /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
 		42E438112524A3B000F8385C /* CoreDataStorage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreDataStorage+.swift"; sourceTree = "<group>"; };
 		42E4381A2524AAF500F8385C /* Int+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+.swift"; sourceTree = "<group>"; };
@@ -294,6 +300,7 @@
 				4287BE642528857200D0D238 /* SearchResult.swift */,
 				42DE2E92252B7B200066CC71 /* Company.swift */,
 				42E6B2222537042A000DF7D4 /* QuoteDetail.swift */,
+				42E1CF42253C219100ECA9EB /* Watchlist.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -398,6 +405,7 @@
 		42CA5CC02522195800198C29 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				42E1CF3B253C204D00ECA9EB /* Watchlists */,
 				42E6B23925378C07000DF7D4 /* Common */,
 				4287BE4225276DE600D0D238 /* MainView */,
 				42F5399E252CCA6300D47AF3 /* PortfolioView */,
@@ -417,6 +425,15 @@
 				422687782534AA1C004997C8 /* RemoteImage.swift */,
 			);
 			path = ImageLoader;
+			sourceTree = "<group>";
+		};
+		42E1CF3B253C204D00ECA9EB /* Watchlists */ = {
+			isa = PBXGroup;
+			children = (
+				42E1CF3C253C206100ECA9EB /* WatchlistsView.swift */,
+				42E1CF3F253C20E100ECA9EB /* WatchlistsViewModel.swift */,
+			);
+			path = Watchlists;
 			sourceTree = "<group>";
 		};
 		42E6B22F25373E34000DF7D4 /* Views */ = {
@@ -602,6 +619,7 @@
 				4287BE50252776FD00D0D238 /* NewsViewModel.swift in Sources */,
 				42E6B23F2538212A000DF7D4 /* PerformanceView.swift in Sources */,
 				42EDB9C42538A57F000B0514 /* RecommendationTrend.swift in Sources */,
+				42E1CF40253C20E100ECA9EB /* WatchlistsViewModel.swift in Sources */,
 				42F539AC252CF6F600D47AF3 /* ListType.swift in Sources */,
 				42EDB9D1253AD208000B0514 /* PriceTarget.swift in Sources */,
 				4287BE4425276DEF00D0D238 /* MainView.swift in Sources */,
@@ -616,10 +634,12 @@
 				42E6B23625374731000DF7D4 /* CompanyDetailsView.swift in Sources */,
 				42CA5CCC2523016B00198C29 /* Endpoint.swift in Sources */,
 				42EDB9CB2538EDB0000B0514 /* ToolTip.swift in Sources */,
+				42E1CF43253C219100ECA9EB /* Watchlist.swift in Sources */,
 				42DEDC092525BEF3007A351C /* View+.swift in Sources */,
 				42C8C0AE25246C2100BA2BB4 /* IEXChart.swift in Sources */,
 				42CA5CC9252270C800198C29 /* IEXQuote.swift in Sources */,
 				42CA5CB8252214DC00198C29 /* Environment.swift in Sources */,
+				42E1CF3D253C206100ECA9EB /* WatchlistsView.swift in Sources */,
 				42E6B23B25378C12000DF7D4 /* Title.swift in Sources */,
 				42C8C0B125246D4900BA2BB4 /* Chart.swift in Sources */,
 				42DEDC0F2525C60F007A351C /* Stock.swift in Sources */,

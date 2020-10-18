@@ -63,4 +63,8 @@ class CoreDataStorage: DataStorage {
         }
     }
 
+    func watchlists() -> AnyPublisher<[Watchlist], DataStorageError> {
+        return Just([]).setFailureType(to: DataStorageError.self).eraseToAnyPublisher()
+    }
+
 }
