@@ -48,8 +48,8 @@ extension Quote {
         latestPrice = quote.latestPrice ?? 0
         previousClose = quote.previousClose ?? 0
         changePercent = quote.changePercent.round2()
-        change = quote.change
-        latestUpdate = Date(timeIntervalSince1970: quote.latestUpdate / 1000)
+        change = quote.change ?? 0
+        latestUpdate = quote.latestUpdate != nil ? Date(timeIntervalSince1970: quote.latestUpdate! / 1000) : Date()
     }
 
     static let random = Quote(symbol: "AMD",

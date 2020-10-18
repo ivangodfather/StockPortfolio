@@ -54,7 +54,9 @@ struct AnalystRecommendationsView: View {
                             .offset(x: calculateOffset(width: geo.size.width), y: -toolTipSize.height)
                     }, alignment: .leading)
 
-            }.padding(.horizontal, 32)
+            }
+            .padding(.horizontal, 32)
+            .padding(.bottom, 50)
         }
     }
 

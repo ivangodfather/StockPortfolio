@@ -18,7 +18,7 @@ struct QuoteRowView: View {
                 .frame(width: 6)
 
             RemoteImage(url: quoteDetail.logo)
-                .frame(width: 48, height: 48)
+                .frame(width: 40, height: 40)
             VStack(alignment: .leading, spacing: 4) {
                 Text(quoteDetail.quote.symbol).bold()
                 Text(quoteDetail.quote.companyName).font(.caption)

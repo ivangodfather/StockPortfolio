@@ -15,7 +15,7 @@ struct CompanyDetailsView: View {
             VStack {
                 ChartView(symbol: companyDetail.quote.symbol)
                 PriceTargetView(priceTarget: companyDetail.priceTarget, currentPrice: companyDetail.quote.latestPrice)
-                AnalystRecommendationsView(rating: 4.3)
+                AnalystRecommendationsView(rating: companyDetail.recommendationTrend.first!.ratingScaleMark)
                 PerformanceView(stats: companyDetail.stats,
                                 latestPrice: companyDetail.quote.latestPrice)
                 KeyDataView(stats: companyDetail.stats)

@@ -11,12 +11,11 @@ import Combine
 struct SearchView: View {
     @StateObject private var viewModel = SearchViewModel()
     @State private var searchText = ""
-    @State private var selectedItem: QuoteDetail?
 
     var body: some View {
         NavigationView {
             VStack {
-                TextField("Search stock", text: $searchText).textFieldStyle(RoundedBorderTextFieldStyle())
+                TextField("Search stock", text: $searchText).textFieldStyle(RoundedBorderTextFieldStyle()).padding()
                 Spacer()
                 switch viewModel.state {
                 case .initial:
@@ -29,12 +28,11 @@ struct SearchView: View {
                 case .results(let values):
                     List {
                         ForEach(values) { quoteDetail in
-                            HStack {
-                                Text(quoteDetail.quote.symbol)
-                                Text(quoteDetail.quote.symbol)
-                            }.onTapGesture {
-                                selectedItem = quoteDetail
-                            }
+                            NavigationLink(
+                                destination: CompanyView(symbol: quoteDetail.quote.symbol),
+                                label: {
+                                    QuoteRowView(quoteDetail: quoteDetail)
+                                })
                         }
                     }.listStyle(PlainListStyle())
                 case .error(let description):
@@ -42,13 +40,7 @@ struct SearchView: View {
                 }
                 Spacer()
             }
-            .padding()
-            .onChange(of: searchText) { term in
-                viewModel.didSearch(term)
-            }
-            .sheet(item: self.$selectedItem, content: { item in
-                AddStockView(completion: { _ in }, symbol: item.quote.symbol)
-            })
+            .onChange(of: searchText, perform: viewModel.didSearch)
             .navigationBarTitle("Search")
         }
     }

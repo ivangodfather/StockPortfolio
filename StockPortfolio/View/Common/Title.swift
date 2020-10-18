@@ -21,7 +21,7 @@ struct Title: View {
                 .bold()
             Spacer()
         }
-        .padding(.top, 16)
+        .padding(.top, 8)
         .padding(.bottom, 8)
     }
 }

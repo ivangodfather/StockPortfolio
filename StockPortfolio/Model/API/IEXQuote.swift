@@ -13,6 +13,6 @@ struct IEXQuote: Decodable {
     let latestPrice: Double?
     let previousClose: Double?
     let changePercent: Double
-    let change: Double
-    let latestUpdate: Double
+    let change: Double?
+    let latestUpdate: Double?
 }

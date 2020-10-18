@@ -8,47 +8,61 @@
 import SwiftUI
 
 struct PriceTargetView: View {
+    
+    let priceTarget: PriceTarget
+    let currentPrice: Double
+    
+    var body: some View {
+        VStack {
+            if (priceTarget.low...priceTarget.high) ~= priceTarget.average &&
+                priceTarget.low < priceTarget.high {
+                BodyView(priceTarget: priceTarget, currentPrice: currentPrice)
+            }
+        }.padding()
+    }
+    
 
+}
+
+fileprivate struct BodyView: View {
     let priceTarget: PriceTarget
     let currentPrice: Double
 
     var body: some View {
-        VStack {
-            Title("Analysts Price Target").padding(.bottom, 40)
-            VStack(alignment: .leading, spacing: 0) {
-                GeometryReader { geo in
-                    PinmarkView()
-                        .modifier(BackgroundModifier(
-                                    text: "Average\n\(priceTarget.average.round2())",
-                                    color: Color.Stock.gray,
-                                    yOffset: -32)
-                        )
-                        .offset(x: calculateOffset(geo.size.width, value: priceTarget.average), y: -20)
-                    PinmarkView(color: Color.blue)
-                        .rotationEffect(.degrees(180))
-                        .modifier(BackgroundModifier(
-                                    text: "Current\n\(currentPrice.round2())",
-                                    color: .blue,
-                                    yOffset: 32)
-                        )
-                        .offset(x: calculateOffset(geo.size.width, value: currentPrice), y: 0)
-                    HStack(spacing: 0) {
-                        PriceCircleView()
-                        Rectangle()
-                            .fill(Color.gray.opacity(0.5))
-                            .frame(height: 2)
-                        PriceCircleView()
-                    }
-                    HStack {
-                        Text("Low \(priceTarget.low.round2())")
-                        Spacer()
-                        Text("High \(priceTarget.high.round2())")
-                    }
-                    .padding(.top, 8)
-                    .font(.system(size: 10))
-                }.frame(height: 100)
-            }
-        }.padding()
+        Title("Analysts Price Target").padding(.bottom, 40)
+        VStack(alignment: .leading, spacing: 0) {
+            GeometryReader { geo in
+                PinmarkView()
+                    .modifier(BackgroundModifier(
+                                text: "Average\n\(priceTarget.average.round2())",
+                                color: Color.Stock.gray,
+                                yOffset: -32)
+                    )
+                    .offset(x: calculateOffset(geo.size.width, value: priceTarget.average), y: -20)
+                PinmarkView(color: Color.blue)
+                    .rotationEffect(.degrees(180))
+                    .modifier(BackgroundModifier(
+                                text: "Current\n\(currentPrice.round2())",
+                                color: .blue,
+                                yOffset: 32)
+                    )
+                    .offset(x: calculateOffset(geo.size.width, value: currentPrice), y: 0)
+                HStack(spacing: 0) {
+                    PriceCircleView()
+                    Rectangle()
+                        .fill(Color.gray.opacity(0.5))
+                        .frame(height: 2)
+                    PriceCircleView()
+                }
+                HStack {
+                    Text("Low \(priceTarget.low.round2())")
+                    Spacer()
+                    Text("High \(priceTarget.high.round2())")
+                }
+                .padding(.top, 8)
+                .font(.system(size: 10))
+            }.frame(height: 100)
+        }
     }
 
     private func calculateOffset(_ width: CGFloat, value: Double) -> CGFloat {
@@ -71,8 +85,8 @@ private struct BackgroundModifier: ViewModifier {
                     .font(.caption)
             )
     }
-
-
+    
+    
 }
 
 struct PriceTargetView_Previews: PreviewProvider {

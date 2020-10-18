@@ -48,7 +48,10 @@ final class SearchViewModel: ObservableObject {
     }
 
     func didSearch(_ term: String) {
+        guard !term.isEmpty else {
+            state = .initial
+            return
+        }
         searchSubject.send(term)
-
     }
 }
