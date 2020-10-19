@@ -1,5 +1,5 @@
 //
-//  PortfolioViewModel.swift
+//  WatchlistsViewModel.swift
 //  StockPortfolio
 //
 //  Created by Ivan Ruiz Monjo on 06/10/2020.
@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-final class PortfolioViewModel: ObservableObject {
+final class WatchlistsViewModel: ObservableObject {
 
     @Published var watchLists: [Watchlist] = []
     @Published var quotes: [QuoteDetail] = []

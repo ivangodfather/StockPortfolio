@@ -35,7 +35,7 @@ struct CompanyView: View {
             self.viewModel.requestCompanyData(from: symbol)
         }
         .sheet(isPresented: $watchListIsPresented) {
-            WatchlistsView(symbol: symbol, completion: { _ in
+            ManageWatchlists(symbol: symbol, completion: { _ in
                 
             })
         }

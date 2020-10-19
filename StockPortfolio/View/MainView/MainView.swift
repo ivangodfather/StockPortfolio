@@ -12,7 +12,7 @@ struct MainView: View {
     
     var body: some View {
         TabView {
-            PortfolioView()
+            WatchlistsView()
                 .tabItem {
                     Image(systemName: "list.star")
                     Text("Your Stocks")

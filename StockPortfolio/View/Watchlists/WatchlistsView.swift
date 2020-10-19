@@ -2,65 +2,65 @@
 //  WatchlistsView.swift
 //  StockPortfolio
 //
-//  Created by Ivan Ruiz Monjo on 18/10/2020.
+//  Created by Ivan Ruiz Monjo on 06/10/2020.
 //
 
 import SwiftUI
 
 struct WatchlistsView: View {
 
-    var symbol: String? = nil
-    let completion: (Watchlist) -> ()
     @StateObject private var viewModel = WatchlistsViewModel()
-    @State var createNewWatchlistIsPresented = false
-    @Environment(\.presentationMode) var presentationMode
+    @State var selectedWatchList = 0
+    @State private var wachtlistsIsPresented = false
 
     var body: some View {
         NavigationView {
             VStack {
-                switch viewModel.state {
-                case .loading: EmptyView()
-                case .error: EmptyView()
-                case .loaded(let watchlists):
-                    List {
-                        ForEach(watchlists) { watchlist in
-                            Button(action: {
-                                if let symbol = symbol {
-                                    self.viewModel.save(symbol: symbol, for: watchlist)
-                                } else {
-                                    completion(watchlist)
-                                }
-                                presentationMode.wrappedValue.dismiss()
-                            }) {
-                                Text(watchlist.name)
-                            }
-                        }
-                        .onDelete(perform: self.viewModel.delete)
+                if viewModel.quotes.isEmpty {
+                    Button("Insert sample data") {
+                        viewModel.insertSampleData()
+                    }.font(.headline)
+                } else {
+
+                    QuoteListView(quotes: viewModel.quotes) { indexSet in
+                        self.viewModel.deleteQuote(at: indexSet)
                     }
-                    .listStyle(PlainListStyle())
-                    .navigationTitle("Your Watchlists")
-                    Spacer()
-                    Button(action: { createNewWatchlistIsPresented.toggle() }, label: {
-                        Text("Create a new watchlist")
+                }
+            }
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Button(action: {
+                            wachtlistsIsPresented.toggle()
+                    }, label: {
+                        HStack {
+                            Text(viewModel.selectedWatchlist?.name ?? "Watchlists")
+                            Image(systemName: "arrow.turn.right.down")
+                        }
                     })
                 }
             }
-            .sheet(isPresented: $createNewWatchlistIsPresented, content: {
-                NewWatchlistView(completion: { self.viewModel.requestWatchlists() } )
-            })
             .navigationBarItems(leading: EditButton())
-            .onReceive(viewModel.$finishedSavingSymbol) { saved in
+        }
+        .onAppear {
+            viewModel.loadWatchlists()
+        }
+        .onChange(of: selectedWatchList, perform: { index in
+            self.viewModel.selectedWatchlist = self.viewModel.watchLists[index]
+        })
+        .sheet(isPresented: $wachtlistsIsPresented) {
+            ManageWatchlists() { watchlist in
+                DispatchQueue.main.async {
+                    self.viewModel.selectedWatchlist = watchlist
+                    self.wachtlistsIsPresented = false
+                }
 
             }
-            .onAppear(perform: self.viewModel.requestWatchlists)
         }
     }
-
-
 }
 
-struct WatchlistsView_Previews: PreviewProvider {
+struct PortfolioView_Previews: PreviewProvider {
     static var previews: some View {
-        WatchlistsView(symbol: "AAPL", completion: { _ in })
+        WatchlistsView()
     }
 }

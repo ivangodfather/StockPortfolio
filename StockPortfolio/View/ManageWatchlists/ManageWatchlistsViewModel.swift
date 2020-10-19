@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 import Combine
 
-final class WatchlistsViewModel: ObservableObject {
+final class ManageWatchlistsViewModel: ObservableObject {
 
     enum State {
         case loading
