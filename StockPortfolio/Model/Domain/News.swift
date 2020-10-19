@@ -48,3 +48,9 @@ extension News {
                              imageURL: .randomImage,
                              related: "AMZN")
 }
+
+extension News: Comparable {
+    static func < (lhs: News, rhs: News) -> Bool {
+        lhs.date < rhs.date
+    }
+}

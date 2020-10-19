@@ -17,7 +17,7 @@ struct MainView: View {
             WatchlistsView()
                 .tabItem {
                     Image(systemName: "list.star")
-                    Text("Your Stocks")
+                    Text("Watchlists")
                 }.tag(0)
             SearchView()
                 .tabItem {
@@ -34,7 +34,8 @@ struct MainView: View {
                     Image(systemName: "antenna.radiowaves.left.and.right")
                     Text("Discover")
                 }.tag(3)
-        }.onReceive(searchViewPublisher) { _ in
+        }.accentColor(Color.Stock.blue)
+        .onReceive(searchViewPublisher) { _ in
             self.selected = 1
         }
     }

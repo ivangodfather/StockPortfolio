@@ -11,21 +11,27 @@ import CoreData
 
 struct NewsView: View {
     
-    @FetchRequest(entity: StockCoreData.entity(), sortDescriptors: [])
-    var stocks: FetchedResults<StockCoreData>
-    
     @StateObject private var viewModel = NewsViewModel()
     
     var body: some View {
         NavigationView {
-            if stocks.isEmpty {
-                ProgressView()
-            } else {
-                NewsBodyView(news: viewModel.news)
-                    .navigationBarTitle(Text("News"))
+            VStack {
+                switch viewModel.state {
+                case .loading: ProgressView()
+                case .empty: NoDataView(title: "You don't have any symbols", subtitle: "Add any symbol to a watchlist and start reading news.", button: ("Search symbols", { NotificationCenter.default.post(name: .searchView, object: nil, userInfo: nil) }))
+                case .error(let description):
+                    NoDataView(title: "Ups, something went wrong",
+                               subtitle: description,
+                               button: ("Retry", { viewModel.request()}))
+                case .loaded(let news):
+                    NewsBodyView(news: news)
+                }
             }
-        }.onAppear {
-            self.viewModel.request(symbols: stocks.map { $0.symbol ?? "" })
+            .onAppear(perform: viewModel.request)
+            .navigationTitle("News")
+            .navigationBarItems(trailing: Button(action: { self.viewModel.request() }, label: {
+                Image(systemName: "arrow.clockwise.circle").imageScale(.large)
+            }))
         }
     }
 }

@@ -15,7 +15,7 @@ struct SearchView: View {
     var body: some View {
         NavigationView {
             VStack {
-                TextField("Search stock", text: $searchText)
+                TextField("Search symbol", text: $searchText)
                     .foregroundColor(Color.Stock.gray)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding()

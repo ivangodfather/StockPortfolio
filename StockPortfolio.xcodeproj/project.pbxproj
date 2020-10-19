@@ -91,8 +91,6 @@
 		42F539C72531C1B000D47AF3 /* NewsRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F539C62531C1B000D47AF3 /* NewsRowView.swift */; };
 		42F7D2ED25236FA700537E30 /* StockPortfolio.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 42F7D2EB25236FA700537E30 /* StockPortfolio.xcdatamodeld */; };
 		42F7D2F12523748B00537E30 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F7D2F02523748B00537E30 /* PersistenceManager.swift */; };
-		42F7D30325237AD900537E30 /* StockCoreData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F7D30125237AD900537E30 /* StockCoreData+CoreDataClass.swift */; };
-		42F7D30425237AD900537E30 /* StockCoreData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F7D30225237AD900537E30 /* StockCoreData+CoreDataProperties.swift */; };
 		42F7D30925238FEA00537E30 /* CoreDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F7D30825238FEA00537E30 /* CoreDataStorage.swift */; };
 		42F7D30C2523924900537E30 /* DataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F7D30B2523924900537E30 /* DataStorage.swift */; };
 		42F7D3142523B14200537E30 /* Double+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F7D3132523B14200537E30 /* Double+.swift */; };
@@ -185,8 +183,6 @@
 		42F539C62531C1B000D47AF3 /* NewsRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsRowView.swift; sourceTree = "<group>"; };
 		42F7D2EC25236FA700537E30 /* StockPortfolio.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = StockPortfolio.xcdatamodel; sourceTree = "<group>"; };
 		42F7D2F02523748B00537E30 /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
-		42F7D30125237AD900537E30 /* StockCoreData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StockCoreData+CoreDataClass.swift"; sourceTree = "<group>"; };
-		42F7D30225237AD900537E30 /* StockCoreData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StockCoreData+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		42F7D30825238FEA00537E30 /* CoreDataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStorage.swift; sourceTree = "<group>"; };
 		42F7D30B2523924900537E30 /* DataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStorage.swift; sourceTree = "<group>"; };
 		42F7D3132523B14200537E30 /* Double+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+.swift"; sourceTree = "<group>"; };
@@ -316,8 +312,6 @@
 			children = (
 				42E1CF46253C26A200ECA9EB /* CoreDataWatchlist+CoreDataClass.swift */,
 				42E1CF47253C26A200ECA9EB /* CoreDataWatchlist+CoreDataProperties.swift */,
-				42F7D30125237AD900537E30 /* StockCoreData+CoreDataClass.swift */,
-				42F7D30225237AD900537E30 /* StockCoreData+CoreDataProperties.swift */,
 			);
 			path = "Core Data";
 			sourceTree = "<group>";
@@ -635,7 +629,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				427755882524725F008E0EF0 /* ChartViewModel.swift in Sources */,
-				42F7D30325237AD900537E30 /* StockCoreData+CoreDataClass.swift in Sources */,
 				428A62D42536E44200ABFF49 /* CompanyLoadedStateView.swift in Sources */,
 				42EDB9C12538A301000B0514 /* IEXRecommendationTrend.swift in Sources */,
 				42CA5CB32522148C00198C29 /* DataLoader.swift in Sources */,
@@ -654,7 +647,6 @@
 				42EDB9D4253AD22A000B0514 /* IEXPriceTarget.swift in Sources */,
 				429DDBD82536CEB20039B6FE /* IEXStats.swift in Sources */,
 				42F7D30925238FEA00537E30 /* CoreDataStorage.swift in Sources */,
-				42F7D30425237AD900537E30 /* StockCoreData+CoreDataProperties.swift in Sources */,
 				42E6B24225383955000DF7D4 /* Week52View.swift in Sources */,
 				4287BE50252776FD00D0D238 /* NewsViewModel.swift in Sources */,
 				42E6B23F2538212A000DF7D4 /* PerformanceView.swift in Sources */,
