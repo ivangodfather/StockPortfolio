@@ -13,7 +13,11 @@ final class PortfolioViewModel: ObservableObject {
     @Published var watchLists: [Watchlist] = []
     @Published var quotes: [QuoteDetail] = []
 
-    var selectedWatchlist: Watchlist? = nil
+    @Published var selectedWatchlist: Watchlist? = nil {
+        didSet {
+            loadQuotes(from: selectedWatchlist!)
+        }
+    }
 
     private var cancellables = Set<AnyCancellable>()
     private let api: APIProtocol
@@ -43,6 +47,7 @@ final class PortfolioViewModel: ObservableObject {
                 }
             } receiveValue: { watchLists in
                 self.watchLists = watchLists
+                self.selectedWatchlist = watchLists.first
                 if let first = watchLists.first {
                     self.loadQuotes(from: first)
                 }
@@ -51,6 +56,10 @@ final class PortfolioViewModel: ObservableObject {
     }
 
     func loadQuotes(from watchlist: Watchlist) {
+        quotes = []
+        guard !watchlist.symbols.isEmpty else {
+            return
+        }
         self.api.quoteDetails(from: watchlist.symbols)
             .sink { _ in
             } receiveValue: { quoteDetailResult in

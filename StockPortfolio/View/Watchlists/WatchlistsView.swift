@@ -9,10 +9,11 @@ import SwiftUI
 
 struct WatchlistsView: View {
 
-    var symbol: String
-    @Binding var isPresented: Bool
+    var symbol: String? = nil
+    let completion: (Watchlist) -> ()
     @StateObject private var viewModel = WatchlistsViewModel()
     @State var createNewWatchlistIsPresented = false
+    @Environment(\.presentationMode) var presentationMode
 
     var body: some View {
         NavigationView {
@@ -24,10 +25,17 @@ struct WatchlistsView: View {
                     List {
                         ForEach(watchlists) { watchlist in
                             Button(action: {
-                                self.viewModel.save(symbol: symbol, for: watchlist)
-                                self.isPresented = false
-                            }) {  Text(watchlist.name) }
-                        }.onDelete(perform: self.viewModel.delete)
+                                if let symbol = symbol {
+                                    self.viewModel.save(symbol: symbol, for: watchlist)
+                                } else {
+                                    completion(watchlist)
+                                }
+                                presentationMode.wrappedValue.dismiss()
+                            }) {
+                                Text(watchlist.name)
+                            }
+                        }
+                        .onDelete(perform: self.viewModel.delete)
                     }
                     .listStyle(PlainListStyle())
                     .navigationTitle("Your Watchlists")
@@ -41,7 +49,9 @@ struct WatchlistsView: View {
                 NewWatchlistView(completion: { self.viewModel.requestWatchlists() } )
             })
             .navigationBarItems(leading: EditButton())
-            .onReceive(viewModel.$finishedSavingSymbol) { isPresented = !$0 }
+            .onReceive(viewModel.$finishedSavingSymbol) { saved in
+
+            }
             .onAppear(perform: self.viewModel.requestWatchlists)
         }
     }
@@ -51,6 +61,6 @@ struct WatchlistsView: View {
 
 struct WatchlistsView_Previews: PreviewProvider {
     static var previews: some View {
-        WatchlistsView(symbol: "AAPL", isPresented: .constant(true))
+        WatchlistsView(symbol: "AAPL", completion: { _ in })
     }
 }

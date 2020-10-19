@@ -11,15 +11,11 @@ struct PortfolioView: View {
 
     @StateObject private var viewModel = PortfolioViewModel()
     @State var selectedWatchList = 0
+    @State private var wachtlistsIsPresented = false
 
     var body: some View {
         NavigationView {
             VStack {
-                Picker(selection: $selectedWatchList, label: Text("Select a watchlist")) {
-                    ForEach(0 ..< viewModel.watchLists.count) {
-                        Text(viewModel.watchLists[$0].name)
-                   }
-                }
                 if viewModel.quotes.isEmpty {
                     Button("Insert sample data") {
                         viewModel.insertSampleData()
@@ -31,15 +27,35 @@ struct PortfolioView: View {
                     }
                 }
             }
-            .navigationTitle("Stock Portfolio")
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Button(action: {
+                            wachtlistsIsPresented.toggle()
+                    }, label: {
+                        HStack {
+                            Text(viewModel.selectedWatchlist?.name ?? "")
+                            Image(systemName: "arrow.turn.right.down")
+                        }
+                    })
+                }
+            }
             .navigationBarItems(leading: EditButton())
         }
         .onAppear {
             viewModel.loadWatchlists()
         }
         .onChange(of: selectedWatchList, perform: { index in
-            self.viewModel.loadQuotes(from: self.viewModel.watchLists[index])
+            self.viewModel.selectedWatchlist = self.viewModel.watchLists[index]
         })
+        .sheet(isPresented: $wachtlistsIsPresented) {
+            WatchlistsView() { watchlist in
+                DispatchQueue.main.async {
+                    self.viewModel.selectedWatchlist = watchlist
+                    self.wachtlistsIsPresented = false
+                }
+
+            }
+        }
     }
 }
 

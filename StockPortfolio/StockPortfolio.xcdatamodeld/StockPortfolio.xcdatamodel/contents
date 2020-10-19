@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17510.1" systemVersion="19H2" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17192" systemVersion="19H2" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="CoreDataWatchlist" representedClassName="CoreDataWatchlist" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String"/>
-        <attribute name="symbols" optional="YES" attributeType="Transformable" customClassName="[String]"/>
+        <attribute name="symbols" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String]"/>
     </entity>
     <entity name="StockCoreData" representedClassName="StockCoreData" syncable="YES">
         <attribute name="symbol" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="StockCoreData" positionX="-36" positionY="9" width="128" height="58"/>
         <element name="CoreDataWatchlist" positionX="-36" positionY="18" width="128" height="73"/>
+        <element name="StockCoreData" positionX="-36" positionY="9" width="128" height="58"/>
     </elements>
 </model>
