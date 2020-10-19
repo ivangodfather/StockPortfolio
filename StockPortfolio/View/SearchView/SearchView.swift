@@ -15,7 +15,10 @@ struct SearchView: View {
     var body: some View {
         NavigationView {
             VStack {
-                TextField("Search stock", text: $searchText).textFieldStyle(RoundedBorderTextFieldStyle()).padding()
+                TextField("Search stock", text: $searchText)
+                    .foregroundColor(Color.Stock.gray)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding()
                 Spacer()
                 switch viewModel.state {
                 case .initial:

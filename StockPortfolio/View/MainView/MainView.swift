@@ -9,29 +9,33 @@ import SwiftUI
 import Combine
 
 struct MainView: View {
-    
+    @State private var selected = 0
+    let searchViewPublisher = NotificationCenter.default.publisher(for: .searchView)
+
     var body: some View {
-        TabView {
+        TabView(selection: $selected) {
             WatchlistsView()
                 .tabItem {
                     Image(systemName: "list.star")
                     Text("Your Stocks")
-                }
+                }.tag(0)
             SearchView()
                 .tabItem {
                     Image(systemName: "magnifyingglass")
                     Text("Search")
-                }
+                }.tag(1)
             NewsView()
                 .tabItem {
                     Image(systemName: "newspaper")
                     Text("News")
-                }
+                }.tag(2)
             DiscoverView()
                 .tabItem {
                     Image(systemName: "antenna.radiowaves.left.and.right")
                     Text("Discover")
-                }
+                }.tag(3)
+        }.onReceive(searchViewPublisher) { _ in
+            self.selected = 1
         }
     }
 }

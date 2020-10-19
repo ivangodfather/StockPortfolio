@@ -21,7 +21,9 @@ struct StockPortfolioApp: App {
 
     var body: some Scene {
         WindowGroup {
-            MainView().environment(\.managedObjectContext, PersistenceManager.shared.context)
+            MainView()
+                .edgesIgnoringSafeArea(.all)
+                .environment(\.managedObjectContext, PersistenceManager.shared.context)
         }
     }
 }

@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct NodataView: View {
+struct NoDataView: View {
 
     let title: String
     let subtitle: String
@@ -16,22 +16,25 @@ struct NodataView: View {
 
     var body: some View {
         VStack {
-            Text(title).font(.title)
+            Text(title)
+                .bold()
+                .font(.title)
             Text(subtitle).font(.subheadline)
                 .padding(.vertical)
 
             if let button = button {
-                Button(action: button.action, label: {
-                    Text(button.text)
-                })
+                ActionButton(action: button.action, image: Image(systemName: "plus"), text: button.text)
+                    .padding(.top)
             }
-        }.padding()
+        }
+        .foregroundColor(Color.Stock.gray)
+        .padding()
     }
 }
 
 struct NodataView_Previews: PreviewProvider {
     static var previews: some View {
-        NodataView(title: "Watch your stocks",
+        NoDataView(title: "Watch your stocks",
                    subtitle: "Some random subtitle ... .... test",
                    button: (text: "Create", action: { }))
     }

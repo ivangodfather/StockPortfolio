@@ -10,14 +10,21 @@ import Combine
 
 final class WatchlistsViewModel: ObservableObject {
 
-    @Published var watchLists: [Watchlist] = []
-    @Published var quotes: [QuoteDetail] = []
-
-    @Published var selectedWatchlist: Watchlist? = nil {
+    var selectedWatchlist: Watchlist? = nil {
         didSet {
             loadQuotes(from: selectedWatchlist!)
         }
     }
+
+    enum State {
+        case initial
+        case emptyWatchlists
+        case error(localizedError: String)
+        case loading
+        case emptySymbols
+        case loadedWatchList(quotes: [QuoteDetail])
+    }
+    @Published var state: State = .initial
 
     private var cancellables = Set<AnyCancellable>()
     private let api: APIProtocol
@@ -34,30 +41,25 @@ final class WatchlistsViewModel: ObservableObject {
             .watchlists()
             .flatMap { watchlists -> AnyPublisher<[Watchlist], Never> in
                 if watchlists.isEmpty {
-                    return self.dataStorage
-                        .createWatchlist(name: "My Stocks")
-                        .map { [$0] }
-                        .replaceError(with: []).eraseToAnyPublisher()
+                    self.state = .emptyWatchlists
+                    return Empty(completeImmediately: true).eraseToAnyPublisher()
                 }
                 return Just(watchlists).eraseToAnyPublisher()
             }.sink { completion in
                 switch completion {
                 case.finished: break
-                case .failure(let error): print(error.localizedDescription)
+                case .failure(let error): self.state = .error(localizedError: error.localizedDescription)
                 }
             } receiveValue: { watchLists in
-                self.watchLists = watchLists
                 self.selectedWatchlist = watchLists.first
-                if let first = watchLists.first {
-                    self.loadQuotes(from: first)
-                }
             }.store(in: &cancellables)
 
     }
 
     func loadQuotes(from watchlist: Watchlist) {
-        quotes = []
+        state = .loading
         guard !watchlist.symbols.isEmpty else {
+            state = .emptySymbols
             return
         }
         self.api.quoteDetails(from: watchlist.symbols)
@@ -65,7 +67,7 @@ final class WatchlistsViewModel: ObservableObject {
             } receiveValue: { quoteDetailResult in
                 switch quoteDetailResult {
                 case.success(let quotes):
-                    self.quotes = quotes
+                    self.state = .loadedWatchList(quotes: quotes)
                 case .failure(let error): print(error.localizedDescription)
                 }
             }.store(in: &cancellables)
@@ -74,14 +76,16 @@ final class WatchlistsViewModel: ObservableObject {
 
     func deleteQuote(at offsets: IndexSet) {
         if let watchlist = selectedWatchlist {
-            let symbols = offsets.map { quotes[$0].quote.symbol }
-            symbols
+            let symbolsToDelete = offsets.map { watchlist.symbols[$0] }
+            symbolsToDelete
                 .publisher
                 .map { ($0, watchlist) }
                 .flatMap(dataStorage.remove(symbol:in:))
                 .sink { completion in
                     switch completion {
-                    case .finished: self.quotes.removeAll { symbols.contains($0.quote.symbol) }
+                    case .finished:
+                        let symbols = Set(watchlist.symbols).subtracting(symbolsToDelete)
+                        self.selectedWatchlist = Watchlist(name: watchlist.name, symbols: Array(symbols))
                     case .failure(let error): print(error.localizedDescription)
                     }
                 } receiveValue: { _ in

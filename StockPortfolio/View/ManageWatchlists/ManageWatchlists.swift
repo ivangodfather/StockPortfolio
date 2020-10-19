@@ -32,7 +32,7 @@ struct ManageWatchlists: View {
                                 }
                                 presentationMode.wrappedValue.dismiss()
                             }) {
-                                Text(watchlist.name)
+                                Text(watchlist.name).font(.headline).foregroundColor(Color.Stock.blue)
                             }
                         }
                         .onDelete(perform: self.viewModel.delete)
@@ -40,15 +40,13 @@ struct ManageWatchlists: View {
                     .listStyle(PlainListStyle())
                     .navigationTitle("Your Watchlists")
                     Spacer()
-                    Button(action: { createNewWatchlistIsPresented.toggle() }, label: {
-                        Text("Create a new watchlist")
-                    })
+                    ActionButton(action: { createNewWatchlistIsPresented.toggle() }, image: Image(systemName: "plus"), text: "Create new watchlist").padding(.vertical, 24)
                 }
             }
             .sheet(isPresented: $createNewWatchlistIsPresented, content: {
                 NewWatchlistView(completion: { self.viewModel.requestWatchlists() } )
             })
-            .navigationBarItems(leading: EditButton())
+            .navigationBarItems(leading: EditButton().foregroundColor(Color.Stock.blue))
             .onReceive(viewModel.$finishedSavingSymbol) { saved in
 
             }
