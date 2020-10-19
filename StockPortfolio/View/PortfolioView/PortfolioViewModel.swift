@@ -43,29 +43,15 @@ final class PortfolioViewModel: ObservableObject {
                 }
             } receiveValue: { watchLists in
                 self.watchLists = watchLists
+                if let first = watchLists.first {
+                    self.loadQuotes(from: first)
+                }
             }.store(in: &cancellables)
 
     }
 
-    func loadQuotes() {
-        dataStorage
-            .watchlists()
-            .flatMap { watchlists -> AnyPublisher<[Watchlist], Never> in
-                if watchlists.isEmpty {
-                    return self.dataStorage
-                        .createWatchlist(name: "My Stocks")
-                        .map { [$0] }
-                        .replaceError(with: []).eraseToAnyPublisher()
-                }
-                return Just(watchlists).eraseToAnyPublisher()
-            }
-            .map { self.selectedWatchlist ?? $0.first! }
-            .handleEvents(receiveOutput: { watchList in
-                self.selectedWatchlist = watchList
-            })
-            .flatMap { watchList in
-                self.api.quoteDetails(from: watchList.symbols)
-            }
+    func loadQuotes(from watchlist: Watchlist) {
+        self.api.quoteDetails(from: watchlist.symbols)
             .sink { _ in
             } receiveValue: { quoteDetailResult in
                 switch quoteDetailResult {
@@ -96,8 +82,8 @@ final class PortfolioViewModel: ObservableObject {
     }
 
     func insertSampleData() {
-        CoreDataStorage().insertSampleData().sink { _ in
-            self.loadQuotes()
+        CoreDataStorage().insertSampleData().sink {
+            self.loadQuotes(from: $0)
         }.store(in: &cancellables)
     }
 }

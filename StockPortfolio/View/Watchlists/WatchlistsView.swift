@@ -16,11 +16,11 @@ struct WatchlistsView: View {
 
     var body: some View {
         NavigationView {
-            switch viewModel.state {
-            case .loading: EmptyView()
-            case .error: EmptyView()
-            case .loaded(let watchlists):
-                VStack {
+            VStack {
+                switch viewModel.state {
+                case .loading: EmptyView()
+                case .error: EmptyView()
+                case .loaded(let watchlists):
                     List {
                         ForEach(watchlists) { watchlist in
                             Button(action: {
@@ -35,16 +35,18 @@ struct WatchlistsView: View {
                     Button(action: { createNewWatchlistIsPresented.toggle() }, label: {
                         Text("Create a new watchlist")
                     })
-                }.sheet(isPresented: $createNewWatchlistIsPresented, content: {
-                    NewWatchlistView(completion: { self.viewModel.requestWatchlists() } )
-                })
-                .navigationBarItems(leading: EditButton())
+                }
             }
-        }.onReceive(viewModel.$finishedSavingSymbol) { isPresented = !$0 }
-        .onAppear(perform: self.viewModel.requestWatchlists)
-
-
+            .sheet(isPresented: $createNewWatchlistIsPresented, content: {
+                NewWatchlistView(completion: { self.viewModel.requestWatchlists() } )
+            })
+            .navigationBarItems(leading: EditButton())
+            .onReceive(viewModel.$finishedSavingSymbol) { isPresented = !$0 }
+            .onAppear(perform: self.viewModel.requestWatchlists)
+        }
     }
+
+
 }
 
 struct WatchlistsView_Previews: PreviewProvider {

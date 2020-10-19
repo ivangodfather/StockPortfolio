@@ -15,7 +15,7 @@ struct CompanyView: View {
     @State private var watchListIsPresented = false
 
     var body: some View {
-        Group {
+        VStack {
             switch viewModel.state {
             case .loading:
                 ProgressView()
