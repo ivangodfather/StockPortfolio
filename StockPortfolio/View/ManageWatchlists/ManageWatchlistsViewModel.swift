@@ -14,6 +14,7 @@ final class ManageWatchlistsViewModel: ObservableObject {
     enum State {
         case loading
         case error(localizedError: String)
+        case empty
         case loaded([Watchlist])
     }
 
@@ -34,7 +35,7 @@ final class ManageWatchlistsViewModel: ObservableObject {
                 self.state = .error(localizedError: error.localizedDescription)
             }
         } receiveValue: { watchlists in
-            self.state = .loaded(watchlists)
+            self.state = watchlists.isEmpty ? .empty : .loaded(watchlists)
         }.store(in: &cancellables)
     }
 

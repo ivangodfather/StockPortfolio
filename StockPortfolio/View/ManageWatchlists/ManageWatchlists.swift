@@ -19,8 +19,9 @@ struct ManageWatchlists: View {
         NavigationView {
             VStack {
                 switch viewModel.state {
-                case .loading: EmptyView()
+                case .loading: ProgressView()
                 case .error: EmptyView()
+                case .empty: NoDataView(title: "Still no watchlist!", subtitle: "Create a watchlist and start adding your favorites symbols", button: ("Create new watchlist", { createNewWatchlistIsPresented.toggle() } ))
                 case .loaded(let watchlists):
                     List {
                         ForEach(watchlists) { watchlist in

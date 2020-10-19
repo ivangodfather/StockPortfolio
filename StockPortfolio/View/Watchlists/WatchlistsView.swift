@@ -39,7 +39,7 @@ struct WatchlistsView: View {
                 }
             }
             .navigationBarItems(leading: EditButton(),
-                                trailing: Button(action: {}, label: {
+                                trailing: Button(action: { viewModel.loadWatchlists() }, label: {
                                     Image(systemName: "arrow.clockwise.circle").imageScale(.large)
                                 })).foregroundColor(Color.Stock.blue)
         }
