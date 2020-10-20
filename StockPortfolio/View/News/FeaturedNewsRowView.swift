@@ -19,8 +19,8 @@ struct FeaturedNewsRowView: View {
                 NewsRowHeadlineView(news: news)
                     .padding()
                     .frame(width: UIScreen.main.bounds.width)
-                    .foregroundColor(.primary)
-                    .background(LinearGradient(gradient: Gradient(colors: [.black, Color.black.opacity(0.5)]), startPoint: .bottom, endPoint: .top))
+                    .foregroundColor(.accentColor)
+                    .background(LinearGradient(gradient: Gradient(colors: [Color.App.background2, Color.App.background2.opacity(0.8)]), startPoint: .bottom, endPoint: .top))
             }
         }
         .clipped()

@@ -16,9 +16,9 @@ struct MyGroupBoxStyle: GroupBoxStyle {
         }
         .padding(16)
         .background(Color.App.background)
-        .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
-        .padding(16)
-        .shadow(color: Color.App.background, radius: 8, x: 10, y: 10)
+        .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+        .padding(8)
+        .shadow(color: Color.App.background2, radius: 4, x: 5, y: 5)
 
     }
 

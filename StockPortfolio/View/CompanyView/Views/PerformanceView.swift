@@ -30,10 +30,10 @@ struct PerformanceView: View {
                     VStack(spacing: 8) {
                         HStack {
                             Text(performance.intervalName)
-                                .font(.callout)
+                                .font(.footnote)
                             Spacer()
                             Text(performance.value.round2() + "%")
-                                .font(.callout).bold()
+                                .font(.footnote).bold()
                                 .frame(width: 80, alignment: .trailing)
                             Rectangle()
                                 .frame(width: min(1.5 * CGFloat(abs(performance.value)), 150), height: 15)

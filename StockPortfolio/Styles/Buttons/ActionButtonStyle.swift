@@ -15,8 +15,8 @@ struct ActionButtonStyle: ButtonStyle {
             .background(
                 ZStack {
                     RoundedRectangle(cornerRadius: 10, style: .continuous)
-                        .shadow(color: .red, radius: configuration.isPressed ? 7: 10, x: configuration.isPressed ? -5: -15, y: configuration.isPressed ? -5: -15)
-                        .shadow(color: .red, radius: configuration.isPressed ? 7: 10, x: configuration.isPressed ? 5: 15, y: configuration.isPressed ? 5: 15)
+                        .shadow(color: .primary, radius: configuration.isPressed ? 7: 10, x: configuration.isPressed ? -5: -15, y: configuration.isPressed ? -5: -15)
+                        .shadow(color: .primary, radius: configuration.isPressed ? 7: 10, x: configuration.isPressed ? 5: 15, y: configuration.isPressed ? 5: 15)
                         .blendMode(.overlay)
                     RoundedRectangle(cornerRadius: 10, style: .continuous)
                         .fill(Color.accentColor)

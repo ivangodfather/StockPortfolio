@@ -14,7 +14,7 @@ struct Week52View: View {
 
     var body: some View {
         HStack(spacing: 24) {
-            Text("52 Week H/L").foregroundColor(.white).bold()
+            Text("52 Week H/L").bold()
             VStack(alignment: .leading) {
                 GeometryReader { reader in
                     VStack(spacing: 0) {
@@ -36,7 +36,6 @@ struct Week52View: View {
                     Text(stats.week52high.round2())
                 }.font(.footnote)
             }
-            .foregroundColor(.white)
         }.frame(height: 72)
     }
 

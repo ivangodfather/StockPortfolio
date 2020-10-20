@@ -9,10 +9,10 @@ import SwiftUI
 
 extension Color {
     struct App {
-        static let green = Color(red: 50/255, green: 200/255, blue: 150/255)
-        static let red = Color(red: 200/255, green: 50/255, blue: 100/255)
-        static let blue = Color(hex: 0x07689f)
-        static let background = Color.secondarySystemBackground
+        static let green = Color("Green")
+        static let red = Color("Red")
+        static let background = Color("Background")
+        static let background2 = Color("Background2")
     }
 
     public init(hex: Int) {

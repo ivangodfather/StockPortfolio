@@ -34,7 +34,7 @@ struct MainView: View {
                     Image(systemName: "antenna.radiowaves.left.and.right")
                     Text("Discover")
                 }.tag(3)
-        }.accentColor(Color.App.blue)
+        }
         .onReceive(searchViewPublisher) { _ in
             self.selected = 1
         }

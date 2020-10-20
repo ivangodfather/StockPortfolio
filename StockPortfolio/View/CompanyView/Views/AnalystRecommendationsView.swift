@@ -35,14 +35,12 @@ struct AnalystRecommendationsView: View {
                                             .multilineTextAlignment(.center)
                                             .fixedSize()
                                             .offset(y: 30)
-                                            .foregroundColor(.white)
                                     )
                             }
                             if rating != ratings.last {
                                 Spacer()
                             }
                         }
-                        .foregroundColor(Color.secondary)
                         .font(.footnote)
                     }.background(
                         GeometryReader { geo in

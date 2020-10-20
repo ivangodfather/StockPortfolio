@@ -19,7 +19,7 @@ struct CompanyLoadedStateView: View {
                     CompanyHeaderTabButtonView(selectedIndex: $selectedIndex, text: "Details", index: 1)
                 }
                 Rectangle()
-                    .fill(Color.gray)
+                    .fill(Color.accentColor)
                     .frame(width: UIScreen.main.bounds.width / 2, height: 2)
             }
             .font(.headline)

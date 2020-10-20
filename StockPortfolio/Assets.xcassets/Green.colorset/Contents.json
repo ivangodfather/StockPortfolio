@@ -2,8 +2,8 @@
   "colors" : [
     {
       "color" : {
-        "platform" : "tvos",
-        "reference" : "systemIndigoColor"
+        "platform" : "osx",
+        "reference" : "systemGreenColor"
       },
       "idiom" : "universal"
     },
@@ -15,8 +15,8 @@
         }
       ],
       "color" : {
-        "platform" : "tvos",
-        "reference" : "systemIndigoColor"
+        "platform" : "osx",
+        "reference" : "systemGreenColor"
       },
       "idiom" : "universal"
     }

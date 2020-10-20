@@ -17,7 +17,7 @@ struct CompanyHeaderTabButtonView: View {
             Spacer()
             Text(text)
                 .padding()
-                .foregroundColor(selectedIndex == index ? .gray : Color.accentColor)
+                .foregroundColor(selectedIndex == index ? Color.accentColor : Color.accentColor.opacity(0.5))
             Spacer()
         }
     }

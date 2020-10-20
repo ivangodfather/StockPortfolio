@@ -12,7 +12,7 @@ struct NewsRowHeadlineView: View {
     var body: some View {
         HStack(spacing: 0) {
             VStack(alignment: .leading) {
-                Text(news.headline).bold().font(.body)
+                Text(news.headline).bold().font(.title3)
                 HStack {
                     Text(news.related)
                     Text("\(news.dateString) on \(news.source)")
