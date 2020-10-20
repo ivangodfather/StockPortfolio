@@ -22,15 +22,15 @@ struct Stats {
     let day5ChangePercent: Double
     let peRatio: Double
     let exDividendDate: String?
-    let marketcap: Double
+    let marketcap: Int
     let sharesOutstanding: Int
     let nextEarningsDate: String
-    let avg30Volume: Double
+    let avg30Volume: Int
 }
 
 extension Stats {
     init(stats: IEXStats) {
-        dividendYield = stats.dividendYield
+        dividendYield = (stats.dividendYield ?? 0) * 100
         week52change = stats.week52change
         week52high = stats.week52high
         week52low = stats.week52low
@@ -39,10 +39,10 @@ extension Stats {
         year1ChangePercent = stats.year1ChangePercent
         peRatio = stats.peRatio
         exDividendDate =  stats.exDividendDate
-        marketcap = stats.marketcap
+        marketcap = Int(stats.marketcap)
         sharesOutstanding = stats.sharesOutstanding
         nextEarningsDate = stats.nextEarningsDate
-        avg30Volume = stats.avg30Volume
+        avg30Volume = Int(stats.avg30Volume)
         ytdChangePercent = stats.ytdChangePercent * 100
         month6ChangePercent = stats.month6ChangePercent * 100
         month3ChangePercent = stats.month3ChangePercent * 100
@@ -67,5 +67,5 @@ extension Stats {
                               marketcap: 12345678,
                               sharesOutstanding: 123456789,
                               nextEarningsDate: "2020-20-05",
-                              avg30Volume: 35321.23)
+                              avg30Volume: 35321)
 }

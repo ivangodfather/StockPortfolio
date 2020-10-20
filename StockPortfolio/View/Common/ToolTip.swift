@@ -22,10 +22,10 @@ struct ToolTip: View {
             Text(text)
                 .foregroundColor(.white)
                 .bold()
-                .padding(6)
+                .padding(4)
                 .background(bgColor)
                 .cornerRadius(4)
-                .font(.callout)
+                .font(.subheadline)
 
         }
     }

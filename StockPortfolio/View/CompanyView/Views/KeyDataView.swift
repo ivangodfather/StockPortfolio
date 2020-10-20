@@ -13,9 +13,9 @@ struct KeyDataView: View {
     var tuples: [(key: String, value: String)] {
         [
             ("Volume", stats.avg30Volume.description),
-            ("Dividend Yield" , stats.dividendYield?.description ?? "N/A"),
-            ("Market Cap" , stats.marketcap.description),
-            ("Shares Outstanding" , stats.sharesOutstanding.description),
+            ("Dividend Yield" , stats.dividendYield?.round2() ?? "N/A"),
+            ("Market Cap" , stats.marketcap.formattedWithSeparator),
+            ("Shares Outstanding" , stats.sharesOutstanding.formattedWithSeparator),
             ("P/E Ratio" , stats.peRatio.description),
             ("Ex-Dividend Day" , stats.exDividendDate ?? "N/A"),
             ("Next Earnings Date", stats.nextEarningsDate)
@@ -23,21 +23,23 @@ struct KeyDataView: View {
     }
 
     var body: some View {
-        VStack(spacing: 0) {
-            Title("Key Stats")
-                .padding(.leading)
+        GroupBox(label: Title("Key Stats")) {
             ForEach(Array(tuples.enumerated()), id: \.0) { index, tuple in
                 HStack {
                     Text(tuple.key)
+                        .font(.callout)
                     Spacer()
                     Text(tuple.value)
+                        .font(.callout)
+                        .bold()
                 }
                 .padding(.vertical, 8)
                 .padding(.horizontal)
-                .background(index % 2 == 0 ? .white : Color.Stock.gray.opacity(0.2))
-                
+                .background(index % 2 == 0 ? Color.gray.opacity(0.5) : Color.gray.opacity(0.2))
+                .clipShape(RoundedRectangle(cornerRadius: 4, style: .continuous))
+
             }
-        }
+        }.groupBoxStyle(MyGroupBoxStyle())
     }
 }
 

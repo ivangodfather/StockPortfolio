@@ -33,11 +33,13 @@ fileprivate struct BodyView: View {
             VStack(alignment: .leading, spacing: 0) {
                 GeometryReader { geo in
                     PinmarkView()
+                        .font(Font.caption)
                         .modifier(BackgroundModifier(
                                     text: "Average\n\(priceTarget.average.round2())",
                                     yOffset: -32)
                         )
                         .offset(x: calculateOffset(geo.size.width, value: priceTarget.average), y: -20)
+
                     PinmarkView(color: Color.accentColor)
                         .rotationEffect(.degrees(180))
                         .modifier(BackgroundModifier(
