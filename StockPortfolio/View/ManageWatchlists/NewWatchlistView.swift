@@ -19,7 +19,7 @@ struct NewWatchlistView: View {
             Form {
                 TextField("Enter your watchlist name", text: $name, onCommit:  {
                     self.viewModel.saveWatchlist(name: name)
-                }).foregroundColor(Color.Stock.gray)
+                }).foregroundColor(Color.primary)
             }
             .navigationTitle("New Watchlist")
             .onReceive(viewModel.$watchlistCreated, perform: { created in

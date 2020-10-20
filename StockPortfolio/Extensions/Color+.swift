@@ -8,16 +8,20 @@
 import SwiftUI
 
 extension Color {
-    struct Stock {
+    struct App {
         static let green = Color(red: 50/255, green: 200/255, blue: 150/255)
         static let red = Color(red: 200/255, green: 50/255, blue: 100/255)
-        static let gray = Color(hex: 0x2d4059)
         static let blue = Color(hex: 0x07689f)
+        static let background = Color.secondarySystemBackground
     }
 
     public init(hex: Int) {
         self.init(UIColor(hex: hex))
    }
+
+    static let systemBackground = Color(UIColor.systemBackground)
+    static let secondarySystemBackground = Color(UIColor.secondarySystemBackground)
+    static let tertiarySystemBackground = Color(UIColor.tertiarySystemBackground)
 
 }
 

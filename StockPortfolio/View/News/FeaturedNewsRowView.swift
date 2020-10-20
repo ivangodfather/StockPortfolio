@@ -19,7 +19,7 @@ struct FeaturedNewsRowView: View {
                 NewsRowHeadlineView(news: news)
                     .padding()
                     .frame(width: UIScreen.main.bounds.width)
-                    .foregroundColor(.white)
+                    .foregroundColor(.primary)
                     .background(LinearGradient(gradient: Gradient(colors: [.black, Color.black.opacity(0.5)]), startPoint: .bottom, endPoint: .top))
             }
         }
@@ -30,5 +30,11 @@ struct FeaturedNewsRowView: View {
 struct FeaturedNewsRowView_Previews: PreviewProvider {
     static var previews: some View {
         FeaturedNewsRowView(news: News.random).previewLayout(.fixed(width: 400, height: 250))
+    }
+}
+
+struct FeaturedNewsRowView_Previews2: PreviewProvider {
+    static var previews: some View {
+        FeaturedNewsRowView(news: News.random).preferredColorScheme(.dark).previewLayout(.fixed(width: 400, height: 250))
     }
 }

@@ -24,7 +24,7 @@ struct AnalystRecommendationsView: View {
         GroupBox(label: Title("Analyst Recommendations").padding(.bottom, 32)) {
             VStack(alignment: .leading) {
                 VStack(alignment: .leading, spacing: 0) {
-                    Rectangle().fill(Color.Stock.gray).frame(height: 4).offset(y: 10)
+                    Rectangle().fill(Color.secondary).frame(height: 4).offset(y: 10)
                     HStack {
                         ForEach(ratings, id: \.self) { rating in
                             VStack {
@@ -42,7 +42,7 @@ struct AnalystRecommendationsView: View {
                                 Spacer()
                             }
                         }
-                        .foregroundColor(Color.Stock.gray)
+                        .foregroundColor(Color.secondary)
                         .font(.footnote)
                     }.background(
                         GeometryReader { geo in

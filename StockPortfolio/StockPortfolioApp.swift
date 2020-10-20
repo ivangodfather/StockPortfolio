@@ -12,11 +12,11 @@ import CoreData
 struct StockPortfolioApp: App {
 
     init() {
-        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor(Color.Stock.gray)]
-        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor(Color.Stock.gray)]
+        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor(Color.primary)]
+        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor(Color.primary)]
         UISegmentedControl.appearance().selectedSegmentTintColor = UIColor(Color.accentColor)
         UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
-        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor(Color.Stock.gray)], for: .normal)
+        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor(Color.primary)], for: .normal)
     }
 
     var body: some Scene {

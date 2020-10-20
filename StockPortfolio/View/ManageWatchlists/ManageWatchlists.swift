@@ -43,7 +43,7 @@ struct ManageWatchlists: View {
                                 }
                                 presentationMode.wrappedValue.dismiss()
                             }) {
-                                Text(watchlist.name).font(.headline).foregroundColor(Color.Stock.blue)
+                                Text(watchlist.name).font(.headline).foregroundColor(Color.accentColor)
                             }
                         }
                         .onDelete(perform: self.viewModel.delete)
@@ -58,7 +58,7 @@ struct ManageWatchlists: View {
             .sheet(isPresented: $createNewWatchlistIsPresented, content: {
                 NewWatchlistView(completion: { self.viewModel.requestWatchlists() } )
             })
-            .navigationBarItems(leading: EditButton().foregroundColor(Color.Stock.blue))
+            .navigationBarItems(leading: EditButton().foregroundColor(Color.accentColor))
             .onReceive(viewModel.$didDeleteWatchList) { watchlist in
                 if let watchlist = watchlist {
                     didDeleteWatchlist?(watchlist)

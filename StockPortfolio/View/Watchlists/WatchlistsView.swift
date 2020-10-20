@@ -36,14 +36,14 @@ struct WatchlistsView: View {
                                 .bold()
                             Image(systemName: "arrow.down.to.line.alt").font(.system(size: 11))
                         }
-                        .foregroundColor(Color.Stock.blue)
+                        .foregroundColor(Color.accentColor)
                     }
                 }
             }
             .navigationBarItems(leading: EditButton(),
                                 trailing: Button(action: { viewModel.loadWatchlists() }, label: {
                                     Image(systemName: "arrow.clockwise.circle").imageScale(.large)
-                                })).foregroundColor(Color.Stock.blue)
+                                })).foregroundColor(Color.accentColor)
         }
         .onAppear {
             viewModel.loadWatchlists()

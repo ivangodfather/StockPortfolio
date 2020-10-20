@@ -17,7 +17,7 @@ struct Title: View {
         HStack {
             Text(text.uppercased())
                 .font(.title3)
-                .foregroundColor(.white)
+                .foregroundColor(.primary)
                 .bold()
             Spacer()
         }

@@ -19,7 +19,7 @@ struct ActionButton: View {
                     icon: { image })
 
                 .foregroundColor(.white)
-            }).buttonStyle(ActionButtonStyle(bgColor: Color.Stock.blue))
+            }).buttonStyle(ActionButtonStyle())
     }
 
 }

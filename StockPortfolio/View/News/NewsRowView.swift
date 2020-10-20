@@ -22,13 +22,24 @@ struct NewsRowView: View {
             }
             Divider()
         }
-        .foregroundColor(Color.Stock.gray)
         .padding()
     }
 }
 
 struct NewsRowView_Previews: PreviewProvider {
     static var previews: some View {
-        NewsRowView(news: News.random).previewLayout(.fixed(width: 400, height: 400))
+        VStack {
+            NewsRowView(news: News.random)
+
+        }.previewLayout(.fixed(width: 400, height: 400))
+    }
+}
+
+struct NewsRowView2_Previews: PreviewProvider {
+    static var previews: some View {
+        VStack {
+            NewsRowView(news: News.random)
+
+        }.previewLayout(.fixed(width: 400, height: 400)).preferredColorScheme(.dark)
     }
 }

@@ -14,7 +14,7 @@ struct QuoteRowView: View {
     var body: some View {
         HStack {
             Rectangle()
-                .fill(quoteDetail.quote.change > 0 ? Color.Stock.green : Color.Stock.red)
+                .fill(quoteDetail.quote.change > 0 ? Color.App.green : Color.App.red)
                 .frame(width: 6)
 
             RemoteImage(url: quoteDetail.logo)

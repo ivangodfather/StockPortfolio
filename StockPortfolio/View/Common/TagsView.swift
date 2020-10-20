@@ -22,9 +22,9 @@ struct TagsView: View {
                         .bold()
                         .padding(8)
                         .background(
-                            RoundedRectangle(cornerRadius: 16).fill(Color.gray.opacity(0.5))
+                            RoundedRectangle(cornerRadius: 16).fill(Color.secondary)
                         ).font(.footnote)
-                        .foregroundColor(.white)
+                        .foregroundColor(.primary)
                 }
             }.padding(.horizontal)
         }.frame(height: 60)

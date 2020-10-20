@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ActionButtonStyle: ButtonStyle {
-    var bgColor: Color
 
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
@@ -20,7 +19,7 @@ struct ActionButtonStyle: ButtonStyle {
                         .shadow(color: .red, radius: configuration.isPressed ? 7: 10, x: configuration.isPressed ? 5: 15, y: configuration.isPressed ? 5: 15)
                         .blendMode(.overlay)
                     RoundedRectangle(cornerRadius: 10, style: .continuous)
-                        .fill(bgColor)
+                        .fill(Color.accentColor)
                 }
         )
             .scaleEffect(configuration.isPressed ? 0.80: 1)

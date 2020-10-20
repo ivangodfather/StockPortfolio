@@ -12,13 +12,13 @@ struct MyGroupBoxStyle: GroupBoxStyle {
     func makeBody(configuration: Configuration) -> some View {
         VStack(alignment: .leading) {
             configuration.label
-            configuration.content.foregroundColor(.white)
+            configuration.content.foregroundColor(.primary)
         }
         .padding(16)
-        .background(Color.gray.opacity(0.3).blur(radius: /*@START_MENU_TOKEN@*/3.0/*@END_MENU_TOKEN@*/))
+        .background(Color.App.background)
         .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
         .padding(16)
-        .shadow(color: .gray, radius: 8, x: 10, y: 10)
+        .shadow(color: Color.App.background, radius: 8, x: 10, y: 10)
 
     }
 

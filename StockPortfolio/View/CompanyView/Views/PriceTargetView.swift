@@ -78,7 +78,6 @@ private struct BackgroundModifier: ViewModifier {
         content
             .background(
                 Text(text)
-                    .foregroundColor(.white)
                     .bold()
                     .fixedSize()
                     .offset(x: 0, y: yOffset)
@@ -93,6 +92,14 @@ struct PriceTargetView_Previews: PreviewProvider {
     static let priceTarget = PriceTarget(average: 70.30, high: 90.4, low: 60.95, numberOfAnalysts: 31)
     static var previews: some View {
         PriceTargetView(priceTarget: PriceTargetView_Previews.priceTarget, currentPrice: 82.234)
+    }
+}
+
+struct PriceTargetView_Previews3: PreviewProvider {
+    static let priceTarget = PriceTarget(average: 70.30, high: 90.4, low: 60.95, numberOfAnalysts: 31)
+    static var previews: some View {
+        PriceTargetView(priceTarget: PriceTargetView_Previews.priceTarget, currentPrice: 82.234)
+            .preferredColorScheme(.dark)
     }
 }
 

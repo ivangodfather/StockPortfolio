@@ -18,7 +18,7 @@ struct SearchView: View {
                 TextField("Search symbol", text: $searchText, onCommit: {
                     hideKeyboard()
                 })
-                    .foregroundColor(Color.Stock.gray)
+                    .foregroundColor(Color.primary)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding()
                 Spacer()
@@ -27,7 +27,7 @@ struct SearchView: View {
                     VStack(spacing: 16) {
                         Image(systemName: "magnifyingglass").resizable().frame(width: 64, height: 64)
                         Text("Start searching now!")
-                    }.foregroundColor(Color.Stock.gray)
+                    }.foregroundColor(Color.primary)
                 case .loading:
                     ProgressView()
                 case .results(let values):

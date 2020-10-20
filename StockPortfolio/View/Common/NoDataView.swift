@@ -27,7 +27,6 @@ struct NoDataView: View {
                     .padding(.top)
             }
         }
-        .foregroundColor(Color.Stock.gray)
         .padding()
     }
 }
