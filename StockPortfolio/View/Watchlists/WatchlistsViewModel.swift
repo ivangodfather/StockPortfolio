@@ -73,6 +73,12 @@ final class WatchlistsViewModel: ObservableObject {
             }.store(in: &cancellables)
     }
 
+    func didDeleteWatchlist(_ watchlist: Watchlist) {
+        if selectedWatchlist == watchlist {
+            loadWatchlists()
+        }
+    }
+
 
     func deleteQuote(at offsets: IndexSet) {
         if let watchlist = selectedWatchlist {

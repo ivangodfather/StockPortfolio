@@ -10,7 +10,17 @@ import SwiftUI
 struct ManageWatchlists: View {
 
     var symbol: String? = nil
-    let completion: (Watchlist) -> ()
+    let didSelectWatchlist: ((Watchlist) -> ())?
+    let didDeleteWatchlist: ((Watchlist) -> Void)?
+
+    init(symbol: String? = nil,
+         didSelectWatchlist: ((Watchlist) -> ())? = nil,
+         didDeleteWatchlist: ((Watchlist) -> Void)? = nil) {
+        self.symbol = symbol
+        self.didSelectWatchlist = didSelectWatchlist
+        self.didDeleteWatchlist = didDeleteWatchlist
+    }
+
     @StateObject private var viewModel = ManageWatchlistsViewModel()
     @State var createNewWatchlistIsPresented = false
     @Environment(\.presentationMode) var presentationMode
@@ -29,7 +39,7 @@ struct ManageWatchlists: View {
                                 if let symbol = symbol {
                                     self.viewModel.save(symbol: symbol, for: watchlist)
                                 } else {
-                                    completion(watchlist)
+                                    didSelectWatchlist?(watchlist)
                                 }
                                 presentationMode.wrappedValue.dismiss()
                             }) {
@@ -41,15 +51,18 @@ struct ManageWatchlists: View {
                     .listStyle(PlainListStyle())
                     .navigationTitle("Your Watchlists")
                     Spacer()
-                    ActionButton(action: { createNewWatchlistIsPresented.toggle() }, image: Image(systemName: "plus"), text: "Create new watchlist").padding(.vertical, 24)
+                    ActionButton(action: { createNewWatchlistIsPresented.toggle() }, image: Image(systemName: "plus"), text: "Create new watchlist")
+                        .padding(.vertical, 24)
                 }
             }
             .sheet(isPresented: $createNewWatchlistIsPresented, content: {
                 NewWatchlistView(completion: { self.viewModel.requestWatchlists() } )
             })
             .navigationBarItems(leading: EditButton().foregroundColor(Color.Stock.blue))
-            .onReceive(viewModel.$finishedSavingSymbol) { saved in
-
+            .onReceive(viewModel.$didDeleteWatchList) { watchlist in
+                if let watchlist = watchlist {
+                    didDeleteWatchlist?(watchlist)
+                }
             }
             .onAppear(perform: self.viewModel.requestWatchlists)
         }
@@ -60,6 +73,6 @@ struct ManageWatchlists: View {
 
 struct ManageWatchlists_Previews: PreviewProvider {
     static var previews: some View {
-        ManageWatchlists(symbol: "AAPL", completion: { _ in })
+        ManageWatchlists(symbol: "AAPL")
     }
 }

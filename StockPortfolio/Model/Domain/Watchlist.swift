@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Watchlist: Identifiable {
+struct Watchlist: Identifiable, Equatable {
     let name: String
     let symbols: [String]
 

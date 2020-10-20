@@ -18,7 +18,9 @@ struct WatchlistsView: View {
             VStack {
                 switch viewModel.state {
                 case .initial: ProgressView()
-                case .emptyWatchlists: addNoWatchlistsView()
+                case .emptyWatchlists:
+                    addNoWatchlistsView()
+                    ActionButton(action: { viewModel.insertSampleData() }, image: Image(systemName: "plus.square.on.square"), text: "Insert sample data").padding(.top)
                 case .error(let description): addErrorView(errorText: description)
                 case .emptySymbols: addNoSymbolsView()
                 case .loading: ProgressView()
@@ -47,13 +49,15 @@ struct WatchlistsView: View {
             viewModel.loadWatchlists()
         }
         .sheet(isPresented: $isManageWatchlistsPresented) {
-            ManageWatchlists() { watchlist in
+            ManageWatchlists(didSelectWatchlist: { watchlist in
                 DispatchQueue.main.async {
                     self.viewModel.selectedWatchlist = watchlist
                     self.isManageWatchlistsPresented = false
                 }
 
-            }
+            }, didDeleteWatchlist: { watchlist in
+                self.viewModel.didDeleteWatchlist(watchlist)
+            })
         }
     }
 

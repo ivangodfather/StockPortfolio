@@ -15,6 +15,7 @@ extension CoreDataStorage {
                 ["TSLA", "KO", "PEP", "AMD"].map { ($0, watchlist) }.publisher
             }.flatMap(save(symbol:for:))
             .collect()
+            .flatMap { _ in self.watchlists() }
             .map { $0.first! }
             .replaceError(with: .empty)
             .eraseToAnyPublisher()

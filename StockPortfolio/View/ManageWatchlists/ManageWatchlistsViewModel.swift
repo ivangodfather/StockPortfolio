@@ -20,6 +20,7 @@ final class ManageWatchlistsViewModel: ObservableObject {
 
     @Published var state = State.loading
     @Published var finishedSavingSymbol = false
+    @Published var didDeleteWatchList: Watchlist?
 
     private let dataStorage: DataStorage
     private var cancellables = Set<AnyCancellable>()
@@ -58,6 +59,7 @@ final class ManageWatchlistsViewModel: ObservableObject {
                     case .finished:
                         var watchlists = watchlists
                         offsets.forEach { watchlists.remove(at: $0) }
+                        self.didDeleteWatchList = watchlistToRemove
                         self.state = .loaded(watchlists)
                     case .failure(let error): print(error.localizedDescription)
                     }
