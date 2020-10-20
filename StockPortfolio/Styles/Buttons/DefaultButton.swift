@@ -14,11 +14,10 @@ struct ActionButton: View {
 
     var body: some View {
             Button(action: action, label: {
-                HStack {
-                    image
-                    Text(text)
-                        .bold()
-                }
+                Label(
+                    title: { Text(text).bold() },
+                    icon: { image })
+
                 .foregroundColor(.white)
             }).buttonStyle(ActionButtonStyle(bgColor: Color.Stock.blue))
     }

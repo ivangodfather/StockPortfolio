@@ -52,16 +52,16 @@ final class ManageWatchlistsViewModel: ObservableObject {
 
     func delete(at offsets: IndexSet) {
         if case State.loaded(let watchlists) = state {
+            state = .loading
             let watchlistsToRemove = offsets.map { watchlists[$0] }
             watchlistsToRemove.forEach { watchlistToRemove in
                 dataStorage.remove(watchlist: watchlistToRemove).sink { completion in
                     switch completion {
                     case .finished:
-                        var watchlists = watchlists
-                        offsets.forEach { watchlists.remove(at: $0) }
                         self.didDeleteWatchList = watchlistToRemove
-                        self.state = .loaded(watchlists)
-                    case .failure(let error): print(error.localizedDescription)
+                        self.requestWatchlists()
+                    case .failure(let error):
+                        self.state = .error(localizedError: error.localizedDescription)
                     }
                 } receiveValue: { _ in }.store(in: &cancellables)
             }
