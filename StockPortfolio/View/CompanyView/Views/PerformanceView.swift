@@ -24,28 +24,30 @@ struct PerformanceView: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading) {
-            Title("Performance")
-            ForEach(performances) { performance in
-                VStack(spacing: 8) {
-                    HStack {
-                        Text(performance.intervalName)
-                        Spacer()
-                        Text(performance.value.round2() + "%")
-                            .frame(width: 80, alignment: .trailing)
-                        Rectangle()
-                            .frame(width: min(1.5 * CGFloat(abs(performance.value)), 150), height: 15)
-                            .frame(width: 150, alignment: .leading)
-                            .padding(.trailing)
-                            .foregroundColor(performance.value < 0 ? Color.Stock.red : Color.Stock.green)
+        GroupBox(label: Title("Performance").padding(.bottom, 16), content: {
+            VStack(alignment: .leading) {
+                ForEach(performances) { performance in
+                    VStack(spacing: 8) {
+                        HStack {
+                            Text(performance.intervalName)
+                                .font(.callout).bold()
+                            Spacer()
+                            Text(performance.value.round2() + "%")
+                                .font(.callout).bold()
+                                .frame(width: 80, alignment: .trailing)
+                            Rectangle()
+                                .frame(width: min(1.5 * CGFloat(abs(performance.value)), 150), height: 15)
+                                .frame(width: 150, alignment: .leading)
+                                .padding(.trailing)
+                                .foregroundColor(.accentColor)
+                        }
+                        Divider()
                     }
-                    Divider()
                 }
+                Week52View(stats: stats, latestPrice: latestPrice)
+                    .padding(.vertical)
             }
-            Week52View(stats: stats, latestPrice: latestPrice)
-                .padding(.vertical)
-        }
-        .padding(.horizontal)
+        }).groupBoxStyle(MyGroupBoxStyle())
     }
 }
 

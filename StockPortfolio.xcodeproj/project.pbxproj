@@ -33,6 +33,7 @@
 		428A62D42536E44200ABFF49 /* CompanyLoadedStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428A62D32536E44200ABFF49 /* CompanyLoadedStateView.swift */; };
 		428E50DD253DDD1B0011F485 /* ActionButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428E50DC253DDD1B0011F485 /* ActionButtonStyle.swift */; };
 		428E50E1253DE05D0011F485 /* DefaultButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428E50E0253DE05D0011F485 /* DefaultButton.swift */; };
+		428E50E9253ED2480011F485 /* MyGroupBoxStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428E50E8253ED2480011F485 /* MyGroupBoxStyle.swift */; };
 		429DDBD22536CBB30039B6FE /* IEXCompanyDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429DDBD12536CBB30039B6FE /* IEXCompanyDetail.swift */; };
 		429DDBD52536CBC80039B6FE /* CompanyDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429DDBD42536CBC80039B6FE /* CompanyDetail.swift */; };
 		429DDBD82536CEB20039B6FE /* IEXStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429DDBD72536CEB20039B6FE /* IEXStats.swift */; };
@@ -124,6 +125,7 @@
 		428A62D32536E44200ABFF49 /* CompanyLoadedStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyLoadedStateView.swift; sourceTree = "<group>"; };
 		428E50DC253DDD1B0011F485 /* ActionButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButtonStyle.swift; sourceTree = "<group>"; };
 		428E50E0253DE05D0011F485 /* DefaultButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultButton.swift; sourceTree = "<group>"; };
+		428E50E8253ED2480011F485 /* MyGroupBoxStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGroupBoxStyle.swift; sourceTree = "<group>"; };
 		429DDBD12536CBB30039B6FE /* IEXCompanyDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IEXCompanyDetail.swift; sourceTree = "<group>"; };
 		429DDBD42536CBC80039B6FE /* CompanyDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyDetail.swift; sourceTree = "<group>"; };
 		429DDBD72536CEB20039B6FE /* IEXStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IEXStats.swift; sourceTree = "<group>"; };
@@ -293,6 +295,7 @@
 		428E50DB253DDD0D0011F485 /* Styles */ = {
 			isa = PBXGroup;
 			children = (
+				428E50E7253ED20D0011F485 /* GroupBox */,
 				428E50DF253DE04F0011F485 /* Buttons */,
 			);
 			path = Styles;
@@ -305,6 +308,14 @@
 				428E50E0253DE05D0011F485 /* DefaultButton.swift */,
 			);
 			path = Buttons;
+			sourceTree = "<group>";
+		};
+		428E50E7253ED20D0011F485 /* GroupBox */ = {
+			isa = PBXGroup;
+			children = (
+				428E50E8253ED2480011F485 /* MyGroupBoxStyle.swift */,
+			);
+			path = GroupBox;
 			sourceTree = "<group>";
 		};
 		42C8C0B325246D6900BA2BB4 /* Core Data */ = {
@@ -710,6 +721,7 @@
 				42CA5CA12522144300198C29 /* StockPortfolioApp.swift in Sources */,
 				4287BE782529BE4200D0D238 /* Tag.swift in Sources */,
 				4287BE752529BE2900D0D238 /* IEXTag.swift in Sources */,
+				428E50E9253ED2480011F485 /* MyGroupBoxStyle.swift in Sources */,
 				42CA5CC6252257E600198C29 /* API.swift in Sources */,
 				429DDBDB2536D0150039B6FE /* Stats.swift in Sources */,
 			);

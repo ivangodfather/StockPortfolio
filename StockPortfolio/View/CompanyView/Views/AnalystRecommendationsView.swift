@@ -21,43 +21,46 @@ struct AnalystRecommendationsView: View {
     private var ratings = ["1\nBuy", "2\nOutperform", "3\nHold", "4\nUnderperform", "5\nSell"]
 
     var body: some View {
-        VStack(alignment: .leading) {
-            Title("Analyst Recommendations").padding()
-            VStack(alignment: .leading, spacing: 0) {
-                Rectangle().fill(Color.Stock.gray).frame(height: 4).offset(y: 10)
-                HStack {
-                    ForEach(ratings, id: \.self) { rating in
-                        VStack {
-                            Rectangle()
-                                .frame(width: 2, height: 16)
-                                .overlay(
-                                    Text(rating)
-                                        .multilineTextAlignment(.center)
-                                        .fixedSize()
-                                        .offset(y: 30)
-                                )
+        GroupBox(label: Title("Analyst Recommendations").padding(.bottom, 32)) {
+            VStack(alignment: .leading) {
+                VStack(alignment: .leading, spacing: 0) {
+                    Rectangle().fill(Color.Stock.gray).frame(height: 4).offset(y: 10)
+                    HStack {
+                        ForEach(ratings, id: \.self) { rating in
+                            VStack {
+                                Rectangle()
+                                    .frame(width: 2, height: 16)
+                                    .overlay(
+                                        Text(rating)
+                                            .multilineTextAlignment(.center)
+                                            .fixedSize()
+                                            .offset(y: 30)
+                                            .foregroundColor(.white)
+                                    )
+                            }
+                            if rating != ratings.last {
+                                Spacer()
+                            }
                         }
-                        if rating != ratings.last {
-                            Spacer()
-                        }
-                    }
-                    .foregroundColor(Color.Stock.gray)
-                    .font(.footnote)
-                }.background(
-                    GeometryReader { geo in
-                        ToolTip(text: rating.description)
-                            .background(GeometryReader { toolTipGeo  in
-                                Color.clear.onAppear {
-                                    toolTipSize = toolTipGeo.size
-                                }
-                            })
-                            .offset(x: calculateOffset(width: geo.size.width), y: -toolTipSize.height)
-                    }, alignment: .leading)
+                        .foregroundColor(Color.Stock.gray)
+                        .font(.footnote)
+                    }.background(
+                        GeometryReader { geo in
+                            ToolTip(text: rating.round2())
+                                .background(GeometryReader { toolTipGeo  in
+                                    Color.clear.onAppear {
+                                        toolTipSize = toolTipGeo.size
+                                    }
+                                })
+                                .offset(x: calculateOffset(width: geo.size.width), y: -toolTipSize.height)
+                        }, alignment: .leading)
 
+                }
+                .padding(.horizontal, 32)
+                .padding(.bottom, 50)
             }
-            .padding(.horizontal, 32)
-            .padding(.bottom, 50)
-        }
+        }.groupBoxStyle(MyGroupBoxStyle())
+
     }
 
     private func calculateOffset(width: CGFloat) -> CGFloat {

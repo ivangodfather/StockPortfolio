@@ -10,7 +10,7 @@ import SwiftUI
 struct ToolTip: View {
     let text: String
 
-    private let bgColor = Color.green
+    private let bgColor = Color.accentColor
     var body: some View {
         ZStack {
             Rectangle()
@@ -18,10 +18,11 @@ struct ToolTip: View {
                 .fill(bgColor)
                 .frame(width: 20, height: 20)
                 .rotationEffect(.degrees(135))
-                .offset(x: 0, y: 5)
+                .offset(x: 0, y: 8)
             Text(text)
                 .foregroundColor(.white)
-                .padding(4)
+                .bold()
+                .padding(6)
                 .background(bgColor)
                 .cornerRadius(4)
                 .font(.callout)

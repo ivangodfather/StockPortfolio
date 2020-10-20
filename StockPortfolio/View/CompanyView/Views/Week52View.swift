@@ -14,28 +14,30 @@ struct Week52View: View {
 
     var body: some View {
         HStack(spacing: 24) {
-            Text("52 Week H/L").foregroundColor(Color.Stock.gray).bold()
+            Text("52 Week H/L").foregroundColor(.white).bold()
             VStack(alignment: .leading) {
                 GeometryReader { reader in
                     VStack(spacing: 0) {
-                        Text(latestPrice.round2()).font(.system(size: 11))
+                        Text(latestPrice.round2())
+                            .font(.callout)
+                            .bold()
+                            .foregroundColor(.accentColor)
                         Image(systemName: "arrowtriangle.down")
                             .imageScale(.small)
-                            .foregroundColor(.blue)
-                    }.offset(x: calculateOffset(width: reader.size.width) - 19, y: -4)
+                            .foregroundColor(.accentColor)
+                    }.offset(x: calculateOffset(width: reader.size.width) - 19, y: -8)
                 }.frame(height: 15)
                 Rectangle()
                     .fill(Color.gray)
                     .frame(height: 8)
                 HStack {
                     Text(stats.week52low.round2())
-                        .foregroundColor(Color.Stock.red)
                     Spacer()
                     Text(stats.week52high.round2())
-                        .foregroundColor(Color.Stock.green)
                 }.font(.footnote)
             }
-        }
+            .foregroundColor(.white)
+        }.frame(height: 72)
     }
 
     private func calculateOffset(width: CGFloat) -> CGFloat {
@@ -46,6 +48,6 @@ struct Week52View: View {
 
 struct Week52View_Previews: PreviewProvider {
     static var previews: some View {
-        Week52View(stats: .random, latestPrice: 150)
+        Week52View(stats: .random, latestPrice: 29).background(Color.gray)
     }
 }

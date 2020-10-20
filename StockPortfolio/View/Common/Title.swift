@@ -16,8 +16,8 @@ struct Title: View {
     var body: some View {
         HStack {
             Text(text.uppercased())
-                .font(.title2)
-                .foregroundColor(.blue)
+                .font(.title3)
+                .foregroundColor(.white)
                 .bold()
             Spacer()
         }
