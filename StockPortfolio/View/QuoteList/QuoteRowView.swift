@@ -22,15 +22,17 @@ struct QuoteRowView: View {
             VStack(alignment: .leading, spacing: 4) {
                 Text(quoteDetail.quote.symbol).bold()
                 Text(quoteDetail.quote.companyName).font(.caption)
-            }.layoutPriority(-1)
+            }
+            .layoutPriority(-1)
             Spacer()
             VStack(alignment: .trailing) {
                 Text("\(quoteDetail.quote.changePercent)%")
                     .font(.callout).bold()
                 Text(quoteDetail.quote.gainLossString).font(.caption)
             }
-            .foregroundColor(quoteDetail.quote.percentage >= 0 ? Color.Stock.green : Color.Stock.red)
-        }.padding(.vertical, 4)
+        }
+        .foregroundColor(Color.primary)
+        .padding(.vertical, 4)
     }
 }
 

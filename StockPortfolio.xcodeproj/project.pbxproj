@@ -36,6 +36,9 @@
 		428E50E9253ED2480011F485 /* MyGroupBoxStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428E50E8253ED2480011F485 /* MyGroupBoxStyle.swift */; };
 		428E50EF253EE64E0011F485 /* Numeric+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428E50EE253EE64E0011F485 /* Numeric+.swift */; };
 		428E50F2253EE6620011F485 /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428E50F1253EE6620011F485 /* Formatter.swift */; };
+		428E50F6253EE8EA0011F485 /* DetailListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428E50F5253EE8EA0011F485 /* DetailListView.swift */; };
+		428E50F9253EEA6E0011F485 /* TagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428E50F8253EEA6E0011F485 /* TagsView.swift */; };
+		428E50FC253EEC3B0011F485 /* DisplayTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428E50FB253EEC3B0011F485 /* DisplayTextView.swift */; };
 		429DDBD22536CBB30039B6FE /* IEXCompanyDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429DDBD12536CBB30039B6FE /* IEXCompanyDetail.swift */; };
 		429DDBD52536CBC80039B6FE /* CompanyDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429DDBD42536CBC80039B6FE /* CompanyDetail.swift */; };
 		429DDBD82536CEB20039B6FE /* IEXStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429DDBD72536CEB20039B6FE /* IEXStats.swift */; };
@@ -129,6 +132,9 @@
 		428E50E8253ED2480011F485 /* MyGroupBoxStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGroupBoxStyle.swift; sourceTree = "<group>"; };
 		428E50EE253EE64E0011F485 /* Numeric+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Numeric+.swift"; sourceTree = "<group>"; };
 		428E50F1253EE6620011F485 /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
+		428E50F5253EE8EA0011F485 /* DetailListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailListView.swift; sourceTree = "<group>"; };
+		428E50F8253EEA6E0011F485 /* TagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsView.swift; sourceTree = "<group>"; };
+		428E50FB253EEC3B0011F485 /* DisplayTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayTextView.swift; sourceTree = "<group>"; };
 		429DDBD12536CBB30039B6FE /* IEXCompanyDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IEXCompanyDetail.swift; sourceTree = "<group>"; };
 		429DDBD42536CBC80039B6FE /* CompanyDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyDetail.swift; sourceTree = "<group>"; };
 		429DDBD72536CEB20039B6FE /* IEXStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IEXStats.swift; sourceTree = "<group>"; };
@@ -504,6 +510,9 @@
 				42E6B23A25378C12000DF7D4 /* Title.swift */,
 				42EDB9CA2538EDB0000B0514 /* ToolTip.swift */,
 				42C3F248253D9312004526A8 /* NoDataView.swift */,
+				428E50F5253EE8EA0011F485 /* DetailListView.swift */,
+				428E50F8253EEA6E0011F485 /* TagsView.swift */,
+				428E50FB253EEC3B0011F485 /* DisplayTextView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -682,6 +691,7 @@
 				42CA5CCC2523016B00198C29 /* Endpoint.swift in Sources */,
 				42E1CF4D253CA1BB00ECA9EB /* NewWatchlistView.swift in Sources */,
 				42EDB9CB2538EDB0000B0514 /* ToolTip.swift in Sources */,
+				428E50FC253EEC3B0011F485 /* DisplayTextView.swift in Sources */,
 				42E1CF43253C219100ECA9EB /* Watchlist.swift in Sources */,
 				42DEDC092525BEF3007A351C /* View+.swift in Sources */,
 				42C8C0AE25246C2100BA2BB4 /* IEXChart.swift in Sources */,
@@ -696,6 +706,7 @@
 				428E50EF253EE64E0011F485 /* Numeric+.swift in Sources */,
 				4226877E2534AEF9004997C8 /* NewsRowHeadlineView.swift in Sources */,
 				42F539C72531C1B000D47AF3 /* NewsRowView.swift in Sources */,
+				428E50F6253EE8EA0011F485 /* DetailListView.swift in Sources */,
 				42CA5CA32522144300198C29 /* QuoteListView.swift in Sources */,
 				42EDB9CE2539EF98000B0514 /* PriceTargetView.swift in Sources */,
 				4287BE842529C2F100D0D238 /* DiscoverViewModel.swift in Sources */,
@@ -716,6 +727,7 @@
 				42CA5CBD252216C800198C29 /* Quote.swift in Sources */,
 				42A180882531F5BD00952D80 /* FeaturedNewsRowView.swift in Sources */,
 				429DDBD22536CBB30039B6FE /* IEXCompanyDetail.swift in Sources */,
+				428E50F9253EEA6E0011F485 /* TagsView.swift in Sources */,
 				4287BE5A252879FF00D0D238 /* NewsBodyView.swift in Sources */,
 				422687912535D68A004997C8 /* CompanyView.swift in Sources */,
 				42C3F249253D9312004526A8 /* NoDataView.swift in Sources */,

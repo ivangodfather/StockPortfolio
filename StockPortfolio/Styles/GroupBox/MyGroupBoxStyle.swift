@@ -14,7 +14,7 @@ struct MyGroupBoxStyle: GroupBoxStyle {
             configuration.label
             configuration.content.foregroundColor(.white)
         }
-        .padding(24)
+        .padding(16)
         .background(Color.gray.opacity(0.3).blur(radius: /*@START_MENU_TOKEN@*/3.0/*@END_MENU_TOKEN@*/))
         .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
         .padding(16)

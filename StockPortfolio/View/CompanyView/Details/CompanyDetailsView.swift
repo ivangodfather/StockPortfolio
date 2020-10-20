@@ -13,12 +13,12 @@ struct CompanyDetailsView: View {
     var body: some View {
         ScrollView {
             VStack {
-                ChartView(symbol: companyDetail.quote.symbol)
+//                ChartView(symbol: companyDetail.quote.symbol)
                 PriceTargetView(priceTarget: companyDetail.priceTarget, currentPrice: companyDetail.quote.latestPrice)
                 AnalystRecommendationsView(rating: companyDetail.recommendationTrend.first!.ratingScaleMark)
                 PerformanceView(stats: companyDetail.stats,
                                 latestPrice: companyDetail.quote.latestPrice)
-                KeyDataView(stats: companyDetail.stats)
+                DisplayTextView(title: "Description", content: companyDetail.company.description)
             }
         }
     }
