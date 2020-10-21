@@ -12,6 +12,8 @@ struct WatchlistsView: View {
     @StateObject private var viewModel = WatchlistsViewModel()
     @State private var isManageWatchlistsPresented = false
     @State private var isSearchViewPresented = false
+    @State private var useExtendedHours = false
+    @State private var marketType = 0
 
     var body: some View {
         NavigationView {
@@ -24,9 +26,12 @@ struct WatchlistsView: View {
                 case .error(let description): addErrorView(errorText: description)
                 case .emptySymbols: addNoSymbolsView()
                 case .loading: ProgressView()
-                case .loadedWatchList(let quotes): QuoteListView(quotes: quotes) { viewModel.deleteQuote(at: $0) }
+                case .loadedWatchList(let quotes): WatchlistLoadedView(marketType: $marketType,
+                                        quotes: quotes,
+                                        onDelete:viewModel.deleteQuote)
                 }
             }
+            .navigationBarTitle("", displayMode: .inline)
             .toolbar {
                 ToolbarItem(placement: .principal) {
                     Button(action: { isManageWatchlistsPresented.toggle() }) {

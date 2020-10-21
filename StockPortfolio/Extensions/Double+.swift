@@ -19,4 +19,9 @@ extension Double {
     var first2Decimals: String {
         String(modf(self).1.description.prefix(4).suffix(2))
     }
+
+    var withSign: String {
+        let symbol = self > 0 ? "+" : ""
+        return symbol + self.round2()
+    }
 }

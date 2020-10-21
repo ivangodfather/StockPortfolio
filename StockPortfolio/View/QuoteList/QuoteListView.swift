@@ -11,16 +11,19 @@ import CoreData
 
 struct QuoteListView: View {
     let quotes: [QuoteDetail]
+    let useExtendedHours: Bool
     let onDelete: ((IndexSet) -> Void)?
     
     var body: some View {
-        List {
-            ForEach(quotes) { quote in
-                NavigationLink(
-                    destination: CompanyView(symbol: quote.quote.symbol)) {
-                    QuoteRowView(quoteDetail: quote)
-                }
-            }.onDelete(perform: onDelete)
+        ScrollView {
+            VStack(spacing: 8) {
+                ForEach(quotes) { quote in
+                    NavigationLink(
+                        destination: CompanyView(symbol: quote.quote.symbol)) {
+                        QuoteRowView(quoteDetail: quote, useExtendedHours: useExtendedHours)
+                    }
+                }.onDelete(perform: onDelete)
+            }
         }
         .listStyle(PlainListStyle())
     }
@@ -28,6 +31,6 @@ struct QuoteListView: View {
 
 struct QuoteListView_Previews: PreviewProvider {
     static var previews: some View {
-        QuoteListView(quotes: [QuoteDetail.random, QuoteDetail.random], onDelete: nil)
+        QuoteListView(quotes: [.random, .random, .random], useExtendedHours: false, onDelete: nil)
     }
 }

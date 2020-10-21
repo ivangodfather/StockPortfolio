@@ -36,7 +36,7 @@ struct SearchView: View {
                             NavigationLink(
                                 destination: CompanyView(symbol: quoteDetail.quote.symbol),
                                 label: {
-                                    QuoteRowView(quoteDetail: quoteDetail)
+                                    QuoteRowView(quoteDetail: quoteDetail, useExtendedHours: false)
                                 })
                         }
                     }.listStyle(PlainListStyle())

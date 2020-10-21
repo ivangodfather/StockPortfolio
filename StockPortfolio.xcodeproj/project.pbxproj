@@ -90,6 +90,7 @@
 		42EDB9CE2539EF98000B0514 /* PriceTargetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42EDB9CD2539EF98000B0514 /* PriceTargetView.swift */; };
 		42EDB9D1253AD208000B0514 /* PriceTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42EDB9D0253AD208000B0514 /* PriceTarget.swift */; };
 		42EDB9D4253AD22A000B0514 /* IEXPriceTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42EDB9D3253AD22A000B0514 /* IEXPriceTarget.swift */; };
+		42EF8EBB2540270800CCC2DF /* WatchlistLoadedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42EF8EBA2540270800CCC2DF /* WatchlistLoadedView.swift */; };
 		42F539A0252CCA7000D47AF3 /* WatchlistsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F5399F252CCA7000D47AF3 /* WatchlistsView.swift */; };
 		42F539A5252CCAD900D47AF3 /* WatchlistsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F539A4252CCAD900D47AF3 /* WatchlistsViewModel.swift */; };
 		42F539AC252CF6F600D47AF3 /* ListType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F539AB252CF6F600D47AF3 /* ListType.swift */; };
@@ -187,6 +188,7 @@
 		42EDB9CD2539EF98000B0514 /* PriceTargetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceTargetView.swift; sourceTree = "<group>"; };
 		42EDB9D0253AD208000B0514 /* PriceTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceTarget.swift; sourceTree = "<group>"; };
 		42EDB9D3253AD22A000B0514 /* IEXPriceTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IEXPriceTarget.swift; sourceTree = "<group>"; };
+		42EF8EBA2540270800CCC2DF /* WatchlistLoadedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistLoadedView.swift; sourceTree = "<group>"; };
 		42F5399F252CCA7000D47AF3 /* WatchlistsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistsView.swift; sourceTree = "<group>"; };
 		42F539A4252CCAD900D47AF3 /* WatchlistsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistsViewModel.swift; sourceTree = "<group>"; };
 		42F539AB252CF6F600D47AF3 /* ListType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListType.swift; sourceTree = "<group>"; };
@@ -545,6 +547,7 @@
 			isa = PBXGroup;
 			children = (
 				42F5399F252CCA7000D47AF3 /* WatchlistsView.swift */,
+				42EF8EBA2540270800CCC2DF /* WatchlistLoadedView.swift */,
 				42F539A4252CCAD900D47AF3 /* WatchlistsViewModel.swift */,
 			);
 			path = Watchlists;
@@ -740,6 +743,7 @@
 				428E50E9253ED2480011F485 /* MyGroupBoxStyle.swift in Sources */,
 				42CA5CC6252257E600198C29 /* API.swift in Sources */,
 				429DDBDB2536D0150039B6FE /* Stats.swift in Sources */,
+				42EF8EBB2540270800CCC2DF /* WatchlistLoadedView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
