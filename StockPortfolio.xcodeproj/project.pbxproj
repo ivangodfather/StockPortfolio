@@ -189,6 +189,7 @@
 		42EDB9D0253AD208000B0514 /* PriceTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceTarget.swift; sourceTree = "<group>"; };
 		42EDB9D3253AD22A000B0514 /* IEXPriceTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IEXPriceTarget.swift; sourceTree = "<group>"; };
 		42EF8EBA2540270800CCC2DF /* WatchlistLoadedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistLoadedView.swift; sourceTree = "<group>"; };
+		42EF8EC325406A5100CCC2DF /* TODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
 		42F5399F252CCA7000D47AF3 /* WatchlistsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistsView.swift; sourceTree = "<group>"; };
 		42F539A4252CCAD900D47AF3 /* WatchlistsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistsViewModel.swift; sourceTree = "<group>"; };
 		42F539AB252CF6F600D47AF3 /* ListType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListType.swift; sourceTree = "<group>"; };
@@ -400,6 +401,7 @@
 				42CA5CA42522144500198C29 /* Assets.xcassets */,
 				42CA5CA92522144500198C29 /* Info.plist */,
 				42E1CF2E253AD6FF00ECA9EB /* Keys.plist */,
+				42EF8EC325406A5100CCC2DF /* TODO.md */,
 				42CA5CA62522144500198C29 /* Preview Content */,
 			);
 			path = StockPortfolio;
