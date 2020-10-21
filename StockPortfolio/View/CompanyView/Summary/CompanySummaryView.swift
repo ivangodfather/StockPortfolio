@@ -27,11 +27,19 @@ struct CompanySummaryView: View {
 
     var body: some View {
         ScrollView {
-            GroupBox(label: Title(companyDetail.quote.companyName), content: {
+            GroupBox(label: EmptyView(), content: {
                 Group {
-                    Label(companyDetail.quote.latestPrice.round2(), systemImage: "dollarsign.square")
-                    Label(companyDetail.quote.percentageString, systemImage: "arrow.up")
-                    Label(companyDetail.quote.latestUpdateString, systemImage: "clock")
+                    HStack(spacing: 16) {
+                        RemoteImage(url: companyDetail.logo)
+                            .frame(width: 100, height: 100)
+                        VStack(alignment: .leading) {
+                            Text(companyDetail.quote.companyName).font(.title3).bold()
+                            Label(companyDetail.quote.latestPrice.round2(), systemImage: "dollarsign.square")
+                            Label(companyDetail.quote.percentageString, systemImage: "arrow.up")
+                            Label(companyDetail.quote.latestUpdateString, systemImage: "clock")
+                        }
+                    }
+
                 }.padding(.vertical, 4)
                 .font(Font.headline.weight(.semibold))
 

@@ -40,7 +40,9 @@ final class SearchViewModel: ObservableObject {
             .sink { (completion) in
             } receiveValue: { result in
                 switch result {
-                case .success(let quoteDetails): self.state = .results(quoteDetails)
+                case .success(let quoteDetails):
+                    let sorted = quoteDetails.sorted { $0.quote.marketCap > $1.quote.marketCap }
+                    self.state = .results(sorted)
                 case .failure(let error): self.state = .error(error.localizedDescription)
                 }
             }.store(in: &cancellables)

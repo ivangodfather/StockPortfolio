@@ -10,13 +10,16 @@ import SwiftUI
 
 struct MyGroupBoxStyle: GroupBoxStyle {
     func makeBody(configuration: Configuration) -> some View {
+        HStack {
         VStack(alignment: .leading) {
             configuration.label
             configuration.content.foregroundColor(.primary)
         }
-        .padding(16)
+            Spacer()
+        }
+        .padding(8)
         .background(Color.App.background)
-        .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+        .clipShape(RoundedRectangle(cornerRadius: 4, style: .continuous))
         .padding(8)
         .shadow(color: Color.App.background2, radius: 4, x: 5, y: 5)
 

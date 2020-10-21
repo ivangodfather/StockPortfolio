@@ -13,7 +13,7 @@ struct TagsView: View {
         GridItem(.flexible())
     ]
     let tags: [String]
-
+    
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             LazyHGrid(rows: rows) {
@@ -22,9 +22,8 @@ struct TagsView: View {
                         .bold()
                         .padding(8)
                         .background(
-                            RoundedRectangle(cornerRadius: 16).fill(Color.secondary)
+                            RoundedRectangle(cornerRadius: 4).fill(Color.App.background)
                         ).font(.footnote)
-                        .foregroundColor(.primary)
                 }
             }.padding(.horizontal)
         }.frame(height: 60)

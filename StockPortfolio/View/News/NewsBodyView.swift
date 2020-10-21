@@ -12,15 +12,12 @@ struct NewsBodyView: View {
     var body: some View {
         ScrollView {
             VStack {
-                ForEach(news) { news in
+                ForEach(Array(news.enumerated()), id: \.0) { index, news in
                     NavigationLink(
                         destination: WebViewWrapper(url: news.url),
                         label: {
-                            if news.isFeatured {
-                                FeaturedNewsRowView(news: news)
-                            } else {
-                                NewsRowView(news: news)
-                            }
+                            NewsRowView(news: news)
+                                .background(index.isMultiple(of: 2) ? Color.App.background : Color.clear)
                         })
                 }
             }
@@ -30,7 +27,13 @@ struct NewsBodyView: View {
 
 struct NewsBodyView_Previews: PreviewProvider {
     static var previews: some View {
-        NewsBodyView(news: [News.random, News.random])
+        NewsBodyView(news: [News.random, News.random]).previewLayout(.sizeThatFits)
+    }
+}
+
+struct NewsBodyView_Previews_Dark: PreviewProvider {
+    static var previews: some View {
+        NewsBodyView(news: [News.random, News.random]).preferredColorScheme(.dark).previewLayout(.sizeThatFits)
     }
 }
 

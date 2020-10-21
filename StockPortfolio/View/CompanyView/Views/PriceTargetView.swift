@@ -50,7 +50,7 @@ fileprivate struct BodyView: View {
                     HStack(spacing: 0) {
                         PriceCircleView()
                         Rectangle()
-                            .fill(Color.gray.opacity(0.5))
+                            .fill(Color.App.background2)
                             .frame(height: 2)
                         PriceCircleView()
                     }
@@ -106,7 +106,7 @@ struct PriceTargetView_Previews3: PreviewProvider {
 private struct PriceCircleView: View {
     var body: some View {
         Circle()
-            .fill(Color.gray)
+            .fill(Color.App.background2)
             .frame(width: 8, height: 8)
     }
 }

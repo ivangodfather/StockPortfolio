@@ -18,9 +18,10 @@ struct NewsRowView: View {
                 RemoteImage(url: news.imageURL)
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 90, height: 90)
+                    .border(Color.accentColor, width: 3)
+                    .clipShape(RoundedRectangle(cornerRadius: 4, style: .continuous))
                 .clipped()
             }
-            Divider()
         }
         .padding()
     }

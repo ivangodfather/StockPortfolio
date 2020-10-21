@@ -25,7 +25,7 @@ struct DetailListView: View {
                 }
                 .padding(.vertical, 8)
                 .padding(.horizontal)
-                .background(index % 2 == 0 ? Color.gray.opacity(0.5) : Color.gray.opacity(0.2))
+                .background(index.isMultiple(of: 2) ? Color.App.background2 : Color.clear)
                 .clipShape(RoundedRectangle(cornerRadius: 4, style: .continuous))
 
             }

@@ -23,6 +23,7 @@ struct NewsRowHeadlineView: View {
             }
             Spacer()
         }
+        .foregroundColor(.primary)
     }
 }
 

@@ -17,11 +17,11 @@ struct Title: View {
         HStack {
             Text(text.uppercased())
                 .font(.title3)
-                .foregroundColor(.primary)
+                .foregroundColor(.accentColor)
                 .bold()
             Spacer()
         }
-        .padding(.top, 8)
+        .padding(.top, 4)
         .padding(.bottom, 8)
     }
 }

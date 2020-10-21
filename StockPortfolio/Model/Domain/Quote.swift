@@ -15,6 +15,7 @@ struct Quote {
     let changePercent: String
     let change: Double
     let latestUpdate: Date
+    let marketCap: Double
 }
 
 extension Quote: Identifiable {
@@ -50,6 +51,7 @@ extension Quote {
         changePercent = quote.changePercent.round2()
         change = quote.change ?? 0
         latestUpdate = quote.latestUpdate != nil ? Date(timeIntervalSince1970: quote.latestUpdate! / 1000) : Date()
+        marketCap = quote.marketCap ?? 0
     }
 
     static let random = Quote(symbol: "AMD",
@@ -57,5 +59,5 @@ extension Quote {
                                     latestPrice: 27.30,
                                     previousClose: 90,
                                     changePercent: "-1.19",
-                                    change: 10.1, latestUpdate: Date())
+                                    change: 10.1, latestUpdate: Date(), marketCap: 1234)
 }
