@@ -55,10 +55,10 @@ struct QuoteRowView: View {
             HStack {
                 Rectangle()
                     .fill(gainColor)
-                    .frame(width: 6, height: 54)
+                    .frame(width: 6, height: 64)
                 HStack {
                     RemoteImage(url: quoteDetail.logo)
-                        .frame(width: 40, height: 40)
+                        .frame(width: 48, height: 48)
                     VStack(alignment: .leading, spacing: 4) {
                         Text(quoteDetail.quote.symbol).bold()
                         Text(quoteDetail.quote.companyName).font(.caption)

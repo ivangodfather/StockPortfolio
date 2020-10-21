@@ -12,7 +12,7 @@ extension CoreDataStorage {
     func insertSampleData() -> AnyPublisher<Watchlist, Never> {
       createWatchlist(name: "My Stocks")
             .flatMap { watchlist in
-                ["TSLA", "KO", "PEP", "AMD"].map { ($0, watchlist) }.publisher
+                ["TSLA", "NVIDA", "DAL", "AMD", "T", "DKNG", "LOGI"].map { ($0, watchlist) }.publisher
             }.flatMap(save(symbol:for:))
             .collect()
             .flatMap { _ in self.watchlists() }
