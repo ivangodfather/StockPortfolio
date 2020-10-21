@@ -39,7 +39,13 @@ struct WatchlistsView: View {
                             Text(viewModel.selectedWatchlist?.name ?? "Watchlists")
                                 .font(.title)
                                 .bold()
-                            Image(systemName: "arrow.down.to.line.alt").font(.system(size: 11))
+                                .background(
+                                    Image(systemName: "arrow.down.to.line.alt").font(.system(size: 11)).padding(.top, 4).padding(.leading, 4)
+                                        .alignmentGuide(.trailing, computeValue: { dimension in
+                                            dimension[HorizontalAlignment.leading]
+                                        })
+                                    , alignment: .trailing)
+
                         }
                         .foregroundColor(Color.accentColor)
                     }
@@ -47,8 +53,8 @@ struct WatchlistsView: View {
             }
             .navigationBarItems(leading: EditButton(),
                                 trailing: Button(action: { viewModel.loadWatchlists() }, label: {
-                                    Image(systemName: "arrow.clockwise.circle").imageScale(.large)
-                                })).foregroundColor(Color.accentColor)
+                                    Image(systemName: "arrow.clockwise.circle").padding(.horizontal)
+                                }))
         }
         .onAppear {
             viewModel.loadWatchlists()

@@ -16,7 +16,6 @@ struct StockPortfolioApp: App {
         UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor(Color.accentColor)]
         UISegmentedControl.appearance().selectedSegmentTintColor = UIColor(Color.accentColor)
         UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
-        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor(Color.primary)], for: .normal)
     }
 
     var body: some Scene {

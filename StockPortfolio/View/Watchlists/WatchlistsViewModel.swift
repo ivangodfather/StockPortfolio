@@ -19,7 +19,7 @@ final class WatchlistsViewModel: ObservableObject {
     enum State {
         case initial
         case emptyWatchlists
-        case error(localizedError: String)
+        case error(String)
         case loading
         case emptySymbols
         case loadedWatchList(quotes: [QuoteDetail])
@@ -48,7 +48,7 @@ final class WatchlistsViewModel: ObservableObject {
             }.sink { completion in
                 switch completion {
                 case.finished: break
-                case .failure(let error): self.state = .error(localizedError: error.localizedDescription)
+                case .failure(let error): self.state = .error(error.localizedDescription)
                 }
             } receiveValue: { watchLists in
                 self.selectedWatchlist = watchLists.first
@@ -68,7 +68,7 @@ final class WatchlistsViewModel: ObservableObject {
                 switch quoteDetailResult {
                 case.success(let quotes):
                     self.state = .loadedWatchList(quotes: quotes)
-                case .failure(let error): print(error.localizedDescription)
+                case .failure(let error): self.state = .error(error.localizedDescription)
                 }
             }.store(in: &cancellables)
     }
