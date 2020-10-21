@@ -56,7 +56,7 @@ struct QuoteRowView: View {
                 Rectangle()
                     .fill(gainColor)
                     .frame(width: 6, height: 64)
-                HStack {
+                HStack(alignment: .top) {
                     RemoteImage(url: quoteDetail.logo)
                         .frame(width: 48, height: 48)
                     VStack(alignment: .leading, spacing: 4) {
@@ -66,7 +66,7 @@ struct QuoteRowView: View {
                     .layoutPriority(-1)
                     Spacer()
                     VStack(alignment: .trailing) {
-                        Text("$" + marketPrice.price.round2()).bold().font(.body)
+                        Text("$" + marketPrice.price.round2()).bold().font(.callout)
                             .foregroundColor(priceColor)
                     }
                     VStack(alignment: .trailing) {
@@ -77,14 +77,12 @@ struct QuoteRowView: View {
                     }
                     .lineLimit(1)
                     .minimumScaleFactor(0.5)
-                    .frame(width: 64)
+                    .frame(width: 72)
                     .foregroundColor(gainColor)
                 }.padding(.vertical, 4)
-                .padding(.trailing, 16)
 
             }
             .foregroundColor(Color.primary)
-            Divider()
         }
     }
 }

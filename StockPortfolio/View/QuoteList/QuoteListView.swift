@@ -20,22 +20,20 @@ struct QuoteListView: View {
                 Text("Symbol")
                     .padding(.leading, 24)
                 Spacer()
-                Text("Price")
-                Text("% Change").frame(width: 92)
+                Text("Price").padding(.trailing, 4)
+                Text("% Change").padding(.trailing, 44)
             }
             .foregroundColor(.primary)
             .font(Font.caption.weight(.semibold))
             .padding(.vertical, 8)
             .background(Color.App.background)
-            ScrollView {
-                VStack(spacing: 8) {
-                    ForEach(quotes) { quote in
-                        NavigationLink(
-                            destination: CompanyView(symbol: quote.quote.symbol)) {
-                            QuoteRowView(quoteDetail: quote, useExtendedHours: useExtendedHours)
-                        }
-                    }.onDelete(perform: onDelete)
-                }
+            List {
+                ForEach(quotes) { quote in
+                    NavigationLink(
+                        destination: CompanyView(symbol: quote.quote.symbol)) {
+                        QuoteRowView(quoteDetail: quote, useExtendedHours: useExtendedHours)
+                    }
+                }.onDelete(perform: onDelete)
             }
             .listStyle(PlainListStyle())
         }

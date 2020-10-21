@@ -8,10 +8,14 @@
 import Foundation
 import SwiftUI
 import Combine
-import CoreData
 
-class DiscoverViewModel: ObservableObject {
-    @Published var quotesDetails = [QuoteDetail]()
+final class DiscoverViewModel: ObservableObject {
+    enum State {
+        case loading
+        case loaded([QuoteDetail])
+        case error(String)
+    }
+    @Published var state: State = .loading
 
     private var cancellables = Set<AnyCancellable>()
     private let api: APIProtocol
@@ -22,14 +26,15 @@ class DiscoverViewModel: ObservableObject {
 
     func request(listIndex: Int) {
         guard let listType = ListType(rawValue: listIndex) else { return }
+        state = .loading
         api
             .marketInfo(listType: listType.apiDescription)
             .sink { result in
                 switch result {
                 case .success(let quotesDetails):
-                    self.quotesDetails = quotesDetails
+                    self.state = .loaded(quotesDetails)
                 case.failure(let error):
-                    print(error.localizedDescription)
+                    self.state = .error(error.localizedDescription)
                 }
             }.store(in: &cancellables)
     }
