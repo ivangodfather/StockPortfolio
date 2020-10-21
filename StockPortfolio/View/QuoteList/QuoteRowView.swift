@@ -73,7 +73,7 @@ struct QuoteRowView: View {
                         Text("\(marketPrice.changePercent.withSign)%")
                             .font(.callout).bold()
                         Text(marketPrice.change.withSign)
-                            .font(.caption)
+                            .font(.caption).bold()
                     }
                     .lineLimit(1)
                     .minimumScaleFactor(0.5)
