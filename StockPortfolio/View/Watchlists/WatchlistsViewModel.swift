@@ -10,11 +10,13 @@ import Combine
 
 final class WatchlistsViewModel: ObservableObject {
 
-    var selectedWatchlist: Watchlist? = nil {
+    private var selectedWatchlist: Watchlist? = nil {
         didSet {
-            loadQuotes(from: selectedWatchlist!)
+            watchlistName = selectedWatchlist?.name ?? "Watchlist"
         }
     }
+
+    @Published var watchlistName = "Watchlist"
 
     enum State {
         case initial
@@ -52,11 +54,13 @@ final class WatchlistsViewModel: ObservableObject {
                 }
             } receiveValue: { watchLists in
                 self.selectedWatchlist = watchLists.first
+                self.loadQuotes()
             }.store(in: &cancellables)
 
     }
 
-    func loadQuotes(from watchlist: Watchlist) {
+    func loadQuotes() {
+        guard let watchlist = selectedWatchlist else { return }
         state = .loading
         guard !watchlist.symbols.isEmpty else {
             state = .emptySymbols
@@ -79,10 +83,15 @@ final class WatchlistsViewModel: ObservableObject {
         }
     }
 
+    func didSelect(_ watchlist: Watchlist) {
+        self.selectedWatchlist = watchlist
+        self.loadQuotes()
+    }
+
 
     func deleteQuote(at offsets: IndexSet) {
-        if let watchlist = selectedWatchlist {
-            let symbolsToDelete = offsets.map { watchlist.symbols[$0] }
+        if case let State.loadedWatchList(quotes) = state, let watchlist = selectedWatchlist  {
+            let symbolsToDelete = offsets.map { quotes[$0].quote.symbol }
             symbolsToDelete
                 .publisher
                 .map { ($0, watchlist) }
@@ -92,6 +101,11 @@ final class WatchlistsViewModel: ObservableObject {
                     case .finished:
                         let symbols = Set(watchlist.symbols).subtracting(symbolsToDelete)
                         self.selectedWatchlist = Watchlist(name: watchlist.name, symbols: Array(symbols))
+                        var newQuotes = quotes
+                        symbolsToDelete.forEach { symbol in
+                            newQuotes.removeAll(where: { $0.quote.symbol == symbol })
+                        }
+                        self.state = .loadedWatchList(quotes: newQuotes)
                     case .failure(let error): print(error.localizedDescription)
                     }
                 } receiveValue: { _ in
@@ -102,7 +116,8 @@ final class WatchlistsViewModel: ObservableObject {
 
     func insertSampleData() {
         CoreDataStorage().insertSampleData().sink {
-            self.loadQuotes(from: $0)
+            self.selectedWatchlist = $0
+            self.loadQuotes()
         }.store(in: &cancellables)
     }
 }

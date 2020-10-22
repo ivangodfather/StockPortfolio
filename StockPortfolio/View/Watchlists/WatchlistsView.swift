@@ -36,7 +36,7 @@ struct WatchlistsView: View {
                 ToolbarItem(placement: .principal) {
                     Button(action: { isManageWatchlistsPresented.toggle() }) {
                         HStack(alignment: .firstTextBaseline, spacing: 4) {
-                            Text(viewModel.selectedWatchlist?.name ?? "Watchlists")
+                            Text(viewModel.watchlistName)
                                 .font(.title)
                                 .bold()
                                 .background(
@@ -62,7 +62,7 @@ struct WatchlistsView: View {
         .sheet(isPresented: $isManageWatchlistsPresented) {
             ManageWatchlists(didSelectWatchlist: { watchlist in
                 DispatchQueue.main.async {
-                    self.viewModel.selectedWatchlist = watchlist
+                    self.viewModel.didSelect(watchlist)
                     self.isManageWatchlistsPresented = false
                 }
 
