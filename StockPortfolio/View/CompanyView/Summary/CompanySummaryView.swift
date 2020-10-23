@@ -17,7 +17,7 @@ struct CompanySummaryView: View {
         ("Exchange", companyDetail.company.exchange),
         ("Industry", companyDetail.company.industry),
         ("CEO", companyDetail.company.ceo),
-        ("Employees", companyDetail.company.employees.description),
+        ("Employees", companyDetail.company.employees?.description ?? "N/A"),
         ("Country", companyDetail.company.country),
     ] }
 

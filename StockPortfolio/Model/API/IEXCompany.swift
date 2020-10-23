@@ -17,7 +17,7 @@ struct IEXCompany: Decodable {
     let securityName: String
     let issueType: String
     let sector: String
-    let employees: Int
+    let employees: Int?
     let tags: [String]
     let country: String
 }

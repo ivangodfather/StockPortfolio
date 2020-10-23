@@ -17,7 +17,7 @@ struct Company {
     let securityName: String
     let issueType: IssueType
     let sector: String
-    let employees: Int
+    let employees: Int?
     let tags: [String]
     let country: String
 

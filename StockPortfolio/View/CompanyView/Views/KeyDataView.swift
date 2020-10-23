@@ -16,9 +16,9 @@ struct KeyDataView: View {
             ("Dividend Yield" , stats.dividendYield?.round2() ?? "N/A"),
             ("Market Cap" , stats.marketcap.formattedWithSeparator),
             ("Shares Outstanding" , stats.sharesOutstanding.formattedWithSeparator),
-            ("P/E Ratio" , stats.peRatio.description),
+            ("P/E Ratio" , stats.peRatio?.description ?? "N/A"),
             ("Ex-Dividend Day" , stats.exDividendDate ?? "N/A"),
-            ("Next Earnings Date", stats.nextEarningsDate)
+            ("Next Earnings Date", stats.nextEarningsDate ?? "N/A")
         ]
     }
 

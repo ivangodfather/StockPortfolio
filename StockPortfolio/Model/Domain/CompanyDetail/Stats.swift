@@ -20,11 +20,11 @@ struct Stats {
     let month3ChangePercent: Double
     let month1ChangePercent: Double
     let day5ChangePercent: Double
-    let peRatio: Double
+    let peRatio: Double?
     let exDividendDate: String?
     let marketcap: Int
     let sharesOutstanding: Int
-    let nextEarningsDate: String
+    let nextEarningsDate: String?
     let avg30Volume: Int
 }
 
