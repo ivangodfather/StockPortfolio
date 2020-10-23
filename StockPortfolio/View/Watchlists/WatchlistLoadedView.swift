@@ -9,24 +9,18 @@ import SwiftUI
 
 struct WatchlistLoadedView: View {
 
-    @Binding var marketType: Int
     let quotes: [QuoteDetail]
     let onDelete: ((IndexSet) -> Void)?
 
     var body: some View {
         VStack {
-            Picker(selection: $marketType, label: Text("Hola")) {
-                Text("Market").tag(0)
-                Text("Extended hours").tag(1)
-             }.pickerStyle(SegmentedPickerStyle())
-            .padding()
-            QuoteListView(quotes: quotes, useExtendedHours: marketType == 1, onDelete: onDelete)
+            QuoteListView(quotes: quotes, onDelete: onDelete)
         }
     }
 }
 
 struct WatchlistLoadedView_Previews: PreviewProvider {
     static var previews: some View {
-        WatchlistLoadedView(marketType: .constant(0), quotes: [.random, .random, .random, .random], onDelete: nil)
+        WatchlistLoadedView(quotes: [.random, .random, .random, .random], onDelete: nil)
     }
 }

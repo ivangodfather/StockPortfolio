@@ -26,9 +26,7 @@ struct WatchlistsView: View {
                 case .error(let description): addErrorView(errorText: description)
                 case .emptySymbols: addNoSymbolsView()
                 case .loading: ProgressView()
-                case .loadedWatchList(let quotes): WatchlistLoadedView(marketType: $marketType,
-                                        quotes: quotes,
-                                        onDelete:viewModel.deleteQuote)
+                case .loadedWatchList(let quotes): WatchlistLoadedView(quotes: quotes, onDelete:viewModel.deleteQuote)
                 }
             }
             .navigationBarTitle("", displayMode: .inline)

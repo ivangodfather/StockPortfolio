@@ -28,7 +28,7 @@ struct DiscoverView: View {
                 switch viewModel.state {
                 case .loading: ProgressView()
                 case .loaded(let quotes):
-                    QuoteListView(quotes: quotes, useExtendedHours: false, onDelete: nil)
+                    QuoteListView(quotes: quotes, onDelete: nil)
                 case .error(let description): NoDataView(title: "Ups! Something went wrong", subtitle: description, button: ("Retry", { self.viewModel.request(listIndex: selectedCollection) }))
                 }
                 Spacer()

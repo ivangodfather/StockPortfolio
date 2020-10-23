@@ -16,8 +16,5 @@ struct IEXQuote: Decodable {
     let change: Double?
     let latestUpdate: Double?
     let marketCap: Double?
-    let extendedPrice: Double?
-    let extendedChange: Double?
-    let extendedChangePercent: Double?
     let isUSMarketOpen: Bool?
 }

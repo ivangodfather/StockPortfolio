@@ -16,9 +16,6 @@ struct Quote {
     let change: Double
     let latestUpdate: Date
     let marketCap: Double
-    let extendedPrice: Double
-    let extendedChange: Double
-    let extendedChangePercent: Double
     let isUSMarketOpen: Bool
 }
 
@@ -51,9 +48,6 @@ extension Quote {
         change = quote.change ?? 0
         latestUpdate = quote.latestUpdate != nil ? Date(timeIntervalSince1970: quote.latestUpdate! / 1000) : Date()
         marketCap = quote.marketCap ?? 0
-        extendedPrice = quote.extendedPrice ?? 0
-        extendedChange = quote.extendedPrice ?? 0
-        extendedChangePercent = quote.extendedChangePercent ?? 0
         isUSMarketOpen = quote.isUSMarketOpen ?? false
     }
 
@@ -64,8 +58,5 @@ extension Quote {
                                     changePercent: 1.19,
                                     change: 10.1, latestUpdate: Date(),
                                     marketCap: 1234,
-                                    extendedPrice: 10,
-                                    extendedChange: 2.5,
-                                    extendedChangePercent: 0.27,
                                     isUSMarketOpen: false)
 }

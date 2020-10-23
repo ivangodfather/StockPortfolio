@@ -11,7 +11,6 @@ import CoreData
 
 struct QuoteListView: View {
     let quotes: [QuoteDetail]
-    let useExtendedHours: Bool
     let onDelete: ((IndexSet) -> Void)?
     
     var body: some View {
@@ -31,7 +30,7 @@ struct QuoteListView: View {
                 ForEach(quotes) { quote in
                     NavigationLink(
                         destination: CompanyView(symbol: quote.quote.symbol)) {
-                        QuoteRowView(quoteDetail: quote, useExtendedHours: useExtendedHours)
+                        QuoteRowView(quoteDetail: quote)
                     }
                 }.onDelete(perform: onDelete)
             }
@@ -42,6 +41,6 @@ struct QuoteListView: View {
 
 struct QuoteListView_Previews: PreviewProvider {
     static var previews: some View {
-        QuoteListView(quotes: [.random, .random, .random], useExtendedHours: false, onDelete: nil)
+        QuoteListView(quotes: [.random, .random, .random], onDelete: nil)
     }
 }
