@@ -33,5 +33,6 @@ struct NewsView: View {
                 Image(systemName: "arrow.clockwise.circle").imageScale(.large)
             }))
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }

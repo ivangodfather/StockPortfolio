@@ -47,7 +47,7 @@ struct SearchView: View {
             }
             .onChange(of: searchText, perform: viewModel.didSearch)
             .navigationBarTitle("Search")
-        }
+        }.navigationViewStyle(StackNavigationViewStyle())
     }
 
 }

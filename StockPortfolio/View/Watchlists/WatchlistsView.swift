@@ -54,6 +54,7 @@ struct WatchlistsView: View {
                                     Image(systemName: "arrow.clockwise.circle").padding(.horizontal)
                                 }))
         }
+        .navigationViewStyle(StackNavigationViewStyle())
         .onAppear {
             viewModel.loadWatchlists()
         }

@@ -18,4 +18,6 @@ protocol DataStorage {
 
 enum DataStorageError: Error {
     case unkown(reason: String)
+    case watchlistAlreadyExists
+    case symbolAlreadyExists
 }

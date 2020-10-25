@@ -19,6 +19,9 @@ class CoreDataStorage: DataStorage {
     }
 
     func createWatchlist(name: String) -> AnyPublisher<Watchlist, DataStorageError> {
+        guard watchlist(name: name) == nil else {
+            return Fail(error: DataStorageError.watchlistAlreadyExists).eraseToAnyPublisher()
+        }
         let entitiyName = String(describing: CoreDataWatchlist.self)
         guard let entitiy = NSEntityDescription.insertNewObject(forEntityName: entitiyName, into: manager.context) as? CoreDataWatchlist else {
                         return Fail(outputType: Watchlist.self,
@@ -98,6 +101,12 @@ class CoreDataStorage: DataStorage {
             let failure = DataStorageError.unkown(reason: error.localizedDescription)
             return Fail(outputType: Void.self, failure: failure).eraseToAnyPublisher()
         }
+    }
+
+    func watchlist(name: String) -> CoreDataWatchlist? {
+        let request: NSFetchRequest<CoreDataWatchlist> = CoreDataWatchlist.fetchRequest()
+        request.predicate = NSPredicate(format: "%K = %@", #keyPath(CoreDataWatchlist.name), name)
+        return try? manager.context.fetch(request).first
     }
 
 }

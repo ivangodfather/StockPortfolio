@@ -40,6 +40,7 @@ struct DiscoverView: View {
                 self.viewModel.request(listIndex: selectedCollection)
             }
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
