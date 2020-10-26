@@ -9,6 +9,7 @@ import SwiftUI
 import SwiftUICharts
 
 struct ChartView: View {
+    
     let symbol: String
     @StateObject private var viewModel = ChartViewModel()
     @State private var selectedPeriod = 0
